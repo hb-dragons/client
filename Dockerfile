@@ -14,7 +14,7 @@ FROM gcr.io/distroless/nodejs:18 as prod
 
 WORKDIR /app
 
-COPY --from=build /app/.output/server /app/.output/server
+COPY --from=build /app/.output /app/.output
 
 EXPOSE 3000/tcp
 
