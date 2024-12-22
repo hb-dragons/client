@@ -1,24 +1,21 @@
-FROM node:lts AS build-stage
+FROM node:18-alpine as build
 
-WORKDIR /nuxtapp
+WORKDIR /app
 
-COPY . .
+COPY package.json /app
 
 RUN npm install
 
+COPY . /app
+
 RUN npm run build
 
-RUN rm -rf node_modules && \
-  NODE_ENV=production npm install \
-  --prefer-offline \
-  --pure-lockfile \
-  --non-interactive \
-  --production=true
+FROM gcr.io/distroless/nodejs:18 as prod
 
-FROM node:lts AS prod-stage
+WORKDIR /app
 
-WORKDIR /nuxtapp
+COPY --from=build /app/.output/server /app/.output/server
 
-COPY --from=build-stage /nuxtapp/.output/  ./.output/
+EXPOSE 3000/tcp
 
-CMD [ "node", ".output/server/index.mjs" ]
+CMD ["/app/.output/server/index.mjs"]
