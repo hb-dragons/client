@@ -725,6 +725,59 @@ type RootQuery {
     before: String
   ): RootQueryToThemeConnection
 
+  """An object of the trainer Type. """
+  trainer(
+    """The globally unique identifier of the object."""
+    id: ID!
+
+    """Type of unique identifier to fetch by. Default is Global ID"""
+    idType: TrainerIdType
+
+    """
+    Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
+    """
+    asPreview: Boolean
+  ): Trainer
+
+  """A trainer object"""
+  trainerBy(
+    """Get the trainer object by its global ID"""
+    id: ID
+
+    """Get the trainer by its database ID"""
+    trainerId: Int
+
+    """Get the trainer by its uri"""
+    uri: String
+
+    """
+    Get the trainer by its slug (only available for non-hierarchical types)
+    """
+    slug: String
+  ): Trainer @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
+
+  """Connection between the RootQuery type and the trainer type"""
+  trainers(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: RootQueryToTrainerConnectionWhereArgs
+  ): RootQueryToTrainerConnection
+
   """Returns a user"""
   user(
     """The globally unique identifier of the user."""
@@ -3291,6 +3344,9 @@ enum ContentTypeEnum {
 
   """The Type of Content object"""
   TEAMS
+
+  """The Type of Content object"""
+  TRAINER
 }
 
 """Connection between the ContentType type and the ContentNode type"""
@@ -10595,7 +10651,7 @@ interface MenuItemLinkableConnectionEdge implements Edge {
 }
 
 """Deprecated in favor of MenuItemLinkeable Interface"""
-union MenuItemObjectUnion = Post | Page | Gym | Team | Category | Tag
+union MenuItemObjectUnion = Post | Page | Gym | Team | Trainer | Category | Tag
 
 """The team type"""
 type Team implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & Previewable & NodeWithTitle & MenuItemLinkable & WithAcfTeamDetails {
@@ -10807,6 +10863,27 @@ type TeamDetails implements TeamDetails_Fields & AcfFieldGroup & AcfFieldGroupFi
   teamPhoto: AcfMediaItemConnectionEdge
 
   """
+  Field of the &quot;post_object&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
+  """
+  trainer(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): AcfContentNodeConnection
+
+  """
   Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
   """
   training: TeamDetailsTraining
@@ -10835,6 +10912,27 @@ interface TeamDetails_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   teamPhoto: AcfMediaItemConnectionEdge
 
   """
+  Field of the &quot;post_object&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
+  """
+  trainer(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): AcfContentNodeConnection
+
+  """
   Field of the &quot;group&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
   """
   training: TeamDetailsTraining
@@ -10849,6 +10947,44 @@ type AcfMediaItemConnectionEdge implements OneToOneConnection & Edge & MediaItem
 
   """The node of the connection, without the edges"""
   node: MediaItem!
+}
+
+"""
+Connection between the TeamDetails_Fields type and the ContentNode type
+"""
+type AcfContentNodeConnection implements ContentNodeConnection & Connection {
+  """Edges for the AcfContentNodeConnection connection"""
+  edges: [AcfContentNodeConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [ContentNode!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: AcfContentNodeConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type AcfContentNodeConnectionEdge implements ContentNodeConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: ContentNode!
+}
+
+"""Page Info on the &quot;AcfContentNodeConnection&quot;"""
+type AcfContentNodeConnectionPageInfo implements ContentNodeConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
 }
 
 """
@@ -10961,19 +11097,6 @@ interface TeamDetailsTrainingFriday_Fields implements AcfFieldGroup & AcfFieldGr
   Field of the &quot;time_picker&quot; Field Type added to the schema as part of the &quot;TeamDetailsTrainingFriday&quot; Field Group
   """
   startTime: String
-}
-
-"""
-Connection between the TeamDetailsTrainingMonday_Fields type and the ContentNode type
-"""
-type AcfContentNodeConnectionEdge implements OneToOneConnection & Edge & ContentNodeConnectionEdge {
-  """
-  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
-  """
-  cursor: String
-
-  """The node of the connection, without the edges"""
-  node: ContentNode!
 }
 
 """
@@ -11256,6 +11379,337 @@ type TeamToPreviewConnectionEdge implements OneToOneConnection & Edge & TeamConn
 
   """The node of the connection, without the edges"""
   node: Team!
+}
+
+"""The trainer type"""
+type Trainer implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & Previewable & NodeWithTitle & MenuItemLinkable & WithAcfTrainerDetails {
+  """The ancestors of the content node."""
+  ancestors(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): TrainerToTrainerConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+
+  """Connection between the ContentNode type and the ContentType type"""
+  contentType: ContentNodeToContentTypeConnectionEdge
+
+  """The name of the Content Type the node belongs to"""
+  contentTypeName: String!
+
+  """The unique identifier stored in the database"""
+  databaseId: Int!
+
+  """Post publishing date."""
+  date: String
+
+  """The publishing date set in GMT."""
+  dateGmt: String
+
+  """The desired slug of the post"""
+  desiredSlug: String
+
+  """
+  If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds
+  """
+  editingLockedBy: ContentNodeToEditLockConnectionEdge
+
+  """The RSS enclosure for the object"""
+  enclosure: String
+
+  """Connection between the ContentNode type and the EnqueuedScript type"""
+  enqueuedScripts(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): ContentNodeToEnqueuedScriptConnection
+
+  """
+  Connection between the ContentNode type and the EnqueuedStylesheet type
+  """
+  enqueuedStylesheets(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): ContentNodeToEnqueuedStylesheetConnection
+
+  """
+  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  """
+  guid: String
+
+  """Whether the trainer object is password protected."""
+  hasPassword: Boolean
+
+  """The globally unique identifier of the trainer object."""
+  id: ID!
+
+  """Whether the node is a Comment"""
+  isComment: Boolean!
+
+  """Whether the node is a Content Node"""
+  isContentNode: Boolean!
+
+  """Whether the node represents the front page."""
+  isFrontPage: Boolean!
+
+  """Whether  the node represents the blog page."""
+  isPostsPage: Boolean!
+
+  """Whether the object is a node in the preview state"""
+  isPreview: Boolean
+
+  """Whether the object is restricted from the current viewer"""
+  isRestricted: Boolean
+
+  """Whether the node is a Term"""
+  isTermNode: Boolean!
+
+  """The user that most recently edited the node"""
+  lastEditedBy: ContentNodeToEditLastConnectionEdge
+
+  """The permalink of the post"""
+  link: String
+
+  """
+  The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time.
+  """
+  modified: String
+
+  """
+  The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
+  """
+  modifiedGmt: String
+
+  """The parent of the content node."""
+  parent: TrainerToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+
+  """The password for the trainer object."""
+  password: String
+
+  """Connection between the Trainer type and the trainer type"""
+  preview: TrainerToPreviewConnectionEdge
+
+  """The database id of the preview node"""
+  previewRevisionDatabaseId: Int
+
+  """Whether the object is a node in the preview state"""
+  previewRevisionId: ID
+
+  """
+  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  """
+  slug: String
+
+  """The current status of the object"""
+  status: String
+
+  """The template assigned to the node"""
+  template: ContentTemplate
+
+  """
+  The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
+  """
+  title(
+    """Format of the field output"""
+    format: PostObjectFieldFormatEnum
+  ): String
+
+  """Fields of the TrainerDetails ACF Field Group"""
+  trainerDetails: TrainerDetails
+
+  """The id field matches the WP_Post-&gt;ID field."""
+  trainerId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+
+  """The unique resource identifier path"""
+  uri: String
+}
+
+"""
+Provides access to fields of the &quot;TrainerDetails&quot; ACF Field Group via the &quot;trainerDetails&quot; field
+"""
+interface WithAcfTrainerDetails {
+  """Fields of the TrainerDetails ACF Field Group"""
+  trainerDetails: TrainerDetails
+}
+
+"""
+The &quot;TrainerDetails&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type TrainerDetails implements TrainerDetails_Fields & AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;TrainerDetails&quot; Field Group
+  """
+  email: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;TrainerDetails&quot; Field Group
+  """
+  image: AcfMediaItemConnectionEdge
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TrainerDetails&quot; Field Group
+  """
+  name: String!
+}
+
+"""
+Interface representing fields of the ACF &quot;TrainerDetails&quot; Field Group
+"""
+interface TrainerDetails_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;TrainerDetails&quot; Field Group
+  """
+  email: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;TrainerDetails&quot; Field Group
+  """
+  image: AcfMediaItemConnectionEdge
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TrainerDetails&quot; Field Group
+  """
+  name: String!
+}
+
+"""Connection between the Trainer type and the trainer type"""
+type TrainerToTrainerConnection implements TrainerConnection & Connection {
+  """Edges for the TrainerToTrainerConnection connection"""
+  edges: [TrainerToTrainerConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [Trainer!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: TrainerToTrainerConnectionPageInfo!
+}
+
+"""Connection to trainer Nodes"""
+interface TrainerConnection implements Connection {
+  """
+  A list of edges (relational context) between RootQuery and connected trainer Nodes
+  """
+  edges: [TrainerConnectionEdge!]!
+
+  """A list of connected trainer Nodes"""
+  nodes: [Trainer!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: TrainerConnectionPageInfo!
+}
+
+"""Edge between a Node and a connected trainer"""
+interface TrainerConnectionEdge implements Edge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The connected trainer Node"""
+  node: Trainer!
+}
+
+"""Page Info on the connected TrainerConnectionEdge"""
+interface TrainerConnectionPageInfo implements WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""An edge in a connection"""
+type TrainerToTrainerConnectionEdge implements TrainerConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+
+  """The item at the end of the edge"""
+  node: Trainer! @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+}
+
+"""Page Info on the &quot;TrainerToTrainerConnection&quot;"""
+type TrainerToTrainerConnectionPageInfo implements TrainerConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""Connection between the Trainer type and the trainer type"""
+type TrainerToParentConnectionEdge implements OneToOneConnection & Edge & TrainerConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Trainer! @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+}
+
+"""Connection between the Trainer type and the trainer type"""
+type TrainerToPreviewConnectionEdge implements OneToOneConnection & Edge & TrainerConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Trainer!
 }
 
 """Connection between the MenuItem type and the Menu type"""
@@ -12773,6 +13227,117 @@ type RootQueryToThemeConnectionPageInfo implements ThemeConnectionPageInfo & WPP
   startCursor: String
 }
 
+"""The Type of Identifier used to fetch a single resource. Default is ID."""
+enum TrainerIdType {
+  """Identify a resource by the Database ID."""
+  DATABASE_ID
+
+  """Identify a resource by the (hashed) Global ID."""
+  ID
+
+  """
+  Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier.
+  """
+  SLUG
+
+  """Identify a resource by the URI."""
+  URI
+}
+
+"""Arguments for filtering the RootQueryToTrainerConnection connection"""
+input RootQueryToTrainerConnectionWhereArgs {
+  """Filter the connection based on dates"""
+  dateQuery: DateQueryInput
+
+  """
+  True for objects with passwords; False for objects without passwords; null for all objects with or without passwords
+  """
+  hasPassword: Boolean
+
+  """Specific database ID of the object"""
+  id: Int
+
+  """Array of IDs for the objects to retrieve"""
+  in: [ID]
+
+  """Get objects with a specific mimeType property"""
+  mimeType: MimeTypeEnum
+
+  """Slug / post_name of the object"""
+  name: String
+
+  """Specify objects to retrieve. Use slugs"""
+  nameIn: [String]
+
+  """
+  Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored
+  """
+  notIn: [ID]
+
+  """What parameter to use to order the objects by."""
+  orderby: [PostObjectsConnectionOrderbyInput]
+
+  """Use ID to return only children. Use 0 to return only top-level items"""
+  parent: ID
+
+  """Specify objects whose parent is in an array"""
+  parentIn: [ID]
+
+  """Specify posts whose parent is not in an array"""
+  parentNotIn: [ID]
+
+  """Show posts with a specific password."""
+  password: String
+
+  """Show Posts based on a keyword search"""
+  search: String
+
+  """Retrieve posts where post status is in an array."""
+  stati: [PostStatusEnum]
+
+  """Show posts with a specific status."""
+  status: PostStatusEnum
+
+  """Title of the object"""
+  title: String
+}
+
+"""Connection between the RootQuery type and the trainer type"""
+type RootQueryToTrainerConnection implements TrainerConnection & Connection {
+  """Edges for the RootQueryToTrainerConnection connection"""
+  edges: [RootQueryToTrainerConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [Trainer!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: RootQueryToTrainerConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type RootQueryToTrainerConnectionEdge implements TrainerConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: Trainer!
+}
+
+"""Page Info on the &quot;RootQueryToTrainerConnection&quot;"""
+type RootQueryToTrainerConnectionPageInfo implements TrainerConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
 """
 The Type of Identifier used to fetch a single User node. To be used along with the "id" field. Default is "ID".
 """
@@ -13105,6 +13670,12 @@ type RootMutation {
     input: CreateTeamInput!
   ): CreateTeamPayload
 
+  """The createTrainer mutation"""
+  createTrainer(
+    """Input for the createTrainer mutation"""
+    input: CreateTrainerInput!
+  ): CreateTrainerPayload
+
   """The createUser mutation"""
   createUser(
     """Input for the createUser mutation"""
@@ -13164,6 +13735,12 @@ type RootMutation {
     """Input for the deleteTeam mutation"""
     input: DeleteTeamInput!
   ): DeleteTeamPayload
+
+  """The deleteTrainer mutation"""
+  deleteTrainer(
+    """Input for the deleteTrainer mutation"""
+    input: DeleteTrainerInput!
+  ): DeleteTrainerPayload
 
   """The deleteUser mutation"""
   deleteUser(
@@ -13260,6 +13837,12 @@ type RootMutation {
     """Input for the updateTeam mutation"""
     input: UpdateTeamInput!
   ): UpdateTeamPayload
+
+  """The updateTrainer mutation"""
+  updateTrainer(
+    """Input for the updateTrainer mutation"""
+    input: UpdateTrainerInput!
+  ): UpdateTrainerPayload
 
   """The updateUser mutation"""
   updateUser(
@@ -13816,6 +14399,47 @@ type CreateTeamPayload {
   team: Team
 }
 
+"""Input for the createTrainer mutation."""
+input CreateTrainerInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17 
+  """
+  date: String
+
+  """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+
+  """The password used to protect the content of the object"""
+  password: String
+
+  """The slug of the object"""
+  slug: String
+
+  """The status of the object"""
+  status: PostStatusEnum
+
+  """The title of the object"""
+  title: String
+}
+
+"""The payload for the createTrainer mutation."""
+type CreateTrainerPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The Post object mutation type."""
+  trainer: Trainer
+}
+
 """Input for the createUser mutation."""
 input CreateUserInput {
   """User's AOL IM account."""
@@ -14157,6 +14781,39 @@ type DeleteTeamPayload {
 
   """The object before it was deleted"""
   team: Team
+}
+
+"""Input for the deleteTrainer mutation."""
+input DeleteTrainerInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  Whether the object should be force deleted instead of being moved to the trash
+  """
+  forceDelete: Boolean
+
+  """The ID of the trainer to delete"""
+  id: ID!
+
+  """Override the edit lock when another user is editing the post"""
+  ignoreEditLock: Boolean
+}
+
+"""The payload for the deleteTrainer mutation."""
+type DeleteTrainerPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The ID of the deleted object"""
+  deletedId: ID
+
+  """The object before it was deleted"""
+  trainer: Trainer
 }
 
 """Input for the deleteUser mutation."""
@@ -14889,6 +15546,53 @@ type UpdateTeamPayload {
 
   """The Post object mutation type."""
   team: Team
+}
+
+"""Input for the updateTrainer mutation."""
+input UpdateTrainerInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17 
+  """
+  date: String
+
+  """The ID of the trainer object"""
+  id: ID!
+
+  """Override the edit lock when another user is editing the post"""
+  ignoreEditLock: Boolean
+
+  """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+
+  """The password used to protect the content of the object"""
+  password: String
+
+  """The slug of the object"""
+  slug: String
+
+  """The status of the object"""
+  status: PostStatusEnum
+
+  """The title of the object"""
+  title: String
+}
+
+"""The payload for the updateTrainer mutation."""
+type UpdateTrainerPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The Post object mutation type."""
+  trainer: Trainer
 }
 
 """Input for the updateUser mutation."""

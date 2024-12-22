@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <footer class="px-6 py-12 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-between">
+  <footer class="bg-black px-6 py-12 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-between">
     <div class="flex gap-6 col-span-2 md:col-span-1">
       <img
         src="/img/logo.svg"

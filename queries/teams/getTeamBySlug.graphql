@@ -1,4 +1,4 @@
-query GetTeamBySlugName($slug: String) {
+query GetTeamBySlugName($slug: String!) {
   teamBy(slug: $slug) {
     id
     teamDetails {
@@ -6,6 +6,23 @@ query GetTeamBySlugName($slug: String) {
       teamPhoto {
         node {
           mediaItemUrl
+        }
+      }
+      trainer {
+        nodes {
+          id
+          ... on Trainer {
+            id
+            trainerDetails {
+              email
+              name
+              image {
+                node {
+                  mediaItemUrl
+                }
+              }
+            }
+          }
         }
       }
       leagueName
