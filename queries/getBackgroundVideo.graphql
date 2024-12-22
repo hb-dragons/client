@@ -1,0 +1,6 @@
+query GetBackgroundVideo {
+  mediaItemBy(slug: "background") {
+    id
+    mediaItemUrl
+  }
+}

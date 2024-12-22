@@ -1,0 +1,6 @@
+query GetImageBySlug($slug: String!) {
+  mediaItemBy(slug: $slug) {
+    id
+    mediaItemUrl
+  }
+}

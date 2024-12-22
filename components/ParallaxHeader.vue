@@ -1,0 +1,73 @@
+// components/ParallaxHeader.vue
+<template>
+  <header class="relative overflow-hidden h-[40vh]">
+    <!-- Parallax Background -->
+    <div
+      class="absolute inset-0 z-0"
+      :style="{
+        transform: `translateY(${translateY}px)`,
+      }"
+    >
+      <NuxtImg
+        v-if="backgroundImage"
+        :src="backgroundImage"
+        alt="Header background"
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+      <!-- Overlay for better text visibility -->
+      <div class="absolute inset-0 bg-black/40" />
+    </div>
+
+    <!-- Header Content -->
+    <div class="relative z-1 h-full flex flex-col items-center justify-center text-white px-4">
+      <h1 class="text-4xl md:text-8xl font-bold text-center mb-4">
+        {{ title }}
+      </h1>
+      <div v-if="subtitle" class="bg-primary-500 px-2 py-2 rounded-lg">
+        <p class="text-xl md:text-2xl text-center font-bold">
+          {{ subtitle }}
+        </p>
+      </div>
+    </div>
+  </header>
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue';
+
+defineProps<{ backgroundImage?: string; title: string; subtitle?: string }>();
+
+const translateY = ref(0);
+let rafId: number | null = null;
+
+// Smooth scroll implementation using requestAnimationFrame
+const targetTranslateY = ref(0);
+const currentTranslateY = ref(0);
+const smoothingFactor = 0.9; // Adjust this value to control smoothness (0.1 = smooth, 1 = instant)
+
+const updateParallax = () => {
+  const difference = targetTranslateY.value - currentTranslateY.value;
+  currentTranslateY.value += difference * smoothingFactor;
+  translateY.value = currentTranslateY.value;
+
+  rafId = requestAnimationFrame(updateParallax);
+};
+
+const handleScroll = () => {
+  // Update target position based on scroll
+  targetTranslateY.value = window.scrollY / 2;
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  rafId = requestAnimationFrame(updateParallax);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+  }
+});
+</script>

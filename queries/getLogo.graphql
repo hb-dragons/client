@@ -1,0 +1,6 @@
+query GetLogo {
+  mediaItemBy(slug: "logo") {
+    id
+    mediaItemUrl
+  }
+}

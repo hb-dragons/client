@@ -1,0 +1,16 @@
+query GetTeams {
+  teams {
+    nodes {
+      slug
+      teamDetails {
+        teamName
+        teamPhoto {
+          node {
+            sourceUrl
+          }
+        }
+        leagueName
+      }
+    }
+  }
+}
