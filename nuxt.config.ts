@@ -108,7 +108,7 @@ export default defineNuxtConfig({
   apollo: {
     clients: {
       default: {
-        httpEndpoint: 'https://dragons.janeee.de/graphql',
+        httpEndpoint: 'https://api.dragons.janeee.de/graphql',
       },
     },
   },
