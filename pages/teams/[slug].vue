@@ -9,7 +9,6 @@ const { result } = useGetTeamBySlugNameQuery({
 
 const teamPhoto = computed(() => result.value?.teamBy?.teamDetails?.teamPhoto?.node.mediaItemUrl);
 const teamName = computed(() => result.value?.teamBy?.teamDetails?.teamName);
-const teamLeague = computed(() => result.value?.teamBy?.teamDetails?.leagueName);
 
 const trainers = computed(() => result.value?.teamBy?.teamDetails?.trainer?.nodes as Trainer[]);
 const training = computed(() => result.value?.teamBy?.teamDetails?.training as TeamDetailsTraining);
@@ -20,12 +19,14 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
     <ParallaxHeader
       :background-image="teamPhoto || undefined"
       :title="teamName || ''"
-      :subtitle="teamLeague || ''"
     />
     <PageContentWrapper>
       <div class="space-y-8">
-        <div class="flex flex-col md:flex-row gap-8 lg:gap-14">
-          <SectionContent headline="TEAM">
+        <div class="grid grid-cols-1 md:grid-cols-8 gap-4 md:gap-8 lg:gap-14">
+          <SectionContent
+            headline="TEAM"
+            class="md:col-span-5 lg:col-span-6"
+          >
             <div class="w-full h-full">
               <NuxtImg
                 v-if="teamPhoto"
@@ -35,17 +36,35 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
               />
             </div>
           </SectionContent>
-
-          <template v-if="trainers">
-            <TeamTrainer
-              v-for="trainer in trainers"
-              :key="trainer.id"
-              :trainer="trainer"
-            />
-          </template>
+          <div class="md:col-span-3 lg:col-span-2 flex flex-col gap-4 md:gap-8 items-between">
+            <SectionContent
+              headline="LIGA"
+            >
+              <p class="text-lg lg:text-xl mb-4">
+                {{ result?.teamBy?.teamDetails?.leagueName }}
+              </p>
+              <Button severity="secondary">
+                Öffne Liga auf Basketballbund
+              </Button>
+            </SectionContent>
+            <div
+              v-if="trainers"
+              class="flex-1"
+            >
+              <TeamTrainer
+                v-for="trainer in trainers"
+                :key="trainer.id"
+                :trainer="trainer"
+                class="h-full"
+              />
+            </div>
+          </div>
         </div>
 
-        <TeamTraining :training="training" />
+        <TeamTraining
+          v-if="training"
+          :training="training"
+        />
       </div>
     </PageContentWrapper>
   </div>

@@ -35,7 +35,7 @@ function handleClick(gym: Gym) {
 <template>
   <SectionContent headline="TRAININGSZEITEN">
     <div
-      v-if="trainingMap"
+      v-if="trainingMap && Object.keys(trainingMap).length > 0"
       class="flex flex-col lg:flex-row gap-4 md:gap-12"
     >
       <div
@@ -60,12 +60,12 @@ function handleClick(gym: Gym) {
           class="w-full"
           @click="handleClick(trainingInfo.gym?.node as Gym)"
         >
-          Open in Google Maps
+          Öffne in Google Maps
         </Button>
       </div>
     </div>
     <div v-else>
-      <div>Aktuell keine Trainingszeiten</div>
+      <div>Aktuell keine Trainingszeiten vorhanden</div>
     </div>
   </SectionContent>
 </template>

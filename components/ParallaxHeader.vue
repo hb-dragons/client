@@ -20,11 +20,14 @@
     </div>
 
     <!-- Header Content -->
-    <div class="relative z-1 h-full flex flex-col items-center justify-center text-white px-4">
-      <h1 class="text-4xl md:text-8xl font-bold text-center mb-4">
+    <div class="relative z-1 h-full flex items-center justify-center m-auto text-white px-4">
+      <h1 class="text-4xl md:text-8xl  font-bold text-center">
         {{ title }}
       </h1>
-      <div v-if="subtitle" class="bg-primary-500 px-2 py-2 rounded-lg">
+      <div
+        v-if="subtitle"
+        class="bg-primary-500 px-2 py-2 rounded-lg"
+      >
         <p class="text-xl md:text-2xl text-center font-bold">
           {{ subtitle }}
         </p>
