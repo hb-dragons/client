@@ -21,7 +21,10 @@
 
     <!-- Header Content -->
     <div class="relative z-1 h-full flex items-center justify-center m-auto text-white px-4">
-      <h1 class="text-4xl md:text-8xl  font-bold text-center">
+      <h1
+        class="text-4xl md:text-8xl  font-bold text-center"
+        :style="{ transform: `translateY(${translateYTitle}px)` }"
+      >
         {{ title }}
       </h1>
       <div
@@ -42,6 +45,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 defineProps<{ backgroundImage?: string; title: string; subtitle?: string }>();
 
 const translateY = ref(0);
+const translateYTitle = ref(0);
 let rafId: number | null = null;
 
 // Smooth scroll implementation using requestAnimationFrame
@@ -53,13 +57,16 @@ const updateParallax = () => {
   const difference = targetTranslateY.value - currentTranslateY.value;
   currentTranslateY.value += difference * smoothingFactor;
   translateY.value = currentTranslateY.value;
+  translateYTitle.value = currentTranslateY.value * 1.3;
 
   rafId = requestAnimationFrame(updateParallax);
 };
 
 const handleScroll = () => {
+  console.log(window.scrollY);
+
   // Update target position based on scroll
-  targetTranslateY.value = window.scrollY / 2;
+  targetTranslateY.value = window.scrollY / 2.5;
 };
 
 onMounted(() => {
