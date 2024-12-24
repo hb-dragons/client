@@ -11,7 +11,7 @@ const trainer = defineProps<{
     headline="TRAINER"
   >
     <div class="flex">
-      <div class="flex flex-row-reverse md:flex-col gap-4">
+      <div class="flex flex-col gap-4">
         <div class="flex-shrink-0 md:flex-shrink">
           <p class="font-semibold text-base md:text-lg lg:text-xl xl:text-2xl">
             {{ trainer.trainer.trainerDetails?.name }}
@@ -20,7 +20,7 @@ const trainer = defineProps<{
             {{ trainer.trainer.trainerDetails?.email }}
           </p>
         </div>
-        <div class="md:w-full">
+        <div class="w-1/2 self-center md:w-full">
           <NuxtImg
             v-if="trainer.trainer.trainerDetails?.image?.node.mediaItemUrl"
             class="rounded-md md:rounded-lg  object-contain"

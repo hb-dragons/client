@@ -24,7 +24,7 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
         />
       </div>
       <div
-        class="w-full h-full z-20 flex flex-col justify-center p-4 md:p-20 items-center"
+        class="w-full h-full z-20 flex flex-col justify-center p-6 md:p-20 items-center"
         :class="{ 'md:items-end': props.imagePosition === 'left', 'md:items-start': props.imagePosition === 'right' }"
       >
         <p class="z-10 text-4xl md:text-7xl text-primary-500 font-bold mb-2">
@@ -33,15 +33,29 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
         <p class="z-10 text-xl md:text-3xl font-bold mb-4 md:mb-8">
           {{ team?.teamDetails?.leagueName }}
         </p>
-        <Button
-          :as="NuxtLink"
-          :to="`/teams/${team?.slug}`"
-          size="large"
-          severity="secondary"
-          raised
-        >
-          Mehr Infos
-        </Button>
+        <div class="hidden md:block">
+          <Button
+            :as="NuxtLink"
+            :to="`/teams/${team?.slug}`"
+            size="large"
+            severity="secondary"
+            raised
+          >
+            Mehr Infos
+          </Button>
+        </div>
+
+        <div class="block md:hidden">
+          <Button
+            :as="NuxtLink"
+            :to="`/teams/${team?.slug}`"
+            size="small"
+            severity="secondary"
+            raised
+          >
+            Mehr Infos
+          </Button>
+        </div>
       </div>
     </div>
     <div class="w-full md:w-1/2 h-[200px] md:h-[500px]">
