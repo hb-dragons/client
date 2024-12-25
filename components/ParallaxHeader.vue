@@ -3,7 +3,7 @@
   <header class="relative overflow-hidden h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px]">
     <!-- Parallax Background -->
     <div
-      class="absolute inset-0 z-0"
+      class="hidden md:block absolute inset-0 z-0"
       :style="{
         transform: `translateY(${translateY}px)`,
       }"
@@ -19,11 +19,30 @@
       <div class="absolute inset-0 bg-black/40" />
     </div>
 
+    <div
+      class="block md:hidden absolute inset-0 z-0"
+    >
+      <NuxtImg
+        v-if="backgroundImage"
+        :src="backgroundImage"
+        alt="Header background"
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+      <!-- Overlay for better text visibility -->
+      <div class="absolute inset-0 bg-black/40" />
+    </div>
+
     <!-- Header Content -->
     <div class="relative z-1 h-full flex items-center justify-center m-auto text-white px-4">
       <h1
-        class="text-4xl md:text-8xl font-bold text-center motion-preset-blur-right"
+        class="hidden md:block text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center motion-preset-blur-right"
         :style="{ transform: `translateY(${translateYTitle}px)` }"
+      >
+        {{ title }}
+      </h1>
+      <h1
+        class="block md:hidden text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center motion-preset-blur-right"
       >
         {{ title }}
       </h1>

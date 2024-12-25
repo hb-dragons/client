@@ -123,4 +123,25 @@ export default defineNuxtConfig({
       applicationName: 'Hanover Basketball Dragons e.V.',
     },
   },
+
+  // sitemap: {
+  //   urls: async () => {
+  //     // const teams = result.value?.teams?.nodes;
+
+  //     // if (!teams) return [];
+
+  //     // const urls = teams.map(team => ({
+  //     //   loc: `/team/${team.slug}`,
+  //     // }));
+  //     return [
+  //       'https://dragons.janeee.de/teams/herren-1',
+  //       'https://dragons.janeee.de/teams/herren-2',
+  //       'https://dragons.janeee.de/teams/u18',
+  //       'https://dragons.janeee.de/teams/u16',
+  //       'https://dragons.janeee.de/teams/u14',
+  //       'https://dragons.janeee.de/teams/u12',
+  //       'https://dragons.janeee.de/teams/damen',
+  //     ];
+  //   },
+  // },
 });

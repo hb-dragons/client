@@ -27,7 +27,7 @@ function updateScroll() {
         v-if="scrollPosition"
         src="/img/logo.svg"
         alt="HB Dragons Logo"
-        class="absolute left-4 top-4 w-32 h-32"
+        class="hidden md:block absolute left-4 top-4 w-32 h-32"
       >
     </Transition>
     <div class="flex justify-end items-center gap-8">
