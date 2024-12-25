@@ -41,9 +41,17 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
               headline="LIGA"
             >
               <p class="text-lg lg:text-xl mb-4">
-                {{ result?.teamBy?.teamDetails?.leagueName }}
+                {{ result?.teamBy?.teamDetails?.leagueName || 'Aktuell kein Ligabetrieb' }}
               </p>
-              <Button severity="secondary">
+              <Button
+                v-if="result?.teamBy?.teamDetails?.leagueId"
+                severity="secondary"
+                as="a"
+                label="External"
+                target="_blank"
+                rel="noopener"
+                :href="`https://www.basketball-bund.net/static/#/liga/${result?.teamBy?.teamDetails?.leagueId}/aktuell`"
+              >
                 Öffne Liga auf Basketballbund
               </Button>
             </SectionContent>

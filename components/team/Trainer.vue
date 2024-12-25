@@ -20,7 +20,10 @@ const trainer = defineProps<{
             {{ trainer.trainer.trainerDetails?.email }}
           </p>
         </div>
-        <div class="w-1/2 self-center md:w-full">
+        <div
+          v-if="trainer.trainer.trainerDetails?.image?.node.mediaItemUrl"
+          class="w-1/2 self-center md:w-full"
+        >
           <NuxtImg
             v-if="trainer.trainer.trainerDetails?.image?.node.mediaItemUrl"
             class="rounded-md md:rounded-lg  object-contain"

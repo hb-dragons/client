@@ -10848,6 +10848,11 @@ type TeamDetails implements TeamDetails_Fields & AcfFieldGroup & AcfFieldGroupFi
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
   """
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
+  """
+  leagueId: Float
+
+  """
   Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
   """
   leagueName: String
@@ -10895,6 +10900,11 @@ Interface representing fields of the ACF &quot;TeamDetails&quot; Field Group
 interface TeamDetails_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
+  """
+  leagueId: Float
 
   """
   Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
