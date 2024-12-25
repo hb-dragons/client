@@ -72,6 +72,9 @@ export default defineNuxtConfig({
 
   site: {
     url: 'https://dragons.janeee.de',
+    name: 'Hanover Basketball Dragons e.V.',
+    description: 'Die offizielle Website der Hanover Basketball Dragons e.V.',
+    defaultLocale: 'de',
   },
 
   colorMode: {
@@ -110,6 +113,14 @@ export default defineNuxtConfig({
           darkModeSelector: '.dark-mode',
         },
       },
+    },
+  },
+
+  seo: {
+    meta: {
+      description: 'Die offizielle Website der Hanover Basketball Dragons e.V.',
+      colorScheme: 'dark light',
+      applicationName: 'Hanover Basketball Dragons e.V.',
     },
   },
 });

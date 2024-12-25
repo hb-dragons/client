@@ -21,6 +21,7 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
           v-if="backgroundImage"
           class="w-full h-full object-cover object-center grayscale"
           :src="backgroundImage"
+          alt="Team Background Image"
         />
       </div>
       <div
@@ -63,6 +64,7 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
         v-if="teamImage"
         class="w-full h-full object-cover object-center"
         :src="teamImage"
+        alt="Team Image"
       />
     </div>
   </div>

@@ -9,13 +9,25 @@ const { result: teamsImage } = useGetImageBySlugQuery({ slug: 'teams' });
 
 <template>
   <div>
-    <ParallaxHeader :background-image="teamsImage?.mediaItemBy?.mediaItemUrl || undefined" title="Unsere Teams" />
-    <div class="text-xl md:text-3xl text-center py-16 bg-surface-950">
+    <ParallaxHeader
+      :background-image="teamsImage?.mediaItemBy?.mediaItemUrl || undefined"
+      title="Unsere Teams"
+    />
+    <div class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-center px-2 py-8 lg:py-16 bg-surface-950">
       Wir bieten Mannschaften von der U12 bis zu den Senioren.
     </div>
-    <div v-if="teams" class="flex flex-col">
-      <div v-for="(team, index) in teams" :key="team.slug!">
-        <TeamRow :image-position="index % 2 == 0 ? 'right' : 'left'" :team="team as Team || undefined" />
+    <div
+      v-if="teams"
+      class="flex flex-col"
+    >
+      <div
+        v-for="(team, index) in teams"
+        :key="team.slug!"
+      >
+        <TeamRow
+          :image-position="index % 2 == 0 ? 'right' : 'left'"
+          :team="team as Team || undefined"
+        />
       </div>
     </div>
   </div>
