@@ -20,7 +20,7 @@ function updateScroll() {
 <template>
   <nav
     class="fixed w-full z-50 py-4 px-8 gap-8 transition-all flex justify-end"
-    :class="{ 'bg-surface-950/90': hasBackground }"
+    :class="{ 'bg-surface-950/90 backdrop-blur-lg': hasBackground }"
   >
     <Transition name="zoom">
       <img

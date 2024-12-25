@@ -12,7 +12,7 @@ export default {
           'Roboto',
           'Helvetica Neue',
           'Arial',
-          'sans-serif'
+          'sans-serif',
         ],
         mono: [
           'BLMelodyMono',
@@ -23,10 +23,10 @@ export default {
           'Consolas',
           'Liberation Mono',
           'Courier New',
-          'monospace'
+          'monospace',
         ],
-      }
+      },
     },
   },
-  plugins: [require('tailwindcss-primeui')]
-}
+  plugins: [require('tailwindcss-primeui'), require('tailwindcss-motion')],
+};

@@ -20,32 +20,32 @@ const MyPreset = definePreset(Aura, {
     colorScheme: {
       light: {
         surface: {
-          50: '{slate.50}',
-          100: '{slate.100}',
-          200: '{slate.200}',
-          300: '{slate.300}',
-          400: '{slate.400}',
-          500: '{slate.500}',
-          600: '{slate.600}',
-          700: '{slate.700}',
-          800: '{slate.800}',
-          900: '{slate.900}',
-          950: '{slate.950}',
+          50: '{gray.50}',
+          100: '{gray.100}',
+          200: '{gray.200}',
+          300: '{gray.300}',
+          400: '{gray.400}',
+          500: '{gray.500}',
+          600: '{gray.600}',
+          700: '{gray.700}',
+          800: '{gray.800}',
+          900: '{gray.900}',
+          950: '{gray.950}',
         },
       },
       dark: {
         surface: {
-          50: '{slate.50}',
-          100: '{slate.100}',
-          200: '{slate.200}',
-          300: '{slate.300}',
-          400: '{slate.400}',
-          500: '{slate.500}',
-          600: '{slate.600}',
-          700: '{slate.700}',
-          800: '{slate.800}',
-          900: '{slate.900}',
-          950: '{slate.950}',
+          50: '{gray.50}',
+          100: '{gray.100}',
+          200: '{gray.200}',
+          300: '{gray.300}',
+          400: '{gray.400}',
+          500: '{gray.500}',
+          600: '{gray.600}',
+          700: '{gray.700}',
+          800: '{gray.800}',
+          900: '{gray.900}',
+          950: '{gray.950}',
         },
       },
     },
@@ -53,7 +53,6 @@ const MyPreset = definePreset(Aura, {
 });
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
   modules: [
     '@primevue/nuxt-module',
     '@nuxtjs/tailwindcss',
@@ -63,8 +62,31 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxtjs/color-mode',
   ],
-  css: ['~/assets/css/main.css'],
   devtools: { enabled: true },
+
+  app: {
+    layoutTransition: { name: 'layout', mode: 'out-in' },
+    pageTransition: { name: 'layout', mode: 'out-in' },
+  },
+  css: ['~/assets/css/main.css'],
+
+  site: {
+    url: 'https://dragons.janeee.de',
+  },
+
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
+  },
+  compatibilityDate: '2024-04-03',
+
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: 'https://api.dragons.janeee.de/graphql',
+      },
+    },
+  },
   eslint: {
     config: {
       stylistic: {
@@ -75,13 +97,9 @@ export default defineNuxtConfig({
     },
   },
 
-  app: {
-    layoutTransition: { name: 'layout', mode: 'out-in' },
-    pageTransition: { name: 'layout', mode: 'out-in' },
-  },
-
-  site: {
-    url: 'https://dragons.janeee.de',
+  image: {
+    format: ['webp'],
+    domains: ['dragons.janeee.de'],
   },
 
   primevue: {
@@ -91,24 +109,6 @@ export default defineNuxtConfig({
         options: {
           darkModeSelector: '.dark-mode',
         },
-      },
-    },
-  },
-
-  colorMode: {
-    preference: 'dark',
-    fallback: 'dark',
-  },
-
-  image: {
-    format: ['webp'],
-    domains: ['dragons.janeee.de'],
-  },
-
-  apollo: {
-    clients: {
-      default: {
-        httpEndpoint: 'https://api.dragons.janeee.de/graphql',
       },
     },
   },

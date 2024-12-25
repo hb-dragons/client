@@ -1,6 +1,6 @@
 // components/ParallaxHeader.vue
 <template>
-  <header class="relative overflow-hidden h-[40vh]">
+  <header class="relative overflow-hidden h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px]">
     <!-- Parallax Background -->
     <div
       class="absolute inset-0 z-0"
@@ -22,7 +22,7 @@
     <!-- Header Content -->
     <div class="relative z-1 h-full flex items-center justify-center m-auto text-white px-4">
       <h1
-        class="text-4xl md:text-8xl  font-bold text-center"
+        class="text-4xl md:text-8xl font-bold text-center motion-preset-blur-right"
         :style="{ transform: `translateY(${translateYTitle}px)` }"
       >
         {{ title }}
