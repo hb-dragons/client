@@ -13,6 +13,7 @@ const { result } = useGetPostBySlugQuery(
     <ParallaxHeader
       :background-image="result?.postBy?.featuredImage?.node.mediaItemUrl || undefined"
       :title="result?.postBy?.title || ''"
+      :use-default-image="true"
     />
     <PageContentWrapper>
       <div

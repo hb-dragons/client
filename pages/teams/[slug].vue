@@ -27,12 +27,11 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
             headline="TEAM"
             class="md:col-span-5 lg:col-span-6"
           >
-            <div class="w-full h-full">
-              <NuxtImg
+            <div class="h-[60vw] md:h-[40vw]">
+              <SkeletonImage
                 v-if="teamPhoto"
-                class="rounded-lg object-contain"
+                img-classes="rounded-lg"
                 :src="teamPhoto"
-                alt="Team Photo"
               />
             </div>
           </SectionContent>

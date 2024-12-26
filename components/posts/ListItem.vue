@@ -9,7 +9,7 @@ defineProps<{ post: Post }>();
     :key="post.id"
     as="div"
     :to="`/posts/${post.slug}`"
-    class="relative shadow-lg h-[200px] xl:h-[300px] rounded-lg overflow-hidden hover:scale-[1.02] transition cursor-pointer"
+    class="relative shadow-lg h-[200px] xl:h-[300px] rounded-lg overflow-hidden md:hover:scale-[1.02] md:transition cursor-pointer"
   >
     <BackgroundImage
       :img-src="post.featuredImage?.node.mediaItemUrl as (string | undefined)"

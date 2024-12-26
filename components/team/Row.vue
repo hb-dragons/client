@@ -17,11 +17,10 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
     <div class="w-full relative md:w-1/2">
       <div class="absolute w-full h-full select-none z-0">
         <div class="absolute inset-0 bg-surface-950/70 z-10" />
-        <NuxtImg
+        <SkeletonImage
           v-if="backgroundImage"
-          class="w-full h-full object-cover object-center grayscale"
           :src="backgroundImage"
-          alt="Team Background Image"
+          img-classes="grayscale"
         />
       </div>
       <div
@@ -60,11 +59,9 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
       </div>
     </div>
     <div class="w-full md:w-1/2 h-[200px] md:h-[500px]">
-      <NuxtImg
+      <SkeletonImage
         v-if="teamImage"
-        class="w-full h-full object-cover object-center"
         :src="teamImage"
-        alt="Team Image"
       />
     </div>
   </div>

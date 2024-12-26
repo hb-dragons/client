@@ -10,8 +10,8 @@ const trainer = defineProps<{
   <SectionContent
     headline="TRAINER"
   >
-    <div class="flex">
-      <div class="flex flex-col gap-4">
+    <div class="flex w-full">
+      <div class="flex flex-col gap-4 w-full">
         <div class="flex-shrink-0 md:flex-shrink">
           <p class="font-semibold text-base md:text-lg lg:text-xl xl:text-2xl">
             {{ trainer.trainer.trainerDetails?.name }}
@@ -22,13 +22,12 @@ const trainer = defineProps<{
         </div>
         <div
           v-if="trainer.trainer.trainerDetails?.image?.node.mediaItemUrl"
-          class="w-1/2 self-center md:w-full"
+          class="h-[80vw] md:h-[50vh] w-1/2 self-center md:w-full"
         >
-          <NuxtImg
+          <SkeletonImage
             v-if="trainer.trainer.trainerDetails?.image?.node.mediaItemUrl"
-            class="rounded-md md:rounded-lg  object-contain"
+            img-classes="rounded-md md:rounded-lg  object-contain"
             :src="trainer.trainer.trainerDetails?.image?.node.mediaItemUrl"
-            alt="Trainer Photo"
           />
         </div>
       </div>
