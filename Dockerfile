@@ -15,7 +15,6 @@ FROM gcr.io/distroless/nodejs:18 as prod
 WORKDIR /app
 
 COPY --from=build /app/.output /app/.output
-RUN npm install -g --platform=linux --arch=x64 sharp
 
 EXPOSE 3000/tcp
 
