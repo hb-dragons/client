@@ -1,0 +1,20 @@
+query GetPosts($last: Int) {
+  posts(last: $last) {
+    nodes {
+      id
+      title
+      date
+      slug
+      categories {
+        nodes {
+          name
+        }
+      }
+      featuredImage {
+        node {
+          mediaItemUrl
+        }
+      }
+    }
+  }
+}

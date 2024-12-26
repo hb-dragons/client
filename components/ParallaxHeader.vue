@@ -1,4 +1,3 @@
-// components/ParallaxHeader.vue
 <template>
   <header class="relative overflow-hidden h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px]">
     <!-- Parallax Background -->
@@ -8,13 +7,7 @@
         transform: `translateY(${translateY}px)`,
       }"
     >
-      <NuxtImg
-        v-if="backgroundImage"
-        :src="backgroundImage"
-        alt="Header background"
-        class="w-full h-full object-cover object-center"
-        loading="eager"
-      />
+      <ImageWithDefault :img-src="backgroundImage" />
       <!-- Overlay for better text visibility -->
       <div class="absolute inset-0 bg-black/40" />
     </div>
@@ -22,13 +15,7 @@
     <div
       class="block md:hidden absolute inset-0 z-0"
     >
-      <NuxtImg
-        v-if="backgroundImage"
-        :src="backgroundImage"
-        alt="Header background"
-        class="w-full h-full object-cover object-center"
-        loading="eager"
-      />
+      <ImageWithDefault :img-src="backgroundImage" />
       <!-- Overlay for better text visibility -->
       <div class="absolute inset-0 bg-black/40" />
     </div>
@@ -82,8 +69,6 @@ const updateParallax = () => {
 };
 
 const handleScroll = () => {
-  console.log(window.scrollY);
-
   // Update target position based on scroll
   targetTranslateY.value = window.scrollY / 2.5;
 };

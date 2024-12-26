@@ -11293,6 +11293,20 @@ export type GetLogoQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetLogoQuery = { __typename?: 'RootQuery', mediaItemBy?: { __typename?: 'MediaItem', id: string, mediaItemUrl?: string | null } | null };
 
+export type GetPostBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type GetPostBySlugQuery = { __typename?: 'RootQuery', postBy?: { __typename?: 'Post', content?: string | null, title?: string | null, date?: string | null, categories?: { __typename?: 'PostToCategoryConnection', nodes: Array<{ __typename?: 'Category', name?: string | null }> } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null };
+
+export type GetPostsQueryVariables = Exact<{
+  last?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetPostsQuery = { __typename?: 'RootQuery', posts?: { __typename?: 'RootQueryToPostConnection', nodes: Array<{ __typename?: 'Post', id: string, title?: string | null, date?: string | null, slug?: string | null, categories?: { __typename?: 'PostToCategoryConnection', nodes: Array<{ __typename?: 'Category', name?: string | null }> } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null }> } | null };
+
 export type GetTeamBySlugNameQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
@@ -11393,6 +11407,93 @@ export function useGetLogoLazyQuery(options: VueApolloComposable.UseQueryOptions
   return VueApolloComposable.useLazyQuery<GetLogoQuery, GetLogoQueryVariables>(GetLogoDocument, {}, options);
 }
 export type GetLogoQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetLogoQuery, GetLogoQueryVariables>;
+export const GetPostBySlugDocument = gql`
+    query GetPostBySlug($slug: String!) {
+  postBy(slug: $slug) {
+    content
+    title
+    date
+    categories {
+      nodes {
+        name
+      }
+    }
+    featuredImage {
+      node {
+        mediaItemUrl
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPostBySlugQuery__
+ *
+ * To run a query within a Vue component, call `useGetPostBySlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPostBySlugQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetPostBySlugQuery({
+ *   slug: // value for 'slug'
+ * });
+ */
+export function useGetPostBySlugQuery(variables: GetPostBySlugQueryVariables | VueCompositionApi.Ref<GetPostBySlugQueryVariables> | ReactiveFunction<GetPostBySlugQueryVariables>, options: VueApolloComposable.UseQueryOptions<GetPostBySlugQuery, GetPostBySlugQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetPostBySlugQuery, GetPostBySlugQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetPostBySlugQuery, GetPostBySlugQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetPostBySlugQuery, GetPostBySlugQueryVariables>(GetPostBySlugDocument, variables, options);
+}
+export function useGetPostBySlugLazyQuery(variables?: GetPostBySlugQueryVariables | VueCompositionApi.Ref<GetPostBySlugQueryVariables> | ReactiveFunction<GetPostBySlugQueryVariables>, options: VueApolloComposable.UseQueryOptions<GetPostBySlugQuery, GetPostBySlugQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetPostBySlugQuery, GetPostBySlugQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetPostBySlugQuery, GetPostBySlugQueryVariables>> = {}) {
+  return VueApolloComposable.useLazyQuery<GetPostBySlugQuery, GetPostBySlugQueryVariables>(GetPostBySlugDocument, variables, options);
+}
+export type GetPostBySlugQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetPostBySlugQuery, GetPostBySlugQueryVariables>;
+export const GetPostsDocument = gql`
+    query GetPosts($last: Int) {
+  posts(last: $last) {
+    nodes {
+      id
+      title
+      date
+      slug
+      categories {
+        nodes {
+          name
+        }
+      }
+      featuredImage {
+        node {
+          mediaItemUrl
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPostsQuery__
+ *
+ * To run a query within a Vue component, call `useGetPostsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPostsQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetPostsQuery({
+ *   last: // value for 'last'
+ * });
+ */
+export function useGetPostsQuery(variables: GetPostsQueryVariables | VueCompositionApi.Ref<GetPostsQueryVariables> | ReactiveFunction<GetPostsQueryVariables> = {}, options: VueApolloComposable.UseQueryOptions<GetPostsQuery, GetPostsQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetPostsQuery, GetPostsQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetPostsQuery, GetPostsQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetPostsQuery, GetPostsQueryVariables>(GetPostsDocument, variables, options);
+}
+export function useGetPostsLazyQuery(variables: GetPostsQueryVariables | VueCompositionApi.Ref<GetPostsQueryVariables> | ReactiveFunction<GetPostsQueryVariables> = {}, options: VueApolloComposable.UseQueryOptions<GetPostsQuery, GetPostsQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetPostsQuery, GetPostsQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetPostsQuery, GetPostsQueryVariables>> = {}) {
+  return VueApolloComposable.useLazyQuery<GetPostsQuery, GetPostsQueryVariables>(GetPostsDocument, variables, options);
+}
+export type GetPostsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetPostsQuery, GetPostsQueryVariables>;
 export const GetTeamBySlugNameDocument = gql`
     query GetTeamBySlugName($slug: String!) {
   teamBy(slug: $slug) {

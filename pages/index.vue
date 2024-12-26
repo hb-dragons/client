@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+</script>
 
 <template>
   <div>
@@ -10,8 +12,6 @@
         </h1>
       </div>
     </LandingVideoBackground>
-    <div class="h-32 bg-surface-900">
-      <Button>Test</Button>
-    </div>
+    <PostsCurrent />
   </div>
 </template>

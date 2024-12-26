@@ -1,0 +1,17 @@
+query GetPostBySlug($slug: String!) {
+  postBy(slug: $slug) {
+    content
+    title
+    date
+    categories {
+      nodes {
+        name
+      }
+    }
+    featuredImage {
+      node {
+        mediaItemUrl
+      }
+    }
+  }
+}

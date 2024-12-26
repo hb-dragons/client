@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <main class="bg-surface-950">
+  <main class="bg-surface-950 min-h-screen">
     <HeaderNavigation />
     <slot />
     <PageFooter />

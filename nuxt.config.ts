@@ -61,6 +61,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/eslint',
     '@nuxtjs/color-mode',
+    'dayjs-nuxt',
   ],
   devtools: { enabled: true },
 
@@ -90,6 +91,14 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  dayjs: {
+    locales: ['de', 'fr'],
+    plugins: ['relativeTime', 'utc', 'timezone'],
+    defaultLocale: 'de',
+    defaultTimezone: 'Europe/Berlin',
+  },
+
   eslint: {
     config: {
       stylistic: {
@@ -102,7 +111,7 @@ export default defineNuxtConfig({
 
   image: {
     format: ['webp'],
-    domains: ['dragons.janeee.de'],
+    domains: ['dragons.janeee.de', 'api.dragons.janeee.de'],
   },
 
   primevue: {

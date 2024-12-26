@@ -19,6 +19,8 @@
     "@nuxtjs/seo": "^2.0.2",
     "@primevue/themes": "^4.2.5",
     "@vue/apollo-composable": "^4.2.1",
+    "dayjs": "^1.11.13",
+    "dayjs-nuxt": "2.1.11",
     "eslint": "^8.57.0 || ^9.0.0",
     "graphql-tag": "^2.12.6",
     "nuxt": "^3.14.1592",

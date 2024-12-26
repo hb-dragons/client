@@ -34,11 +34,21 @@ function updateScroll() {
       <NuxtLink
         to="/"
         class="text-xl px-2 py-1"
-      >Home</NuxtLink>
+      >
+        Home
+      </NuxtLink>
       <NuxtLink
         to="/teams"
         class="text-xl px-2 py-1"
-      >Teams</NuxtLink>
+      >
+        Teams
+      </NuxtLink>
+      <NuxtLink
+        to="/news"
+        class="text-xl px-2 py-1"
+      >
+        News
+      </NuxtLink>
     </div>
   </nav>
 </template>
