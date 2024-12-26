@@ -5,6 +5,7 @@ WORKDIR /app
 COPY package.json /app
 
 RUN npm install
+RUN npm install --platform=linux --arch=x64 sharp
 
 COPY . /app
 
