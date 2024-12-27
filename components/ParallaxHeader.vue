@@ -49,11 +49,11 @@ onUnmounted(() => {
       }"
     >
       <ImageWithDefault
-        v-if="useDefaultImage && !isLoading"
+        v-if="useDefaultImage"
         :img-src="backgroundImage"
+        :is-loading="isLoading"
       />
       <SkeletonImage
-        v-else
         :is-loading="isLoading"
         :src="backgroundImage"
       />
