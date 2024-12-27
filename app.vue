@@ -20,7 +20,7 @@
 } */
 
 /* assets/styles/layout-transitions.css */
-@media screen and (prefers-reduced-motion: no-preference) and (min-width: 1024px) {
+@media screen and (prefers-reduced-motion: no-preference) {
   .layout-enter-active,
   .layout-leave-active {
     transition: transform 0.2s ease, opacity 0.2s ease;

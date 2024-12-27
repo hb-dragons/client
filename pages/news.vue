@@ -8,6 +8,7 @@ const { result } = useGetPostsQuery();
   <div>
     <ParallaxHeader
       title="News"
+      :use-default-image="true"
     />
     <PageContentWrapper>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
