@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 
-defineProps<{ backgroundImage?: string; useDefaultImage?: boolean; title: string; subtitle?: string }>();
+defineProps<{ backgroundImage?: string; useDefaultImage?: boolean; isLoading?: boolean; title: string; subtitle?: string }>();
 
 const translateY = ref(0);
 const translateYTitle = ref(0);
@@ -49,11 +49,12 @@ onUnmounted(() => {
       }"
     >
       <ImageWithDefault
-        v-if="useDefaultImage"
+        v-if="useDefaultImage && !isLoading"
         :img-src="backgroundImage"
       />
       <SkeletonImage
         v-else
+        :is-loading="isLoading"
         :src="backgroundImage"
       />
       <!-- Overlay for better text visibility -->
@@ -71,12 +72,14 @@ onUnmounted(() => {
     <!-- Header Content -->
     <div class="relative z-1 h-full flex items-center justify-center m-auto text-white px-4">
       <h1
+        v-if="title"
         class="hidden md:block text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center motion-preset-blur-right"
         :style="{ transform: `translateY(${translateYTitle}px)` }"
       >
         {{ title }}
       </h1>
       <h1
+        v-if="title"
         class="block md:hidden text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center motion-preset-blur-right"
       >
         {{ title }}

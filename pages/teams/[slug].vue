@@ -3,7 +3,7 @@ import { useGetTeamBySlugNameQuery, type TeamDetailsTraining, type Trainer } fro
 
 const route = useRoute();
 
-const { result } = useGetTeamBySlugNameQuery({
+const { result, loading } = useGetTeamBySlugNameQuery({
   slug: route.params.slug as string,
 });
 
@@ -19,6 +19,7 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
     <ParallaxHeader
       :background-image="teamPhoto || undefined"
       :title="teamName || ''"
+      :is-loading="loading"
     />
     <PageContentWrapper>
       <div class="space-y-8">
@@ -29,9 +30,10 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
           >
             <div class="h-[60vw] md:h-[40vw]">
               <SkeletonImage
-                v-if="teamPhoto"
+                v-if="teamPhoto || loading"
                 img-classes="rounded-lg"
-                :src="teamPhoto"
+                :src="teamPhoto!"
+                :is-loading="loading"
               />
             </div>
           </SectionContent>
@@ -39,7 +41,15 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
             <SectionContent
               headline="LIGA"
             >
-              <p class="text-lg lg:text-xl mb-4">
+              <Skeleton
+                v-if="loading"
+                width="100%"
+                height="2rem"
+              />
+              <p
+                v-else
+                class="text-lg lg:text-xl mb-4"
+              >
                 {{ result?.teamBy?.teamDetails?.leagueName || 'Aktuell kein Ligabetrieb' }}
               </p>
               <Button
@@ -55,15 +65,26 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
               </Button>
             </SectionContent>
             <div
-              v-if="trainers"
+              v-if="trainers || loading"
               class="flex-1"
             >
-              <TeamTrainer
-                v-for="trainer in trainers"
-                :key="trainer.id"
-                :trainer="trainer"
-                class="h-full"
-              />
+              <SectionContent
+                v-if="loading"
+                headline="TRAINER"
+              >
+                <Skeleton
+                  width="100%"
+                  height="2rem"
+                />
+              </SectionContent>
+              <template v-else>
+                <TeamTrainer
+                  v-for="trainer in trainers"
+                  :key="trainer.id"
+                  :trainer="trainer"
+                  class="h-full"
+                />
+              </template>
             </div>
           </div>
         </div>

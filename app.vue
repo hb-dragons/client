@@ -35,7 +35,13 @@
     transform: scale(1.01);
     opacity: 0;
   }
+}
 
+@media (max-width: 768px) {
+  .layout-enter-active,
+  .layout-leave-active {
+    transition: none;
+  }
 }
 
 .fade-enter-active,

@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { useGetPostsQuery } from '~/types/graphql';
 
-const { result } = useGetPostsQuery();
+const { result, loading } = useGetPostsQuery();
 </script>
 
 <template>
@@ -12,11 +12,21 @@ const { result } = useGetPostsQuery();
     />
     <PageContentWrapper>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <PostsListItem
-          v-for="post in result?.posts?.nodes"
-          :key="post?.id"
-          :post="post"
-        />
+        <template v-if="!loading">
+          <Skeleton
+            v-for="i in 4"
+            :key="i"
+            width="100%"
+            height="200px"
+          />
+        </template>
+        <template v-else>
+          <PostsListItem
+            v-for="post in result?.posts?.nodes"
+            :key="post?.id"
+            :post="post"
+          />
+        </template>
       </div>
     </PageContentWrapper>
   </div>

@@ -3,7 +3,7 @@ import { useGetPostBySlugQuery } from '~/types/graphql';
 
 const route = useRoute();
 
-const { result } = useGetPostBySlugQuery(
+const { result, loading } = useGetPostBySlugQuery(
   { slug: route.params.slug as string },
 );
 </script>
@@ -14,9 +14,16 @@ const { result } = useGetPostBySlugQuery(
       :background-image="result?.postBy?.featuredImage?.node.mediaItemUrl || undefined"
       :title="result?.postBy?.title || ''"
       :use-default-image="true"
+      :is-loading="loading"
     />
     <PageContentWrapper>
+      <Skeleton
+        v-if="loading"
+        width="100%"
+        height="2rem"
+      />
       <div
+        v-else
         class="space-y-2"
         v-html="result?.postBy?.content"
       />
