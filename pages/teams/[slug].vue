@@ -20,6 +20,7 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
       :background-image="teamPhoto || undefined"
       :title="teamName || ''"
       :is-loading="loading"
+      :use-default-image="false"
     />
     <PageContentWrapper>
       <div class="space-y-8">
