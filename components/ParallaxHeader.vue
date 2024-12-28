@@ -64,7 +64,15 @@ onUnmounted(() => {
     <div
       class="block md:hidden absolute inset-0 z-0"
     >
-      <ImageWithDefault :img-src="backgroundImage" />
+      <ImageWithDefault
+        v-if="useDefaultImage"
+        :img-src="backgroundImage"
+        :is-loading="isLoading"
+      />
+      <SkeletonImage
+        :is-loading="isLoading"
+        :src="backgroundImage"
+      />
       <!-- Overlay for better text visibility -->
       <div class="absolute inset-0 bg-black/40" />
     </div>
