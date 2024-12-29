@@ -10,7 +10,6 @@ onMounted(() => {
 
     if (img.complete) {
       imageLoading.value = false;
-      console.log('Image was already loaded from cache.');
     }
   }
 });

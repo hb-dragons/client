@@ -1,2 +1,10 @@
 <script setup lang="ts"></script>
-<template></template>
+
+<template>
+  <ParallaxPage
+    title="Kontakt"
+    background-image="/img/banner.webp"
+  >
+    Test
+  </ParallaxPage>
+</template>

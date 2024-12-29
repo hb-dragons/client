@@ -9,16 +9,6 @@
 </template>
 
 <style>
-/* .layout-enter-active,
-.layout-leave-active {
-  transition: all 0.4s;
-}
-
-.layout-enter-from,
-.layout-leat-to {
-  opacity: 0.5;
-} */
-
 /* assets/styles/layout-transitions.css */
 @media screen and (prefers-reduced-motion: no-preference) {
   .layout-enter-active,

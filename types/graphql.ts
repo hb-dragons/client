@@ -11322,7 +11322,7 @@ export type GetTeamsQuery = { __typename?: 'RootQuery', teams?: { __typename?: '
 
 export const GetBackgroundVideoDocument = gql`
     query GetBackgroundVideo {
-  mediaItemBy(slug: "background") {
+  mediaItemBy(slug: "trailer") {
     id
     mediaItemUrl
   }

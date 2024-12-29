@@ -49,6 +49,12 @@ function updateScroll() {
       >
         News
       </NuxtLink>
+      <NuxtLink
+        to="/kontakt"
+        class="text-xl px-2 py-1"
+      >
+        Kontakt
+      </NuxtLink>
     </div>
   </nav>
 </template>
