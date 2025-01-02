@@ -7,6 +7,8 @@ const { imgSrc } = defineProps<ImageProps & { imgClasses?: string; imgStyles?: S
 const imageLoading = ref(true);
 
 onMounted(() => {
+  console.log(imgSrc);
+
   if (imgSrc) {
     const img = new Image();
     img.src = imgSrc;

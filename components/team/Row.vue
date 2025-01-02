@@ -5,7 +5,7 @@ const NuxtLink = resolveComponent('nuxt-link');
 
 const props = defineProps<{ team?: Team; imagePosition: 'left' | 'right' }>();
 const teamImage = computed(() => props.team?.teamDetails?.teamPhoto?.node.sourceUrl);
-const { result } = useGetImageBySlugQuery({ slug: 'dragons_kreis' });
+const { result } = useGetImageBySlugQuery({ slug: 'kreis' });
 const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl || undefined);
 </script>
 

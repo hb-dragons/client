@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { useGetImageBySlugQuery } from '~/types/graphql';
 
-const NuxtLink = resolveComponent('nuxt-link');
-
 const { result, loading } = useGetImageBySlugQuery({
-  slug: 'teams',
+  slug: 'gesamt',
 });
 </script>
 
@@ -19,19 +17,6 @@ const { result, loading } = useGetImageBySlugQuery({
       </div>
     </LandingVideoBackground>
 
-    <!-- <ParallaxImage
-      :image-url="result?.mediaItemBy?.mediaItemUrl || undefined"
-      :is-loading="loading"
-    >
-      <div class="py-24  text-center">
-        <p>
-          Basketball in Hannover
-        </p>
-        <p>
-          #dragonstakeover
-        </p>
-      </div>
-    </ParallaxImage> -->
     <div class="py-8 lg:py-24 text-center">
       <p class="text-4xl lg:text-6xl xl:text-7xl font-bold mb-6">
         Basketball in Hannover
@@ -66,9 +51,7 @@ const { result, loading } = useGetImageBySlugQuery({
             "One Court, Many Cultures!"
           </p>
         </OnVisible>
-
-        <Button
-          :as="NuxtLink"
+        <LinkButton
           to="/teams"
           size="large"
           raised
@@ -78,7 +61,7 @@ const { result, loading } = useGetImageBySlugQuery({
           <Icon
             name="ph:arrow-right-bold"
           />
-        </Button>
+        </LinkButton>
       </div>
     </ParallaxImage>
 

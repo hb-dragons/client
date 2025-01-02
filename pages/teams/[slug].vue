@@ -12,6 +12,8 @@ const teamName = computed(() => result.value?.teamBy?.teamDetails?.teamName);
 
 const trainers = computed(() => result.value?.teamBy?.teamDetails?.trainer?.nodes as Trainer[]);
 const training = computed(() => result.value?.teamBy?.teamDetails?.training as TeamDetailsTraining);
+
+const multipleTrainers = computed(() => trainers.value?.length > 1);
 </script>
 
 <template>
@@ -27,7 +29,8 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
         <div class="grid grid-cols-1 md:grid-cols-8 gap-4 md:gap-8 lg:gap-14">
           <SectionContent
             headline="TEAM"
-            class="md:col-span-5 lg:col-span-6"
+            class=""
+            :class="{ 'md:col-span-4 lg:col-span-5': multipleTrainers, 'md:col-span-5 lg:col-span-6': !multipleTrainers }"
           >
             <div class="h-[60vw] md:h-[40vw]">
               <SkeletonImage
@@ -38,7 +41,10 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
               />
             </div>
           </SectionContent>
-          <div class="md:col-span-3 lg:col-span-2 flex flex-col gap-4 md:gap-8 items-between">
+          <div
+            class="flex flex-col gap-4 md:gap-8 items-between"
+            :class="{ 'md:col-span-4 lg:col-span-3': multipleTrainers, 'md:col-span-3 lg:col-span-2': !multipleTrainers }"
+          >
             <SectionContent
               headline="LIGA"
             >
@@ -79,12 +85,14 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
                 />
               </SectionContent>
               <template v-else>
-                <TeamTrainer
-                  v-for="trainer in trainers"
-                  :key="trainer.id"
-                  :trainer="trainer"
-                  class="h-full"
-                />
+                <div class="flex gap-8">
+                  <TeamTrainer
+                    v-for="trainer in trainers"
+                    :key="trainer.id"
+                    :trainer="trainer"
+                    :is-mul="trainers.length > 1"
+                  />
+                </div>
               </template>
             </div>
           </div>
