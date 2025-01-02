@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import type { ImageWithDefaultProps } from '~/types/props/image-props';
 
-const { parallaxEnabled = true } = defineProps<ImageWithDefaultProps & { as?: Component | string; parallaxEnabled?: boolean }>();
+const { parallaxEnabled = true, backdropOpacity = 0.4 } = defineProps<ImageWithDefaultProps & { as?: Component | string; parallaxEnabled?: boolean; backdropOpacity?: number }>();
 
 const translateY = ref(0);
 let rafId: number | null = null;
@@ -75,11 +75,16 @@ onUnmounted(() => {
         :img-src="imgSrc"
       />
       <!-- Overlay for better text visibility -->
-      <div class="absolute inset-0 bg-black/40" />
+      <div
+        class="absolute inset-0"
+        :style="{
+          backgroundColor: `rgba(0, 0, 0, ${backdropOpacity})`,
+        }"
+      />
     </div>
 
     <div
-      class="block md:hidden absolute inset-0 z-0"
+      class="block md:hidden absolute inset-0 z-0 "
     >
       <ImageWithDefault
         v-if="useDefaultImage"
@@ -91,7 +96,12 @@ onUnmounted(() => {
         :img-src="imgSrc"
       />
       <!-- Overlay for better text visibility -->
-      <div class="absolute inset-0 bg-black/40" />
+      <div
+        class="absolute inset-0"
+        :style="{
+          backgroundColor: `rgba(0, 0, 0, ${backdropOpacity})`,
+        }"
+      />
     </div>
 
     <div class="relative z-1 h-full flex items-center justify-center">

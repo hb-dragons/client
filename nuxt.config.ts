@@ -62,6 +62,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxtjs/color-mode',
     'dayjs-nuxt',
+    '@nuxt/icon',
   ],
   devtools: { enabled: true },
 
