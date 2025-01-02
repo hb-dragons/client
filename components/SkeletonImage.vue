@@ -7,33 +7,50 @@ const { imgSrc } = defineProps<ImageProps & { imgClasses?: string; imgStyles?: S
 const imageLoading = ref(true);
 
 onMounted(() => {
-  console.log(imgSrc);
+  loadImage();
+});
 
+watch(() => imgSrc, () => {
   if (imgSrc) {
-    const img = new Image();
-    img.src = imgSrc;
-
-    if (img.complete) {
-      imageLoading.value = false;
-    }
+    loadImage();
   }
 });
 
 function isLoaded() {
   imageLoading.value = false;
+  // console.log('IMAGE LOADED');
+}
+
+function loadImage() {
+  if (!imgSrc) {
+    return;
+  }
+  imageLoading.value = true;
+
+  // Create a new Image object to preload the image
+  const img = new Image();
+  img.onload = () => {
+    imageLoading.value = false;
+    isLoaded(); // Call the isLoaded method
+  };
+  img.onerror = () => {
+    imageLoading.value = false;
+  };
+
+  img.src = imgSrc; // Set the source to start loading
 }
 </script>
 
 <template>
   <Transition name="fade">
     <img
-      v-show="!imageLoading && !isLoading"
+      v-if="imgSrc"
+      v-show="!imageLoading"
       :src="imgSrc"
       :alt="imgSrc"
       class="w-full h-full object-center object-cover"
       :class="imgClasses"
       :style="imgStyles"
-      @load="isLoaded"
     >
   </Transition>
   <Skeleton

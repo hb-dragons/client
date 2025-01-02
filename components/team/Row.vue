@@ -24,7 +24,7 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
         />
       </div>
       <div
-        class="w-full h-full z-20 flex flex-col justify-center p-6 md:p-20 items-center"
+        class="w-full h-full z-20 flex flex-col justify-center px-6 py-8 md:p-20 items-center"
         :class="{ 'md:items-end': props.imagePosition === 'left', 'md:items-start': props.imagePosition === 'right' }"
       >
         <p class="z-10 text-4xl md:text-7xl text-primary-500 font-bold mb-2">
