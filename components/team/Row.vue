@@ -19,7 +19,7 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
         <div class="absolute inset-0 bg-surface-950/70 z-10" />
         <SkeletonImage
           v-if="backgroundImage"
-          :src="backgroundImage"
+          :img-src="backgroundImage"
           img-classes="grayscale"
         />
       </div>
@@ -61,7 +61,7 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
     <div class="w-full md:w-1/2 h-[200px] md:h-[500px]">
       <SkeletonImage
         v-if="teamImage"
-        :src="teamImage"
+        :img-src="teamImage"
       />
     </div>
   </div>

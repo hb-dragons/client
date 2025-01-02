@@ -1,12 +1,14 @@
 <script setup lang="ts">
-const { src } = defineProps<{ src?: string; videoClasses?: string; isLoading?: boolean }>();
+import type { ImageProps } from '~/types/props/image-props';
+
+const { imgSrc } = defineProps<ImageProps & { videoClasses?: string }>();
 
 const videoLoading = ref(true);
 
 onMounted(() => {
-  if (src) {
+  if (imgSrc) {
     const video = document.createElement('video');
-    video.src = src;
+    video.src = imgSrc;
 
     // Check if the video is already loaded
     if (video.readyState === 4) {
@@ -27,17 +29,13 @@ function handleError() {
   console.error('Failed to load video.');
   videoLoading.value = false; // Optionally handle errors
 }
-
-watch(() => src, () => {
-  console.log(src);
-});
 </script>
 
 <template>
   <Transition name="fade">
     <video
       v-show="!videoLoading && !isLoading"
-      :src="src"
+      :src="imgSrc"
       autoplay
       loop
       muted

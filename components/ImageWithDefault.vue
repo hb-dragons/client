@@ -1,16 +1,18 @@
 <script setup lang="ts">
-const { imgSrc } = defineProps<{ imgSrc?: string; isLoading?: boolean }>();
+import type { ImageProps } from '~/types/props/image-props';
+
+const { imgSrc } = defineProps<ImageProps>();
 </script>
 
 <template>
   <SkeletonImage
     v-if="imgSrc"
-    :src="imgSrc"
+    :img-src="imgSrc"
     :is-loading="isLoading"
   />
   <SkeletonImage
     v-else
-    src="/img/banner.webp"
+    img-src="/img/banner.webp"
     :is-loading="isLoading"
   />
 </template>

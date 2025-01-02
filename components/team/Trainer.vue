@@ -27,7 +27,7 @@ const trainer = defineProps<{
           <SkeletonImage
             v-if="trainer.trainer.trainerDetails?.image?.node.mediaItemUrl"
             img-classes="rounded-md md:rounded-lg  object-contain"
-            :src="trainer.trainer.trainerDetails?.image?.node.mediaItemUrl"
+            :img-src="trainer.trainer.trainerDetails?.image?.node.mediaItemUrl"
           />
         </div>
       </div>

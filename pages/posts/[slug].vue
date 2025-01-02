@@ -11,7 +11,7 @@ const { result, loading } = useGetPostBySlugQuery(
 <template>
   <div>
     <ParallaxHeader
-      :background-image="result?.postBy?.featuredImage?.node.mediaItemUrl || undefined"
+      :img-src="result?.postBy?.featuredImage?.node.mediaItemUrl || undefined"
       :title="result?.postBy?.title || ''"
       :use-default-image="true"
       :is-loading="loading"

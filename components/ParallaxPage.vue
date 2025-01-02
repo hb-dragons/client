@@ -7,7 +7,7 @@ defineProps<{ title: string; subtitle?: string; backgroundImage: string } >();
     <ParallaxHeader
       :title="title"
       :subtitle="subtitle"
-      :background-image="backgroundImage"
+      :img-src="backgroundImage"
     />
 
     <PageContentWrapper>

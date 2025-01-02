@@ -7,7 +7,7 @@ const { result } = useGetBackgroundVideoQuery();
 <template>
   <div class="relative w-full h-screen overflow-hidden">
     <SkeletonVideo
-      :src="result?.mediaItemBy?.mediaItemUrl || undefined"
+      :img-src="result?.mediaItemBy?.mediaItemUrl || undefined"
       video-classes="absolute"
     />
 

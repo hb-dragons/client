@@ -17,7 +17,7 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
 <template>
   <div>
     <ParallaxHeader
-      :background-image="teamPhoto || undefined"
+      :img-src="teamPhoto || undefined"
       :title="teamName || ''"
       :is-loading="loading"
       :use-default-image="false"
@@ -33,7 +33,7 @@ const training = computed(() => result.value?.teamBy?.teamDetails?.training as T
               <SkeletonImage
                 v-if="teamPhoto || loading"
                 img-classes="rounded-lg"
-                :src="teamPhoto!"
+                :img-src="teamPhoto!"
                 :is-loading="loading"
               />
             </div>

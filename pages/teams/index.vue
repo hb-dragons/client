@@ -10,8 +10,9 @@ const { result: teamsImage } = useGetImageBySlugQuery({ slug: 'teams' });
 <template>
   <div>
     <ParallaxHeader
-      :background-image="teamsImage?.mediaItemBy?.mediaItemUrl || undefined"
+      :img-src="teamsImage?.mediaItemBy?.mediaItemUrl || undefined"
       title="Unsere Teams"
+      :is-loading="loading"
     />
     <div class="text-lg md:text-xl lg:text-2xl xl:text-3xl text-center px-2 py-8 lg:py-16 bg-surface-950">
       Wir bieten Mannschaften von der U12 bis zu den Senioren.
