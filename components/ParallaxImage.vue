@@ -65,6 +65,7 @@ onUnmounted(() => {
         :is-loading="isLoading"
       />
       <SkeletonImage
+        v-else
         :is-loading="isLoading"
         :img-src="imgSrc"
       />
@@ -86,6 +87,7 @@ onUnmounted(() => {
         :img-src="imgSrc"
       />
       <SkeletonImage
+        v-else
         :is-loading="isLoading"
         :img-src="imgSrc"
       />

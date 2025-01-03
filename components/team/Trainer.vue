@@ -10,6 +10,7 @@ defineProps<{
 <template>
   <SectionContent
     headline="TRAINER"
+    class="w-full"
   >
     <div class="flex w-full">
       <div class="flex flex-col gap-4 w-full">
@@ -23,8 +24,8 @@ defineProps<{
         </div>
         <div
           v-if="trainer.trainerDetails?.image?.node.mediaItemUrl"
-          class="h-[300px] md:h-[200px] w-full self-center md:w-full"
-          :class="{ 'w-1/2 h-[300px] md:h-[500px]': !isMultiple }"
+          class="w-full self-center md:w-full"
+          :class="{ 'w-full h-[60vw] md:h-[500px]': !isMultiple, 'h-[60vw] md:h-[200px] w-full': isMultiple }"
         >
           <SkeletonImage
             v-if="trainer.trainerDetails?.image?.node.mediaItemUrl"

@@ -16,22 +16,15 @@ watch(() => imgSrc, () => {
   }
 });
 
-function isLoaded() {
-  imageLoading.value = false;
-  // console.log('IMAGE LOADED');
-}
-
 function loadImage() {
   if (!imgSrc) {
     return;
   }
   imageLoading.value = true;
 
-  // Create a new Image object to preload the image
   const img = new Image();
   img.onload = () => {
     imageLoading.value = false;
-    isLoaded(); // Call the isLoaded method
   };
   img.onerror = () => {
     imageLoading.value = false;
@@ -45,7 +38,7 @@ function loadImage() {
   <Transition name="fade">
     <img
       v-if="imgSrc"
-      v-show="!imageLoading"
+      v-show="!imageLoading && !isLoading"
       :src="imgSrc"
       :alt="imgSrc"
       class="w-full h-full object-center object-cover"
