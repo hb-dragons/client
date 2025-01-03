@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { useElementBounding } from '@vueuse/core';
 import type { ImageWithDefaultProps } from '~/types/props/image-props';
 
 const { parallaxEnabled = true, backdropOpacity = 0.4 } = defineProps<ImageWithDefaultProps & { as?: Component | string; parallaxEnabled?: boolean; backdropOpacity?: number }>();
@@ -7,6 +8,7 @@ const translateY = ref(0);
 let rafId: number | null = null;
 
 const containerRef = ref<HTMLElement | null>(null);
+const { height } = useElementBounding(containerRef);
 
 const targetTranslateY = ref(0);
 const currentTranslateY = ref(0);
@@ -23,14 +25,6 @@ const updateParallax = () => {
 const handleScroll = () => {
   targetTranslateY.value = window.scrollY / 2.5;
 };
-
-const computedHeight = computed(() => {
-  if (containerRef.value) {
-    return containerRef.value.clientHeight * 1;
-  }
-
-  return 0;
-});
 
 onMounted(() => {
   if (!parallaxEnabled) {
@@ -62,7 +56,7 @@ onUnmounted(() => {
 
       :style="{
         transform: `translateY(${translateY}px)`,
-        height: computedHeight + 'px',
+        height: height + 'px',
       }"
     >
       <ImageWithDefault
