@@ -46,15 +46,14 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
         </div>
 
         <div class="block md:hidden">
-          <Button
-            :as="NuxtLink"
+          <LinkButton
             :to="`/teams/${team?.slug}`"
             size="small"
             severity="secondary"
             raised
           >
             Mehr Infos
-          </Button>
+          </LinkButton>
         </div>
       </div>
     </div>
