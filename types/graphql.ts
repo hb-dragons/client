@@ -9089,6 +9089,8 @@ export type TeamDetails = AcfFieldGroup & AcfFieldGroupFields & TeamDetails_Fiel
   leagueId?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
   leagueName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
+  ranking?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
   teamName?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
@@ -9313,6 +9315,8 @@ export type TeamDetails_Fields = {
   leagueId?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
   leagueName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
+  ranking?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
   teamName?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
@@ -11317,7 +11321,7 @@ export type GetTeamBySlugNameQuery = { __typename?: 'RootQuery', teamBy?: { __ty
 export type GetTeamsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetTeamsQuery = { __typename?: 'RootQuery', teams?: { __typename?: 'RootQueryToTeamConnection', nodes: Array<{ __typename?: 'Team', slug?: string | null, teamDetails?: { __typename?: 'TeamDetails', teamName?: string | null, leagueName?: string | null, teamPhoto?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null } } | null } | null }> } | null };
+export type GetTeamsQuery = { __typename?: 'RootQuery', teams?: { __typename?: 'RootQueryToTeamConnection', nodes: Array<{ __typename?: 'Team', slug?: string | null, teamDetails?: { __typename?: 'TeamDetails', teamName?: string | null, leagueName?: string | null, ranking?: number | null, teamPhoto?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null } } | null } | null }> } | null };
 
 
 export const GetBackgroundVideoDocument = gql`
@@ -11641,6 +11645,7 @@ export const GetTeamsDocument = gql`
           }
         }
         leagueName
+        ranking
       }
     }
   }

@@ -42,6 +42,7 @@
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@primevue/nuxt-module": "^4.2.5",
     "graphql": "^16.10.0",
+    "nuxt-countup": "^0.1.2",
     "tailwindcss-motion": "^1.0.0",
     "typescript": "^5.7.2"
   }

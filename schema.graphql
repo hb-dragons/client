@@ -10858,6 +10858,11 @@ type TeamDetails implements TeamDetails_Fields & AcfFieldGroup & AcfFieldGroupFi
   leagueName: String
 
   """
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
+  """
+  ranking: Float
+
+  """
   Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
   """
   teamName: String
@@ -10910,6 +10915,11 @@ interface TeamDetails_Fields implements AcfFieldGroup & AcfFieldGroupFields {
   Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
   """
   leagueName: String
+
+  """
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group
+  """
+  ranking: Float
 
   """
   Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group

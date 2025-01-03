@@ -3,6 +3,8 @@ import { useElementVisibility } from '@vueuse/core';
 
 const { triggerOnce = true, triggerClasses = '' } = defineProps<{ triggerOnce?: boolean; triggerClasses?: string }>();
 
+const emit = defineEmits(['visible']);
+
 const target = ref<HTMLElement | null>(null);
 
 const targetIsVisible = useElementVisibility(target);
@@ -13,6 +15,7 @@ watch(targetIsVisible, (isVisible) => {
   if (isVisible && !wasTriggered.value) {
     wasTriggered.value = true;
     visible.value = true;
+    emit('visible');
     return;
   }
 

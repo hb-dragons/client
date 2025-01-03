@@ -82,7 +82,7 @@ const navigationItems = [
 
 <style>
 .router-link-active {
-  @apply bg-primary-500;
+  @apply bg-primary-600;
   @apply rounded-md;
   @apply font-semibold;
   @apply text-white;

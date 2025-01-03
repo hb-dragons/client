@@ -5,6 +5,10 @@ const { result, loading } = useGetTeamsQuery();
 const teams = computed(() => result.value?.teams?.nodes);
 
 const { result: teamsImage } = useGetImageBySlugQuery({ slug: 'teams' });
+
+function sortTeams(teams: Team[]) {
+  return teams.toSorted((a, b) => a.teamDetails!.ranking! - b.teamDetails!.ranking!);
+}
 </script>
 
 <template>
@@ -31,7 +35,7 @@ const { result: teamsImage } = useGetImageBySlugQuery({ slug: 'teams' });
       class="flex flex-col"
     >
       <div
-        v-for="(team, index) in teams"
+        v-for="(team, index) in sortTeams(teams as Team[])"
         :key="team.slug!"
       >
         <TeamRow

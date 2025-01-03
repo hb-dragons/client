@@ -90,6 +90,9 @@ importers:
       graphql:
         specifier: ^16.10.0
         version: 16.10.0
+      nuxt-countup:
+        specifier: ^0.1.2
+        version: 0.1.2(magicast@0.3.5)(rollup@4.28.1)
       tailwindcss-motion:
         specifier: ^1.0.0
         version: 1.0.0(tailwindcss@3.4.16)
@@ -2493,6 +2496,9 @@ packages:
       typescript:
         optional: true
 
+  countup.js@2.8.0:
+    resolution: {integrity: sha512-f7xEhX0awl4NOElHulrl4XRfKoNH3rB+qfNSZZyjSZhaAoUk6elvhH+MNxMmlmuUJ2/QNTWPSA7U4mNtIAKljQ==}
+
   crc-32@1.2.2:
     resolution: {integrity: sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==}
     engines: {node: '>=0.8'}
@@ -4106,6 +4112,9 @@ packages:
     resolution: {integrity: sha512-t9m4zTq44R0/icuzQXJHEyPRM3YbgTPMpytyb6YW2LOL/3mwZ3Bmte1FIlCoigzDvxBJRbcchZGc689+Syyu8w==}
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
+
+  nuxt-countup@0.1.2:
+    resolution: {integrity: sha512-O4xTXnWZZlWfFsqjqAwKsLOMCcjmfNl2YmSrSA/S9+7yJ/aDlceEWSupExbNe6eVk+/TusU9Qt4T+ic6el7GXQ==}
 
   nuxt-link-checker@4.0.4:
     resolution: {integrity: sha512-pXDsqlQBfcz+riW3jbKNzPG+ig2bI6c9IrUTvEFwy2IUGtDIMgRjkx/kZkpV8cLxIdlLdTW9phkLiL1XbRlmMQ==}
@@ -8954,6 +8963,8 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
+  countup.js@2.8.0: {}
+
   crc-32@1.2.2: {}
 
   crc32-stream@6.0.0:
@@ -10767,6 +10778,15 @@ snapshots:
   nullthrows@1.1.1: {}
 
   nuxi@3.16.0: {}
+
+  nuxt-countup@0.1.2(magicast@0.3.5)(rollup@4.28.1):
+    dependencies:
+      '@nuxt/kit': 3.14.1592(magicast@0.3.5)(rollup@4.28.1)
+      countup.js: 2.8.0
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
 
   nuxt-link-checker@4.0.4(magicast@0.3.5)(rollup@4.28.1)(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2)):
     dependencies:
