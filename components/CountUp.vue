@@ -1,6 +1,8 @@
 <script setup lang='ts'>
 import { onMounted, onUnmounted, ref, watch } from 'vue';
-import { type CountUpOptions, CountUp } from 'countup.js';
+import type { CountUp, CountUpOptions } from 'countup.js';
+
+const { $countup } = useNuxtApp();
 
 interface RafContext {
   cancel(): void;
@@ -78,7 +80,8 @@ function initCountUp() {
   const startVal = Number(props.startVal);
   const endVal = Number(props.endVal);
   const duration = Number(props.duration);
-  countUp.value = new CountUp(elRef.value, endVal, {
+  const countUpClass = $countup as typeof CountUp;
+  countUp.value = new countUpClass(elRef.value, endVal, {
     startVal,
     duration,
     decimalPlaces: props.decimalPlaces,
