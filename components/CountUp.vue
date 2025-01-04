@@ -47,7 +47,7 @@ interface CountUpProps {
   options?: CountUpOptions;
 }
 interface CountUpEmits {
-  (event: 'init', countup: CountUpType): void;
+  (event: 'init', countup: CountUp): void;
   (event: 'finished'): void;
 }
 
@@ -64,7 +64,7 @@ const props = withDefaults(defineProps<CountUpProps>(), {
 const emits = defineEmits<CountUpEmits>();
 
 const elRef = ref<HTMLElement>();
-const countUp = ref<CountUpType>();
+const countUp = ref<CountUp>();
 let loopCount = 0;
 const isFinished = ref(false);
 let rafCtx: RafContext;

@@ -63,7 +63,6 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'dayjs-nuxt',
     '@nuxt/icon',
-    'nuxt-countup',
   ],
   devtools: { enabled: true },
 
