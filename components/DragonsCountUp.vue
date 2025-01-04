@@ -17,10 +17,7 @@ function handleIsVisible() {
     :trigger-once="true"
     @visible="handleIsVisible"
   >
-    <span v-if="!countUpInstance">{{ endVal }}</span>
     <CountUp
-
-      ref="countUpInstalce"
       :end-val="endVal"
       :duration="duration"
       :autoplay="false"
