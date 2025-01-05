@@ -63,11 +63,13 @@ onUnmounted(() => {
         v-if="useDefaultImage"
         :img-src="imgSrc"
         :is-loading="isLoading"
+        :img-classes="imgClasses"
       />
       <SkeletonImage
         v-else
         :is-loading="isLoading"
         :img-src="imgSrc"
+        :img-classes="imgClasses"
       />
       <!-- Overlay for better text visibility -->
       <div

@@ -2,7 +2,7 @@
 import type { StyleValue } from 'vue';
 import type { ImageProps } from '~/types/props/image-props';
 
-const { imgSrc } = defineProps<ImageProps & { imgClasses?: string; imgStyles?: StyleValue }>();
+const { imgSrc } = defineProps<ImageProps & { imgStyles?: StyleValue }>();
 
 const imageLoading = ref(true);
 

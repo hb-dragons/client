@@ -1,0 +1,104 @@
+query GetTeamsForProbetraining {
+  teams {
+    nodes {
+      slug
+      teamDetails {
+        teamName
+        minYear
+        maxYear
+        isBeginnerFriendly
+        leagueName
+        ranking
+        trainer {
+        nodes {
+          id
+          ... on Trainer {
+            id
+            trainerDetails {
+              email
+              name
+            }
+          }
+        }
+      }
+      training {
+        monday {
+          startTime
+          endTime
+          gym {
+            node {
+              ... on Gym {
+                gymFields {
+                  address
+                  name
+                }
+                id
+              }
+            }
+          }
+        }
+        tuesday {
+          startTime
+          endTime
+          gym {
+            node {
+              ... on Gym {
+                gymFields {
+                  address
+                  name
+                }
+                id
+              }
+            }
+          }
+        }
+        wednesday {
+          startTime
+          endTime
+          gym {
+            node {
+              ... on Gym {
+                gymFields {
+                  address
+                  name
+                }
+                id
+              }
+            }
+          }
+        }
+        thursday {
+          startTime
+          endTime
+          gym {
+            node {
+              ... on Gym {
+                gymFields {
+                  address
+                  name
+                }
+                id
+              }
+            }
+          }
+        }
+        friday {
+          startTime
+          endTime
+          gym {
+            node {
+              ... on Gym {
+                gymFields {
+                  address
+                  name
+                }
+                id
+              }
+            }
+          }
+        }
+      }
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@ const error = useError();
       <template v-else>
         <h1>Dang</h1>
         <p>
-          <strong>{{ error.message }}</strong>
+          <strong>{{ error }}</strong>
         </p>
         <p>It looks like something broke.</p>
         <p>Sorry about that.</p>

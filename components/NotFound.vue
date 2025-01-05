@@ -38,7 +38,7 @@ const handleError = () => {
               name="ph:arrow-left"
               class="w-8 h-8"
             />
-            <span class="text-xl">Go Back Home</span>
+            <span class="text-xl">Zurück zur Startseite</span>
           </div>
         </Button>
       </div>

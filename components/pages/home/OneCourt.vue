@@ -2,7 +2,7 @@
 import { useGetImageBySlugQuery } from '~/types/graphql';
 
 const { result, loading } = useGetImageBySlugQuery({
-  slug: 'gesamt',
+  slug: 'kreis',
 });
 </script>
 

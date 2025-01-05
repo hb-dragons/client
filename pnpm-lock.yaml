@@ -23,6 +23,9 @@ importers:
       '@nuxtjs/seo':
         specifier: ^2.0.2
         version: 2.0.2(@unhead/vue@1.11.14(vue@3.5.13(typescript@5.7.2)))(h3@1.13.0)(magicast@0.3.5)(rollup@4.28.1)(typescript@5.7.2)(unhead@1.11.14)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2))
+      '@primevue/forms':
+        specifier: ^4.2.5
+        version: 4.2.5(vue@3.5.13(typescript@5.7.2))
       '@primevue/themes':
         specifier: ^4.2.5
         version: 4.2.5
@@ -62,6 +65,9 @@ importers:
       vue-router:
         specifier: latest
         version: 4.5.0(vue@3.5.13(typescript@5.7.2))
+      zod:
+        specifier: ^3.24.1
+        version: 3.24.1
     devDependencies:
       '@graphql-codegen/cli':
         specifier: ^5.0.3
@@ -93,9 +99,6 @@ importers:
       graphql:
         specifier: ^16.10.0
         version: 16.10.0
-      nuxt-countup:
-        specifier: ^0.1.2
-        version: 0.1.2(magicast@0.3.5)(rollup@4.28.1)
       tailwindcss-motion:
         specifier: ^1.0.0
         version: 1.0.0(tailwindcss@3.4.16)
@@ -1397,6 +1400,10 @@ packages:
   '@polka/url@1.0.0-next.28':
     resolution: {integrity: sha512-8LduaNlMZGwdZ6qWrKlfa+2M4gahzFkprZiAt2TF8uS0qQgBizKXpXURqvTJ4WtmupWxaLqjRb2UCTe72mu+Aw==}
 
+  '@primeuix/forms@0.0.2':
+    resolution: {integrity: sha512-DpecPQd/Qf/kav4LKCaIeGuT3AkwhJzuHCkLANTVlN/zBvo8KIj3OZHsCkm0zlIMVVnaJdtx1ULNlRQdudef+A==}
+    engines: {node: '>=12.11.0'}
+
   '@primeuix/styled@0.3.2':
     resolution: {integrity: sha512-ColZes0+/WKqH4ob2x8DyNYf1NENpe5ZguOvx5yCLxaP8EIMVhLjWLO/3umJiDnQU4XXMLkn2mMHHw+fhTX/mw==}
     engines: {node: '>=12.11.0'}
@@ -1414,6 +1421,10 @@ packages:
     engines: {node: '>=12.11.0'}
     peerDependencies:
       vue: ^3.3.0
+
+  '@primevue/forms@4.2.5':
+    resolution: {integrity: sha512-5jarJQ9Qv32bOo/0tY5bqR3JZI6+YmmoUQ2mjhVSbVElQsE4FNfhT7a7JwF+xgBPMPc8KWGNA1QB248HhPNVAg==}
+    engines: {node: '>=12.11.0'}
 
   '@primevue/icons@4.2.5':
     resolution: {integrity: sha512-WFbUMZhQkXf/KmwcytkjGVeJ9aGEDXjP3uweOjQZMmRdEIxFnqYYpd90wE90JE1teZn3+TVnT4ZT7ejGyEXnFQ==}
@@ -4116,9 +4127,6 @@ packages:
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
-  nuxt-countup@0.1.2:
-    resolution: {integrity: sha512-O4xTXnWZZlWfFsqjqAwKsLOMCcjmfNl2YmSrSA/S9+7yJ/aDlceEWSupExbNe6eVk+/TusU9Qt4T+ic6el7GXQ==}
-
   nuxt-link-checker@4.0.4:
     resolution: {integrity: sha512-pXDsqlQBfcz+riW3jbKNzPG+ig2bI6c9IrUTvEFwy2IUGtDIMgRjkx/kZkpV8cLxIdlLdTW9phkLiL1XbRlmMQ==}
 
@@ -5834,6 +5842,9 @@ packages:
   zip-stream@6.0.1:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
+
+  zod@3.24.1:
+    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
 
 snapshots:
 
@@ -7705,6 +7716,10 @@ snapshots:
 
   '@polka/url@1.0.0-next.28': {}
 
+  '@primeuix/forms@0.0.2':
+    dependencies:
+      '@primeuix/utils': 0.3.2
+
   '@primeuix/styled@0.3.2':
     dependencies:
       '@primeuix/utils': 0.3.2
@@ -7720,6 +7735,14 @@ snapshots:
       '@primeuix/styled': 0.3.2
       '@primeuix/utils': 0.3.2
       vue: 3.5.13(typescript@5.7.2)
+
+  '@primevue/forms@4.2.5(vue@3.5.13(typescript@5.7.2))':
+    dependencies:
+      '@primeuix/forms': 0.0.2
+      '@primeuix/utils': 0.3.2
+      '@primevue/core': 4.2.5(vue@3.5.13(typescript@5.7.2))
+    transitivePeerDependencies:
+      - vue
 
   '@primevue/icons@4.2.5(vue@3.5.13(typescript@5.7.2))':
     dependencies:
@@ -10782,15 +10805,6 @@ snapshots:
 
   nuxi@3.16.0: {}
 
-  nuxt-countup@0.1.2(magicast@0.3.5)(rollup@4.28.1):
-    dependencies:
-      '@nuxt/kit': 3.14.1592(magicast@0.3.5)(rollup@4.28.1)
-      countup.js: 2.8.0
-    transitivePeerDependencies:
-      - magicast
-      - rollup
-      - supports-color
-
   nuxt-link-checker@4.0.4(magicast@0.3.5)(rollup@4.28.1)(typescript@5.7.2)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.7.2)):
     dependencies:
       '@nuxt/devtools-kit': 1.6.4(magicast@0.3.5)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))
@@ -12822,3 +12836,5 @@ snapshots:
       archiver-utils: 5.0.2
       compress-commons: 6.0.2
       readable-stream: 4.5.2
+
+  zod@3.24.1: {}

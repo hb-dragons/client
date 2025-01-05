@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
@@ -18,5 +17,9 @@
     <PagesHomeOneCourt />
 
     <PagesHomeCounter />
+
+    <PagesHomeRecentPosts />
+
+    <PagesHomeProbeTraining />
   </div>
 </template>

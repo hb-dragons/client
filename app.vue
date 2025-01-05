@@ -13,11 +13,11 @@
 @media screen and (prefers-reduced-motion: no-preference) {
   .layout-enter-active,
   .layout-leave-active {
-    transition: transform 0.1s ease, opacity 0.1s ease;
+    /* transition: transform 0.1s ease, opacity 0.1s ease; */
   }
 
   .layout-enter-from {
-    transform: scale(0.99);
+    /* transform: scale(0.99); */
     opacity: 0;
   }
 

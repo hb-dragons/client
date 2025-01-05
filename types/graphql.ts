@@ -9085,10 +9085,16 @@ export type TeamDetails = AcfFieldGroup & AcfFieldGroupFields & TeamDetails_Fiel
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
+  isBeginnerFriendly?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
   leagueId?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
   leagueName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
+  maxYear?: Maybe<Scalars['Float']['output']>;
+  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
+  minYear?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
   ranking?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
@@ -9311,10 +9317,16 @@ export type TeamDetails_Fields = {
    * @deprecated Use __typename instead
    */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;radio&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
+  isBeginnerFriendly?: Maybe<Scalars['String']['output']>;
   /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
   leagueId?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
   leagueName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
+  maxYear?: Maybe<Scalars['Float']['output']>;
+  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
+  minYear?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
   ranking?: Maybe<Scalars['Float']['output']>;
   /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TeamDetails&quot; Field Group */
@@ -11323,6 +11335,11 @@ export type GetTeamsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetTeamsQuery = { __typename?: 'RootQuery', teams?: { __typename?: 'RootQueryToTeamConnection', nodes: Array<{ __typename?: 'Team', slug?: string | null, teamDetails?: { __typename?: 'TeamDetails', teamName?: string | null, leagueName?: string | null, ranking?: number | null, teamPhoto?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null } } | null } | null }> } | null };
 
+export type GetTeamsForProbetrainingQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTeamsForProbetrainingQuery = { __typename?: 'RootQuery', teams?: { __typename?: 'RootQueryToTeamConnection', nodes: Array<{ __typename?: 'Team', slug?: string | null, teamDetails?: { __typename?: 'TeamDetails', teamName?: string | null, minYear?: number | null, maxYear?: number | null, isBeginnerFriendly?: string | null, leagueName?: string | null, ranking?: number | null, trainer?: { __typename?: 'AcfContentNodeConnection', nodes: Array<{ __typename?: 'Gym', id: string } | { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string } | { __typename?: 'Post', id: string } | { __typename?: 'Team', id: string } | { __typename?: 'Trainer', id: string, trainerDetails?: { __typename?: 'TrainerDetails', email?: string | null, name: string } | null }> } | null, training?: { __typename?: 'TeamDetailsTraining', monday?: { __typename?: 'TeamDetailsTrainingMonday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, tuesday?: { __typename?: 'TeamDetailsTrainingTuesday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, wednesday?: { __typename?: 'TeamDetailsTrainingWednesday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, thursday?: { __typename?: 'TeamDetailsTrainingThursday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, friday?: { __typename?: 'TeamDetailsTrainingFriday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null } | null } | null }> } | null };
+
 
 export const GetBackgroundVideoDocument = gql`
     query GetBackgroundVideo {
@@ -11671,3 +11688,129 @@ export function useGetTeamsLazyQuery(options: VueApolloComposable.UseQueryOption
   return VueApolloComposable.useLazyQuery<GetTeamsQuery, GetTeamsQueryVariables>(GetTeamsDocument, {}, options);
 }
 export type GetTeamsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetTeamsQuery, GetTeamsQueryVariables>;
+export const GetTeamsForProbetrainingDocument = gql`
+    query GetTeamsForProbetraining {
+  teams {
+    nodes {
+      slug
+      teamDetails {
+        teamName
+        minYear
+        maxYear
+        isBeginnerFriendly
+        leagueName
+        ranking
+        trainer {
+          nodes {
+            id
+            ... on Trainer {
+              id
+              trainerDetails {
+                email
+                name
+              }
+            }
+          }
+        }
+        training {
+          monday {
+            startTime
+            endTime
+            gym {
+              node {
+                ... on Gym {
+                  gymFields {
+                    address
+                    name
+                  }
+                  id
+                }
+              }
+            }
+          }
+          tuesday {
+            startTime
+            endTime
+            gym {
+              node {
+                ... on Gym {
+                  gymFields {
+                    address
+                    name
+                  }
+                  id
+                }
+              }
+            }
+          }
+          wednesday {
+            startTime
+            endTime
+            gym {
+              node {
+                ... on Gym {
+                  gymFields {
+                    address
+                    name
+                  }
+                  id
+                }
+              }
+            }
+          }
+          thursday {
+            startTime
+            endTime
+            gym {
+              node {
+                ... on Gym {
+                  gymFields {
+                    address
+                    name
+                  }
+                  id
+                }
+              }
+            }
+          }
+          friday {
+            startTime
+            endTime
+            gym {
+              node {
+                ... on Gym {
+                  gymFields {
+                    address
+                    name
+                  }
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetTeamsForProbetrainingQuery__
+ *
+ * To run a query within a Vue component, call `useGetTeamsForProbetrainingQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTeamsForProbetrainingQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetTeamsForProbetrainingQuery();
+ */
+export function useGetTeamsForProbetrainingQuery(options: VueApolloComposable.UseQueryOptions<GetTeamsForProbetrainingQuery, GetTeamsForProbetrainingQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetTeamsForProbetrainingQuery, GetTeamsForProbetrainingQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetTeamsForProbetrainingQuery, GetTeamsForProbetrainingQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetTeamsForProbetrainingQuery, GetTeamsForProbetrainingQueryVariables>(GetTeamsForProbetrainingDocument, {}, options);
+}
+export function useGetTeamsForProbetrainingLazyQuery(options: VueApolloComposable.UseQueryOptions<GetTeamsForProbetrainingQuery, GetTeamsForProbetrainingQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetTeamsForProbetrainingQuery, GetTeamsForProbetrainingQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetTeamsForProbetrainingQuery, GetTeamsForProbetrainingQueryVariables>> = {}) {
+  return VueApolloComposable.useLazyQuery<GetTeamsForProbetrainingQuery, GetTeamsForProbetrainingQueryVariables>(GetTeamsForProbetrainingDocument, {}, options);
+}
+export type GetTeamsForProbetrainingQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetTeamsForProbetrainingQuery, GetTeamsForProbetrainingQueryVariables>;
