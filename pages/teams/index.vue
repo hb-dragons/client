@@ -7,7 +7,8 @@ const teams = computed(() => result.value?.teams?.nodes);
 const { result: teamsImage } = useGetImageBySlugQuery({ slug: 'teams' });
 
 function sortTeams(teams: Team[]) {
-  return teams.toSorted((a, b) => a.teamDetails!.ranking! - b.teamDetails!.ranking!);
+  if (!teams) return [];
+  return teams.toSorted((a, b) => (a.teamDetails?.ranking || 0) - (b.teamDetails?.ranking || 0));
 }
 </script>
 
