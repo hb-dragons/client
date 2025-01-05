@@ -16,7 +16,7 @@
 
     <PagesHomeOneCourt />
 
-    <PagesHomeCounter />
+    <!-- <PagesHomeCounter /> -->
 
     <PagesHomeRecentPosts />
 
