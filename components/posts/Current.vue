@@ -21,8 +21,10 @@ const { result } = useGetPostsQuery({ last: 3 });
         to="/news"
         class="w-full h-full bg-surface-900 cursor-pointer rounded-lg flex md:flex-col justify-center gap-3 items-center py-2 md:hover:scale-[1.02] md:transition"
       >
-        <span>Weitere</span>
-        <span>News</span>
+        <div class="flex flex-row md:flex-col items-center gap-1">
+          <span>Weitere</span>
+          <span>News</span>
+        </div>
         <Icon
           name="ph:arrow-right"
           class="w-6 h-6 lg:w-8 lg:h-8"
