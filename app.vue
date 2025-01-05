@@ -2,7 +2,7 @@
   <NuxtLayout>
     <NuxtLoadingIndicator
       :throttle="200"
-      :height="20"
+      :height="5"
     />
     <NuxtPage />
   </NuxtLayout>
