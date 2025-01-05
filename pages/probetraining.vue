@@ -172,7 +172,7 @@ const fittingTeams = computed(() => {
                   </h2>
                   <div class="w-full md:px-[10%] lg:px-[25%] flex flex-col gap-4">
                     <div class="flex flex-col gap-1 ">
-                      <p class="text-xl mb-3">
+                      <p class="text-base md:text-lg lg:text-xl mb-3">
                         In welchem Jahr wurdest du gebohren?
                       </p>
                       <DatePicker
@@ -193,7 +193,7 @@ const fittingTeams = computed(() => {
                     </div>
 
                     <div class="flex flex-col gap-1">
-                      <p class="text-xl mb-3">
+                      <p class="text-base md:text-lg lg:text-xl  mb-3">
                         Bist du Anfänger?
                       </p>
                       <SelectButton
