@@ -35,7 +35,7 @@ function sortTeams(teams: Team[]) {
       v-if="teams"
       class="flex flex-col"
     >
-      <div
+      <!-- <div
         v-for="(team, index) in sortTeams(teams as Team[])"
         :key="team.slug!"
       >
@@ -43,7 +43,7 @@ function sortTeams(teams: Team[]) {
           :image-position="index % 2 == 0 ? 'right' : 'left'"
           :team="team as Team || undefined"
         />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
