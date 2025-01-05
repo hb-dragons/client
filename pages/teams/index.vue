@@ -2,9 +2,20 @@
 import { useGetTeamsQuery, useGetImageBySlugQuery, type Team } from '~/types/graphql';
 
 const { result, loading } = useGetTeamsQuery();
-const teams = computed(() => result.value?.teams?.nodes.toSorted((a, b) => (a.teamDetails?.ranking || 0) - (b.teamDetails?.ranking || 0)));
+const teams = computed(() => result.value?.teams?.nodes);
 
 const { result: teamsImage } = useGetImageBySlugQuery({ slug: 'teams' });
+
+const sortedTeams = computed(() => {
+  if (!teams.value) return [];
+  const arr = [...teams.value];
+  return arr.sort((a, b) => {
+    if (a?.teamDetails?.ranking && b?.teamDetails?.ranking) {
+      return a.teamDetails.ranking - b.teamDetails.ranking;
+    }
+    return 0;
+  });
+});
 </script>
 
 <template>
@@ -31,7 +42,7 @@ const { result: teamsImage } = useGetImageBySlugQuery({ slug: 'teams' });
       class="flex flex-col"
     >
       <div
-        v-for="(team, index) in teams"
+        v-for="(team, index) in sortedTeams"
         :key="team.slug!"
       >
         <TeamRow
