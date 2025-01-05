@@ -2,14 +2,9 @@
 import { useGetTeamsQuery, useGetImageBySlugQuery, type Team } from '~/types/graphql';
 
 const { result, loading } = useGetTeamsQuery();
-const teams = computed(() => result.value?.teams?.nodes);
+const teams = computed(() => result.value?.teams?.nodes.toSorted((a, b) => (a.teamDetails?.ranking || 0) - (b.teamDetails?.ranking || 0)));
 
 const { result: teamsImage } = useGetImageBySlugQuery({ slug: 'teams' });
-
-function sortTeams(teams: Team[]) {
-  if (!teams) return [];
-  return teams.toSorted((a, b) => (a.teamDetails?.ranking || 0) - (b.teamDetails?.ranking || 0));
-}
 </script>
 
 <template>
