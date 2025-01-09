@@ -28,5 +28,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-primeui'), require('tailwindcss-motion')],
+  plugins: [require('tailwindcss-primeui'), require('tailwindcss-motion'), require('@tailwindcss/typography')],
 };

@@ -24,22 +24,16 @@ const { result, loading } = useGetPostBySlugQuery(
       />
       <div
         v-else
-        class="space-y-2"
-        v-html="result?.postBy?.content"
-      />
+        class="flex justify-center"
+      >
+        <div
+          class="prose w-full md:prose-xl lg:prose-2xl prose-invert"
+          v-html="result?.postBy?.content"
+        />
+      </div>
     </PageContentWrapper>
   </div>
 </template>
 
 <style>
-.wp-block-list {
-  list-style: square !important;
-  padding-left: 1rem !important ;
-}
-
-.wp-block-quote {
-  border-left: 4px solid #333;
-  padding-left: 1rem;
-  margin-left: 0;
-}
 </style>
