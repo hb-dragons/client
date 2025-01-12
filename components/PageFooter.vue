@@ -23,7 +23,7 @@
         <SafeMail
           title="Click to send us an email"
           class="text-sm md:text-base"
-          email="info@hbdragons.de"
+          email="info[at]hbdragons2.de"
         />
       </div>
     </div>

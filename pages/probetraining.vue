@@ -269,7 +269,7 @@ const fittingTeams = computed(() => {
                       Leider haben wir kein passendes Team für dich gefunden.
                     </p>
                     <p class="text-center text-lg mt-4">
-                      Bitte schreibe uns eine Mail an kontakanfrage@hbdragons.de oder stöbere durch unsere <NuxtLink
+                      Bitte schreibe uns eine Mail an kontakanfrage[at]hbdragons[2].de oder stöbere durch unsere <NuxtLink
                         class="text-primary underline"
                         to="/teams"
                       >Teams</NuxtLink>.

@@ -18,7 +18,7 @@
 
     <PagesHomeCounter />
 
-    <PagesHomeRecentPosts />
+    <PagesHomeRecentPosts class="py-12 md:!py-18 lg:!py-26 xl:!py-32" />
 
     <PagesHomeProbeTraining />
   </div>

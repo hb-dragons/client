@@ -27,7 +27,7 @@ const { result, loading } = useGetPostBySlugQuery(
         class="flex justify-center"
       >
         <div
-          class="prose w-full md:prose-xl lg:prose-2xl prose-invert"
+          class="prose w-full md:prose-lg lg:prose-xl prose-invert"
           v-html="result?.postBy?.content"
         />
       </div>
