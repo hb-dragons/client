@@ -1,0 +1,29 @@
+query GetVorstand {
+  vorstands {
+    nodes {
+      positionDetails {
+        volunteer {
+          node {
+            ... on Volunteer {
+              id
+              volunteerDetails {
+                email
+                name
+                phoneNumer
+                profileImage {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+        sortPriority
+        name
+        tasks
+        email
+      }
+    }
+  }
+}

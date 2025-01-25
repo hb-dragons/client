@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "generate:types": "gq https://api.dragons.janeee.de/graphql --introspect > schema.graphql && graphql-codegen --config codegen.yml",
+    "generate:types": "gq https://api.dragons.neemann.tech/graphql --introspect > schema.graphql && graphql-codegen --config codegen.yml",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

@@ -1,0 +1,29 @@
+query GetPositions {
+  positions {
+    nodes {
+      positionDetails {
+        volunteer {
+          node {
+            ... on Volunteer {
+              id
+              volunteerDetails {
+                email
+                name
+                phoneNumer
+                profileImage {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+        sortPriority
+        name
+        tasks
+        email
+      }
+    }
+  }
+}

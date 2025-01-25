@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ImageProps } from '~/types/props/image-props';
 
-const { imgSrc } = defineProps<ImageProps>();
+const { imgSrc, defaultImage = '/img/banner.webp' } = defineProps<{ defaultImage?: string } & ImageProps>();
 </script>
 
 <template>
@@ -9,10 +9,12 @@ const { imgSrc } = defineProps<ImageProps>();
     v-if="imgSrc"
     :img-src="imgSrc"
     :is-loading="isLoading"
+    :img-classes="imgClasses"
   />
   <SkeletonImage
     v-else
-    img-src="/img/banner.webp"
+    :img-src="defaultImage"
     :is-loading="isLoading"
+    :img-classes="imgClasses"
   />
 </template>

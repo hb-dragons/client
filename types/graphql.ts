@@ -29,12 +29,12 @@ export type AcfContentNodeConnection = Connection & ContentNodeConnection & {
   pageInfo: AcfContentNodeConnectionPageInfo;
 };
 
-/** An edge in a connection */
-export type AcfContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
+/** Connection between the PositionDetails_Fields type and the ContentNode type */
+export type AcfContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & OneToOneConnection & {
   __typename?: 'AcfContentNodeConnectionEdge';
-  /** A cursor for use in pagination */
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
+  /** The node of the connection, without the edges */
   node: ContentNode;
 };
 
@@ -1363,11 +1363,17 @@ export enum ContentTypeEnum {
   /** The Type of Content object */
   Page = 'PAGE',
   /** The Type of Content object */
+  Position = 'POSITION',
+  /** The Type of Content object */
   Post = 'POST',
   /** The Type of Content object */
   Teams = 'TEAMS',
   /** The Type of Content object */
-  Trainer = 'TRAINER'
+  Trainer = 'TRAINER',
+  /** The Type of Content object */
+  Volunteer = 'VOLUNTEER',
+  /** The Type of Content object */
+  Vorstand = 'VORSTAND'
 }
 
 /** The Type of Identifier used to fetch a single Content Type node. To be used along with the "id" field. Default is "ID". */
@@ -1669,6 +1675,33 @@ export type CreatePagePayload = {
   page?: Maybe<Page>;
 };
 
+/** Input for the createPosition mutation. */
+export type CreatePositionInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the createPosition mutation. */
+export type CreatePositionPayload = {
+  __typename?: 'CreatePositionPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The Post object mutation type. */
+  position?: Maybe<Position>;
+};
+
 /** Input for the createPostFormat mutation. */
 export type CreatePostFormatInput = {
   /** The slug that the post_format will be an alias of */
@@ -1865,6 +1898,60 @@ export type CreateUserPayload = {
   user?: Maybe<User>;
 };
 
+/** Input for the createVolunteer mutation. */
+export type CreateVolunteerInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the createVolunteer mutation. */
+export type CreateVolunteerPayload = {
+  __typename?: 'CreateVolunteerPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The Post object mutation type. */
+  volunteer?: Maybe<Volunteer>;
+};
+
+/** Input for the createVorstand mutation. */
+export type CreateVorstandInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the createVorstand mutation. */
+export type CreateVorstandPayload = {
+  __typename?: 'CreateVorstandPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The Post object mutation type. */
+  vorstand?: Maybe<Vorstand>;
+};
+
 /** Object that can be identified with a Database ID */
 export type DatabaseIdentifier = {
   /** The unique identifier stored in the database */
@@ -2025,6 +2112,29 @@ export type DeletePagePayload = {
   page?: Maybe<Page>;
 };
 
+/** Input for the deletePosition mutation. */
+export type DeletePositionInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The ID of the position to delete */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** The payload for the deletePosition mutation. */
+export type DeletePositionPayload = {
+  __typename?: 'DeletePositionPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars['ID']['output']>;
+  /** The object before it was deleted */
+  position?: Maybe<Position>;
+};
+
 /** Input for the deletePostFormat mutation. */
 export type DeletePostFormatInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -2151,6 +2261,52 @@ export type DeleteUserPayload = {
   deletedId?: Maybe<Scalars['ID']['output']>;
   /** The deleted user object */
   user?: Maybe<User>;
+};
+
+/** Input for the deleteVolunteer mutation. */
+export type DeleteVolunteerInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The ID of the volunteer to delete */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** The payload for the deleteVolunteer mutation. */
+export type DeleteVolunteerPayload = {
+  __typename?: 'DeleteVolunteerPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars['ID']['output']>;
+  /** The object before it was deleted */
+  volunteer?: Maybe<Volunteer>;
+};
+
+/** Input for the deleteVorstand mutation. */
+export type DeleteVorstandInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The ID of the vorstand to delete */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** The payload for the deleteVorstand mutation. */
+export type DeleteVorstandPayload = {
+  __typename?: 'DeleteVorstandPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars['ID']['output']>;
+  /** The object before it was deleted */
+  vorstand?: Maybe<Vorstand>;
 };
 
 /** The discussion setting type */
@@ -3593,7 +3749,7 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkeable Interface */
-export type MenuItemObjectUnion = Category | Gym | Page | Post | Tag | Team | Trainer;
+export type MenuItemObjectUnion = Category | Gym | Page | Position | Post | PostFormat | Tag | Team | Trainer | Volunteer | Vorstand;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge & MenuConnectionEdge & OneToOneConnection & {
@@ -4568,6 +4724,268 @@ export enum PluginStatusEnum {
   Upgrade = 'UPGRADE'
 }
 
+/** The position type */
+export type Position = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfPositionDetails & {
+  __typename?: 'Position';
+  /**
+   * The ancestors of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  ancestors?: Maybe<PositionToPositionConnection>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  contentTypeName: Scalars['String']['output'];
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int']['output'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']['output']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']['output']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']['output']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the position object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
+  /** The globally unique identifier of the position object. */
+  id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean']['output'];
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']['output']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']['output']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /**
+   * The parent of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  parent?: Maybe<PositionToParentConnectionEdge>;
+  /** The password for the position object. */
+  password?: Maybe<Scalars['String']['output']>;
+  /** Fields of the PositionDetails ACF Field Group */
+  positionDetails?: Maybe<PositionDetails>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  positionId: Scalars['Int']['output'];
+  /** Connection between the Position type and the position type */
+  preview?: Maybe<PositionToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']['output']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']['output']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']['output']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** The position type */
+export type PositionAncestorsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The position type */
+export type PositionEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The position type */
+export type PositionEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The position type */
+export type PositionTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Connection to position Nodes */
+export type PositionConnection = {
+  /** A list of edges (relational context) between RootQuery and connected position Nodes */
+  edges: Array<PositionConnectionEdge>;
+  /** A list of connected position Nodes */
+  nodes: Array<Position>;
+  /** Information about pagination in a connection. */
+  pageInfo: PositionConnectionPageInfo;
+};
+
+/** Edge between a Node and a connected position */
+export type PositionConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The connected position Node */
+  node: Position;
+};
+
+/** Page Info on the connected PositionConnectionEdge */
+export type PositionConnectionPageInfo = {
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** The &quot;PositionDetails&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type PositionDetails = AcfFieldGroup & AcfFieldGroupFields & PositionDetails_Fields & {
+  __typename?: 'PositionDetails';
+  /** Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group */
+  email?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group */
+  name?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group */
+  sortPriority?: Maybe<Scalars['Float']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group */
+  tasks?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;post_object&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group */
+  volunteer?: Maybe<AcfContentNodeConnectionEdge>;
+};
+
+/** Interface representing fields of the ACF &quot;PositionDetails&quot; Field Group */
+export type PositionDetails_Fields = {
+  /** Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group */
+  email?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group */
+  name?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group */
+  sortPriority?: Maybe<Scalars['Float']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group */
+  tasks?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;post_object&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group */
+  volunteer?: Maybe<AcfContentNodeConnectionEdge>;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum PositionIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = 'DATABASE_ID',
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = 'ID',
+  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
+  Slug = 'SLUG',
+  /** Identify a resource by the URI. */
+  Uri = 'URI'
+}
+
+/** Connection between the Position type and the position type */
+export type PositionToParentConnectionEdge = Edge & OneToOneConnection & PositionConnectionEdge & {
+  __typename?: 'PositionToParentConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The node of the connection, without the edges
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  node: Position;
+};
+
+/** Connection between the Position type and the position type */
+export type PositionToPositionConnection = Connection & PositionConnection & {
+  __typename?: 'PositionToPositionConnection';
+  /** Edges for the PositionToPositionConnection connection */
+  edges: Array<PositionToPositionConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Position>;
+  /** Information about pagination in a connection. */
+  pageInfo: PositionToPositionConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type PositionToPositionConnectionEdge = Edge & PositionConnectionEdge & {
+  __typename?: 'PositionToPositionConnectionEdge';
+  /**
+   * A cursor for use in pagination
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The item at the end of the edge
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  node: Position;
+};
+
+/** Page Info on the &quot;PositionToPositionConnection&quot; */
+export type PositionToPositionConnectionPageInfo = PageInfo & PositionConnectionPageInfo & WpPageInfo & {
+  __typename?: 'PositionToPositionConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Connection between the Position type and the position type */
+export type PositionToPreviewConnectionEdge = Edge & OneToOneConnection & PositionConnectionEdge & {
+  __typename?: 'PositionToPreviewConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The node of the connection, without the edges */
+  node: Position;
+};
+
 /** The post type */
 export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Post';
@@ -4854,7 +5272,7 @@ export type PostConnectionPageInfo = {
 };
 
 /** The postFormat type */
-export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable & {
+export type PostFormat = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'PostFormat';
   /** Connection between the PostFormat type and the ContentNode type */
   contentNodes?: Maybe<PostFormatToContentNodeConnection>;
@@ -6058,6 +6476,8 @@ export type RootMutation = {
   createMediaItem?: Maybe<CreateMediaItemPayload>;
   /** The createPage mutation */
   createPage?: Maybe<CreatePagePayload>;
+  /** The createPosition mutation */
+  createPosition?: Maybe<CreatePositionPayload>;
   /** The createPost mutation */
   createPost?: Maybe<CreatePostPayload>;
   /** The createPostFormat mutation */
@@ -6070,6 +6490,10 @@ export type RootMutation = {
   createTrainer?: Maybe<CreateTrainerPayload>;
   /** The createUser mutation */
   createUser?: Maybe<CreateUserPayload>;
+  /** The createVolunteer mutation */
+  createVolunteer?: Maybe<CreateVolunteerPayload>;
+  /** The createVorstand mutation */
+  createVorstand?: Maybe<CreateVorstandPayload>;
   /** The deleteCategory mutation */
   deleteCategory?: Maybe<DeleteCategoryPayload>;
   /** The deleteComment mutation */
@@ -6080,6 +6504,8 @@ export type RootMutation = {
   deleteMediaItem?: Maybe<DeleteMediaItemPayload>;
   /** The deletePage mutation */
   deletePage?: Maybe<DeletePagePayload>;
+  /** The deletePosition mutation */
+  deletePosition?: Maybe<DeletePositionPayload>;
   /** The deletePost mutation */
   deletePost?: Maybe<DeletePostPayload>;
   /** The deletePostFormat mutation */
@@ -6092,6 +6518,10 @@ export type RootMutation = {
   deleteTrainer?: Maybe<DeleteTrainerPayload>;
   /** The deleteUser mutation */
   deleteUser?: Maybe<DeleteUserPayload>;
+  /** The deleteVolunteer mutation */
+  deleteVolunteer?: Maybe<DeleteVolunteerPayload>;
+  /** The deleteVorstand mutation */
+  deleteVorstand?: Maybe<DeleteVorstandPayload>;
   /** Increase the count. */
   increaseCount?: Maybe<Scalars['Int']['output']>;
   /** The registerUser mutation */
@@ -6112,6 +6542,8 @@ export type RootMutation = {
   updateMediaItem?: Maybe<UpdateMediaItemPayload>;
   /** The updatePage mutation */
   updatePage?: Maybe<UpdatePagePayload>;
+  /** The updatePosition mutation */
+  updatePosition?: Maybe<UpdatePositionPayload>;
   /** The updatePost mutation */
   updatePost?: Maybe<UpdatePostPayload>;
   /** The updatePostFormat mutation */
@@ -6126,6 +6558,10 @@ export type RootMutation = {
   updateTrainer?: Maybe<UpdateTrainerPayload>;
   /** The updateUser mutation */
   updateUser?: Maybe<UpdateUserPayload>;
+  /** The updateVolunteer mutation */
+  updateVolunteer?: Maybe<UpdateVolunteerPayload>;
+  /** The updateVorstand mutation */
+  updateVorstand?: Maybe<UpdateVorstandPayload>;
 };
 
 
@@ -6156,6 +6592,12 @@ export type RootMutationCreateMediaItemArgs = {
 /** The root mutation */
 export type RootMutationCreatePageArgs = {
   input: CreatePageInput;
+};
+
+
+/** The root mutation */
+export type RootMutationCreatePositionArgs = {
+  input: CreatePositionInput;
 };
 
 
@@ -6196,6 +6638,18 @@ export type RootMutationCreateUserArgs = {
 
 
 /** The root mutation */
+export type RootMutationCreateVolunteerArgs = {
+  input: CreateVolunteerInput;
+};
+
+
+/** The root mutation */
+export type RootMutationCreateVorstandArgs = {
+  input: CreateVorstandInput;
+};
+
+
+/** The root mutation */
 export type RootMutationDeleteCategoryArgs = {
   input: DeleteCategoryInput;
 };
@@ -6222,6 +6676,12 @@ export type RootMutationDeleteMediaItemArgs = {
 /** The root mutation */
 export type RootMutationDeletePageArgs = {
   input: DeletePageInput;
+};
+
+
+/** The root mutation */
+export type RootMutationDeletePositionArgs = {
+  input: DeletePositionInput;
 };
 
 
@@ -6258,6 +6718,18 @@ export type RootMutationDeleteTrainerArgs = {
 /** The root mutation */
 export type RootMutationDeleteUserArgs = {
   input: DeleteUserInput;
+};
+
+
+/** The root mutation */
+export type RootMutationDeleteVolunteerArgs = {
+  input: DeleteVolunteerInput;
+};
+
+
+/** The root mutation */
+export type RootMutationDeleteVorstandArgs = {
+  input: DeleteVorstandInput;
 };
 
 
@@ -6322,6 +6794,12 @@ export type RootMutationUpdatePageArgs = {
 
 
 /** The root mutation */
+export type RootMutationUpdatePositionArgs = {
+  input: UpdatePositionInput;
+};
+
+
+/** The root mutation */
 export type RootMutationUpdatePostArgs = {
   input: UpdatePostInput;
 };
@@ -6360,6 +6838,18 @@ export type RootMutationUpdateTrainerArgs = {
 /** The root mutation */
 export type RootMutationUpdateUserArgs = {
   input: UpdateUserInput;
+};
+
+
+/** The root mutation */
+export type RootMutationUpdateVolunteerArgs = {
+  input: UpdateVolunteerInput;
+};
+
+
+/** The root mutation */
+export type RootMutationUpdateVorstandArgs = {
+  input: UpdateVorstandInput;
 };
 
 /** The root entry point into the Graph */
@@ -6430,6 +6920,15 @@ export type RootQuery = {
   plugin?: Maybe<Plugin>;
   /** Connection between the RootQuery type and the Plugin type */
   plugins?: Maybe<RootQueryToPluginConnection>;
+  /** An object of the position Type.  */
+  position?: Maybe<Position>;
+  /**
+   * A position object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  positionBy?: Maybe<Position>;
+  /** Connection between the RootQuery type and the position type */
+  positions?: Maybe<RootQueryToPositionConnection>;
   /** An object of the post Type.  */
   post?: Maybe<Post>;
   /**
@@ -6495,6 +6994,24 @@ export type RootQuery = {
   users?: Maybe<RootQueryToUserConnection>;
   /** Returns the current user */
   viewer?: Maybe<User>;
+  /** An object of the volunteer Type.  */
+  volunteer?: Maybe<Volunteer>;
+  /**
+   * A volunteer object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  volunteerBy?: Maybe<Volunteer>;
+  /** Connection between the RootQuery type and the volunteer type */
+  volunteers?: Maybe<RootQueryToVolunteerConnection>;
+  /** An object of the vorstand Type.  */
+  vorstand?: Maybe<Vorstand>;
+  /**
+   * A vorstand object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  vorstandBy?: Maybe<Vorstand>;
+  /** Connection between the RootQuery type and the vorstand type */
+  vorstands?: Maybe<RootQueryToVorstandConnection>;
   /** Fields of the &#039;WritingSettings&#039; settings group */
   writingSettings?: Maybe<WritingSettings>;
 };
@@ -6708,6 +7225,33 @@ export type RootQueryPluginsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToPluginConnectionWhereArgs>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryPositionArgs = {
+  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['ID']['input'];
+  idType?: InputMaybe<PositionIdType>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryPositionByArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  positionId?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  uri?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryPositionsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RootQueryToPositionConnectionWhereArgs>;
 };
 
 
@@ -6932,6 +7476,60 @@ export type RootQueryUsersArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToUserConnectionWhereArgs>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryVolunteerArgs = {
+  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['ID']['input'];
+  idType?: InputMaybe<VolunteerIdType>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryVolunteerByArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  uri?: InputMaybe<Scalars['String']['input']>;
+  volunteerId?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryVolunteersArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RootQueryToVolunteerConnectionWhereArgs>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryVorstandArgs = {
+  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['ID']['input'];
+  idType?: InputMaybe<VorstandIdType>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryVorstandByArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  uri?: InputMaybe<Scalars['String']['input']>;
+  vorstandId?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryVorstandsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RootQueryToVorstandConnectionWhereArgs>;
 };
 
 /** Connection between the RootQuery type and the category type */
@@ -7638,6 +8236,77 @@ export type RootQueryToPluginConnectionWhereArgs = {
   stati?: InputMaybe<Array<InputMaybe<PluginStatusEnum>>>;
   /** Show plugins with a specific status. */
   status?: InputMaybe<PluginStatusEnum>;
+};
+
+/** Connection between the RootQuery type and the position type */
+export type RootQueryToPositionConnection = Connection & PositionConnection & {
+  __typename?: 'RootQueryToPositionConnection';
+  /** Edges for the RootQueryToPositionConnection connection */
+  edges: Array<RootQueryToPositionConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Position>;
+  /** Information about pagination in a connection. */
+  pageInfo: RootQueryToPositionConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type RootQueryToPositionConnectionEdge = Edge & PositionConnectionEdge & {
+  __typename?: 'RootQueryToPositionConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: Position;
+};
+
+/** Page Info on the &quot;RootQueryToPositionConnection&quot; */
+export type RootQueryToPositionConnectionPageInfo = PageInfo & PositionConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToPositionConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the RootQueryToPositionConnection connection */
+export type RootQueryToPositionConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Connection between the RootQuery type and the post type */
@@ -8357,6 +9026,148 @@ export type RootQueryToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectio
   hasPreviousPage: Scalars['Boolean']['output'];
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Connection between the RootQuery type and the volunteer type */
+export type RootQueryToVolunteerConnection = Connection & VolunteerConnection & {
+  __typename?: 'RootQueryToVolunteerConnection';
+  /** Edges for the RootQueryToVolunteerConnection connection */
+  edges: Array<RootQueryToVolunteerConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Volunteer>;
+  /** Information about pagination in a connection. */
+  pageInfo: RootQueryToVolunteerConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type RootQueryToVolunteerConnectionEdge = Edge & VolunteerConnectionEdge & {
+  __typename?: 'RootQueryToVolunteerConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: Volunteer;
+};
+
+/** Page Info on the &quot;RootQueryToVolunteerConnection&quot; */
+export type RootQueryToVolunteerConnectionPageInfo = PageInfo & VolunteerConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToVolunteerConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the RootQueryToVolunteerConnection connection */
+export type RootQueryToVolunteerConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Connection between the RootQuery type and the vorstand type */
+export type RootQueryToVorstandConnection = Connection & VorstandConnection & {
+  __typename?: 'RootQueryToVorstandConnection';
+  /** Edges for the RootQueryToVorstandConnection connection */
+  edges: Array<RootQueryToVorstandConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Vorstand>;
+  /** Information about pagination in a connection. */
+  pageInfo: RootQueryToVorstandConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type RootQueryToVorstandConnectionEdge = Edge & VorstandConnectionEdge & {
+  __typename?: 'RootQueryToVorstandConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: Vorstand;
+};
+
+/** Page Info on the &quot;RootQueryToVorstandConnection&quot; */
+export type RootQueryToVorstandConnectionPageInfo = PageInfo & VorstandConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToVorstandConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the RootQueryToVorstandConnection connection */
+export type RootQueryToVorstandConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** The strategy to use when loading the script */
@@ -9427,27 +10238,6 @@ export type Template_PageNoTitle = ContentTemplate & {
   templateName?: Maybe<Scalars['String']['output']>;
 };
 
-/** The template assigned to the node */
-export type Template_PageWithSidebar = ContentTemplate & {
-  __typename?: 'Template_PageWithSidebar';
-  /** The name of the template */
-  templateName?: Maybe<Scalars['String']['output']>;
-};
-
-/** The template assigned to the node */
-export type Template_PageWithWideImage = ContentTemplate & {
-  __typename?: 'Template_PageWithWideImage';
-  /** The name of the template */
-  templateName?: Maybe<Scalars['String']['output']>;
-};
-
-/** The template assigned to the node */
-export type Template_SingleWithSidebar = ContentTemplate & {
-  __typename?: 'Template_SingleWithSidebar';
-  /** The name of the template */
-  templateName?: Maybe<Scalars['String']['output']>;
-};
-
 /** Terms are nodes within a Taxonomy, used to group and relate other nodes. */
 export type TermNode = {
   /** The number of objects connected to the object */
@@ -10146,6 +10936,37 @@ export type UpdatePagePayload = {
   page?: Maybe<Page>;
 };
 
+/** Input for the updatePosition mutation. */
+export type UpdatePositionInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the position object */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the updatePosition mutation. */
+export type UpdatePositionPayload = {
+  __typename?: 'UpdatePositionPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The Post object mutation type. */
+  position?: Maybe<Position>;
+};
+
 /** Input for the updatePostFormat mutation. */
 export type UpdatePostFormatInput = {
   /** The slug that the post_format will be an alias of */
@@ -10415,6 +11236,68 @@ export type UpdateUserPayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>;
   /** The User object mutation type. */
   user?: Maybe<User>;
+};
+
+/** Input for the updateVolunteer mutation. */
+export type UpdateVolunteerInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the volunteer object */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the updateVolunteer mutation. */
+export type UpdateVolunteerPayload = {
+  __typename?: 'UpdateVolunteerPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The Post object mutation type. */
+  volunteer?: Maybe<Volunteer>;
+};
+
+/** Input for the updateVorstand mutation. */
+export type UpdateVorstandInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the vorstand object */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the updateVorstand mutation. */
+export type UpdateVorstandPayload = {
+  __typename?: 'UpdateVorstandPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The Post object mutation type. */
+  vorstand?: Maybe<Vorstand>;
 };
 
 /** A User object */
@@ -11251,6 +12134,487 @@ export enum UsersConnectionSearchColumnEnum {
   Url = 'URL'
 }
 
+/** The volunteer type */
+export type Volunteer = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfVolunteerDetails & {
+  __typename?: 'Volunteer';
+  /**
+   * The ancestors of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  ancestors?: Maybe<VolunteerToVolunteerConnection>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  contentTypeName: Scalars['String']['output'];
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int']['output'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']['output']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']['output']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']['output']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the volunteer object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
+  /** The globally unique identifier of the volunteer object. */
+  id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean']['output'];
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']['output']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']['output']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /**
+   * The parent of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  parent?: Maybe<VolunteerToParentConnectionEdge>;
+  /** The password for the volunteer object. */
+  password?: Maybe<Scalars['String']['output']>;
+  /** Connection between the Volunteer type and the volunteer type */
+  preview?: Maybe<VolunteerToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']['output']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']['output']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']['output']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']['output']>;
+  /** Fields of the VolunteerDetails ACF Field Group */
+  volunteerDetails?: Maybe<VolunteerDetails>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  volunteerId: Scalars['Int']['output'];
+};
+
+
+/** The volunteer type */
+export type VolunteerAncestorsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The volunteer type */
+export type VolunteerEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The volunteer type */
+export type VolunteerEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The volunteer type */
+export type VolunteerTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Connection to volunteer Nodes */
+export type VolunteerConnection = {
+  /** A list of edges (relational context) between RootQuery and connected volunteer Nodes */
+  edges: Array<VolunteerConnectionEdge>;
+  /** A list of connected volunteer Nodes */
+  nodes: Array<Volunteer>;
+  /** Information about pagination in a connection. */
+  pageInfo: VolunteerConnectionPageInfo;
+};
+
+/** Edge between a Node and a connected volunteer */
+export type VolunteerConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The connected volunteer Node */
+  node: Volunteer;
+};
+
+/** Page Info on the connected VolunteerConnectionEdge */
+export type VolunteerConnectionPageInfo = {
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** The &quot;VolunteerDetails&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
+export type VolunteerDetails = AcfFieldGroup & AcfFieldGroupFields & VolunteerDetails_Fields & {
+  __typename?: 'VolunteerDetails';
+  /** Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group */
+  email?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group */
+  name?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group */
+  phoneNumer?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group */
+  profileImage?: Maybe<AcfMediaItemConnectionEdge>;
+};
+
+/** Interface representing fields of the ACF &quot;VolunteerDetails&quot; Field Group */
+export type VolunteerDetails_Fields = {
+  /** Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group */
+  email?: Maybe<Scalars['String']['output']>;
+  /**
+   * The name of the field group
+   * @deprecated Use __typename instead
+   */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group */
+  name?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group */
+  phoneNumer?: Maybe<Scalars['String']['output']>;
+  /** Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group */
+  profileImage?: Maybe<AcfMediaItemConnectionEdge>;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum VolunteerIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = 'DATABASE_ID',
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = 'ID',
+  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
+  Slug = 'SLUG',
+  /** Identify a resource by the URI. */
+  Uri = 'URI'
+}
+
+/** Connection between the Volunteer type and the volunteer type */
+export type VolunteerToParentConnectionEdge = Edge & OneToOneConnection & VolunteerConnectionEdge & {
+  __typename?: 'VolunteerToParentConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The node of the connection, without the edges
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  node: Volunteer;
+};
+
+/** Connection between the Volunteer type and the volunteer type */
+export type VolunteerToPreviewConnectionEdge = Edge & OneToOneConnection & VolunteerConnectionEdge & {
+  __typename?: 'VolunteerToPreviewConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The node of the connection, without the edges */
+  node: Volunteer;
+};
+
+/** Connection between the Volunteer type and the volunteer type */
+export type VolunteerToVolunteerConnection = Connection & VolunteerConnection & {
+  __typename?: 'VolunteerToVolunteerConnection';
+  /** Edges for the VolunteerToVolunteerConnection connection */
+  edges: Array<VolunteerToVolunteerConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Volunteer>;
+  /** Information about pagination in a connection. */
+  pageInfo: VolunteerToVolunteerConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type VolunteerToVolunteerConnectionEdge = Edge & VolunteerConnectionEdge & {
+  __typename?: 'VolunteerToVolunteerConnectionEdge';
+  /**
+   * A cursor for use in pagination
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The item at the end of the edge
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  node: Volunteer;
+};
+
+/** Page Info on the &quot;VolunteerToVolunteerConnection&quot; */
+export type VolunteerToVolunteerConnectionPageInfo = PageInfo & VolunteerConnectionPageInfo & WpPageInfo & {
+  __typename?: 'VolunteerToVolunteerConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** The vorstand type */
+export type Vorstand = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfPositionDetails & {
+  __typename?: 'Vorstand';
+  /**
+   * The ancestors of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  ancestors?: Maybe<VorstandToVorstandConnection>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  contentTypeName: Scalars['String']['output'];
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int']['output'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']['output']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']['output']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']['output']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the vorstand object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
+  /** The globally unique identifier of the vorstand object. */
+  id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean']['output'];
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']['output']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']['output']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /**
+   * The parent of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  parent?: Maybe<VorstandToParentConnectionEdge>;
+  /** The password for the vorstand object. */
+  password?: Maybe<Scalars['String']['output']>;
+  /** Fields of the PositionDetails ACF Field Group */
+  positionDetails?: Maybe<PositionDetails>;
+  /** Connection between the Vorstand type and the vorstand type */
+  preview?: Maybe<VorstandToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']['output']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']['output']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']['output']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']['output']>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  vorstandId: Scalars['Int']['output'];
+};
+
+
+/** The vorstand type */
+export type VorstandAncestorsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The vorstand type */
+export type VorstandEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The vorstand type */
+export type VorstandEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The vorstand type */
+export type VorstandTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Connection to vorstand Nodes */
+export type VorstandConnection = {
+  /** A list of edges (relational context) between RootQuery and connected vorstand Nodes */
+  edges: Array<VorstandConnectionEdge>;
+  /** A list of connected vorstand Nodes */
+  nodes: Array<Vorstand>;
+  /** Information about pagination in a connection. */
+  pageInfo: VorstandConnectionPageInfo;
+};
+
+/** Edge between a Node and a connected vorstand */
+export type VorstandConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The connected vorstand Node */
+  node: Vorstand;
+};
+
+/** Page Info on the connected VorstandConnectionEdge */
+export type VorstandConnectionPageInfo = {
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum VorstandIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = 'DATABASE_ID',
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = 'ID',
+  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
+  Slug = 'SLUG',
+  /** Identify a resource by the URI. */
+  Uri = 'URI'
+}
+
+/** Connection between the Vorstand type and the vorstand type */
+export type VorstandToParentConnectionEdge = Edge & OneToOneConnection & VorstandConnectionEdge & {
+  __typename?: 'VorstandToParentConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The node of the connection, without the edges
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  node: Vorstand;
+};
+
+/** Connection between the Vorstand type and the vorstand type */
+export type VorstandToPreviewConnectionEdge = Edge & OneToOneConnection & VorstandConnectionEdge & {
+  __typename?: 'VorstandToPreviewConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The node of the connection, without the edges */
+  node: Vorstand;
+};
+
+/** Connection between the Vorstand type and the vorstand type */
+export type VorstandToVorstandConnection = Connection & VorstandConnection & {
+  __typename?: 'VorstandToVorstandConnection';
+  /** Edges for the VorstandToVorstandConnection connection */
+  edges: Array<VorstandToVorstandConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Vorstand>;
+  /** Information about pagination in a connection. */
+  pageInfo: VorstandToVorstandConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type VorstandToVorstandConnectionEdge = Edge & VorstandConnectionEdge & {
+  __typename?: 'VorstandToVorstandConnectionEdge';
+  /**
+   * A cursor for use in pagination
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The item at the end of the edge
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  node: Vorstand;
+};
+
+/** Page Info on the &quot;VorstandToVorstandConnection&quot; */
+export type VorstandToVorstandConnectionPageInfo = PageInfo & VorstandConnectionPageInfo & WpPageInfo & {
+  __typename?: 'VorstandToVorstandConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
 /** Information about pagination in a connection. */
 export type WpPageInfo = {
   /** When paginating forwards, the cursor to continue. */
@@ -11269,6 +12633,12 @@ export type WithAcfGymFields = {
   gymFields?: Maybe<GymFields>;
 };
 
+/** Provides access to fields of the &quot;PositionDetails&quot; ACF Field Group via the &quot;positionDetails&quot; field */
+export type WithAcfPositionDetails = {
+  /** Fields of the PositionDetails ACF Field Group */
+  positionDetails?: Maybe<PositionDetails>;
+};
+
 /** Provides access to fields of the &quot;TeamDetails&quot; ACF Field Group via the &quot;teamDetails&quot; field */
 export type WithAcfTeamDetails = {
   /** Fields of the TeamDetails ACF Field Group */
@@ -11279,6 +12649,12 @@ export type WithAcfTeamDetails = {
 export type WithAcfTrainerDetails = {
   /** Fields of the TrainerDetails ACF Field Group */
   trainerDetails?: Maybe<TrainerDetails>;
+};
+
+/** Provides access to fields of the &quot;VolunteerDetails&quot; ACF Field Group via the &quot;volunteerDetails&quot; field */
+export type WithAcfVolunteerDetails = {
+  /** Fields of the VolunteerDetails ACF Field Group */
+  volunteerDetails?: Maybe<VolunteerDetails>;
 };
 
 /** The writing setting type */
@@ -11309,6 +12685,16 @@ export type GetLogoQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetLogoQuery = { __typename?: 'RootQuery', mediaItemBy?: { __typename?: 'MediaItem', id: string, mediaItemUrl?: string | null } | null };
 
+export type GetPositionsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPositionsQuery = { __typename?: 'RootQuery', positions?: { __typename?: 'RootQueryToPositionConnection', nodes: Array<{ __typename?: 'Position', positionDetails?: { __typename?: 'PositionDetails', sortPriority?: number | null, name?: string | null, tasks?: string | null, email?: string | null, volunteer?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym' } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer', id: string, volunteerDetails?: { __typename?: 'VolunteerDetails', email?: string | null, name?: string | null, phoneNumer?: string | null, profileImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null } | { __typename?: 'Vorstand' } } | null } | null }> } | null };
+
+export type GetVorstandQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetVorstandQuery = { __typename?: 'RootQuery', vorstands?: { __typename?: 'RootQueryToVorstandConnection', nodes: Array<{ __typename?: 'Vorstand', positionDetails?: { __typename?: 'PositionDetails', sortPriority?: number | null, name?: string | null, tasks?: string | null, email?: string | null, volunteer?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym' } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer', id: string, volunteerDetails?: { __typename?: 'VolunteerDetails', email?: string | null, name?: string | null, phoneNumer?: string | null, profileImage?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null } | { __typename?: 'Vorstand' } } | null } | null }> } | null };
+
 export type GetPostBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
@@ -11328,7 +12714,7 @@ export type GetTeamBySlugNameQueryVariables = Exact<{
 }>;
 
 
-export type GetTeamBySlugNameQuery = { __typename?: 'RootQuery', teamBy?: { __typename?: 'Team', id: string, teamDetails?: { __typename?: 'TeamDetails', teamName?: string | null, leagueName?: string | null, leagueId?: number | null, teamPhoto?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null, trainer?: { __typename?: 'AcfContentNodeConnection', nodes: Array<{ __typename?: 'Gym', id: string } | { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string } | { __typename?: 'Post', id: string } | { __typename?: 'Team', id: string } | { __typename?: 'Trainer', id: string, trainerDetails?: { __typename?: 'TrainerDetails', email?: string | null, name: string, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null }> } | null, training?: { __typename?: 'TeamDetailsTraining', monday?: { __typename?: 'TeamDetailsTrainingMonday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, tuesday?: { __typename?: 'TeamDetailsTrainingTuesday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, wednesday?: { __typename?: 'TeamDetailsTrainingWednesday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, thursday?: { __typename?: 'TeamDetailsTrainingThursday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, friday?: { __typename?: 'TeamDetailsTrainingFriday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null } | null } | null } | null };
+export type GetTeamBySlugNameQuery = { __typename?: 'RootQuery', teamBy?: { __typename?: 'Team', id: string, teamDetails?: { __typename?: 'TeamDetails', teamName?: string | null, leagueName?: string | null, leagueId?: number | null, teamPhoto?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null, trainer?: { __typename?: 'AcfContentNodeConnection', nodes: Array<{ __typename?: 'Gym', id: string } | { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string } | { __typename?: 'Position', id: string } | { __typename?: 'Post', id: string } | { __typename?: 'Team', id: string } | { __typename?: 'Trainer', id: string, trainerDetails?: { __typename?: 'TrainerDetails', email?: string | null, name: string, image?: { __typename?: 'AcfMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null } | { __typename?: 'Volunteer', id: string } | { __typename?: 'Vorstand', id: string }> } | null, training?: { __typename?: 'TeamDetailsTraining', monday?: { __typename?: 'TeamDetailsTrainingMonday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer' } | { __typename?: 'Vorstand' } } | null } | null, tuesday?: { __typename?: 'TeamDetailsTrainingTuesday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer' } | { __typename?: 'Vorstand' } } | null } | null, wednesday?: { __typename?: 'TeamDetailsTrainingWednesday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer' } | { __typename?: 'Vorstand' } } | null } | null, thursday?: { __typename?: 'TeamDetailsTrainingThursday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer' } | { __typename?: 'Vorstand' } } | null } | null, friday?: { __typename?: 'TeamDetailsTrainingFriday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer' } | { __typename?: 'Vorstand' } } | null } | null } | null } | null } | null };
 
 export type GetTeamsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -11338,7 +12724,7 @@ export type GetTeamsQuery = { __typename?: 'RootQuery', teams?: { __typename?: '
 export type GetTeamsForProbetrainingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetTeamsForProbetrainingQuery = { __typename?: 'RootQuery', teams?: { __typename?: 'RootQueryToTeamConnection', nodes: Array<{ __typename?: 'Team', slug?: string | null, teamDetails?: { __typename?: 'TeamDetails', teamName?: string | null, minYear?: number | null, maxYear?: number | null, isBeginnerFriendly?: string | null, leagueName?: string | null, ranking?: number | null, trainer?: { __typename?: 'AcfContentNodeConnection', nodes: Array<{ __typename?: 'Gym', id: string } | { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string } | { __typename?: 'Post', id: string } | { __typename?: 'Team', id: string } | { __typename?: 'Trainer', id: string, trainerDetails?: { __typename?: 'TrainerDetails', email?: string | null, name: string } | null }> } | null, training?: { __typename?: 'TeamDetailsTraining', monday?: { __typename?: 'TeamDetailsTrainingMonday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, tuesday?: { __typename?: 'TeamDetailsTrainingTuesday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, wednesday?: { __typename?: 'TeamDetailsTrainingWednesday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, thursday?: { __typename?: 'TeamDetailsTrainingThursday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null, friday?: { __typename?: 'TeamDetailsTrainingFriday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } } | null } | null } | null } | null }> } | null };
+export type GetTeamsForProbetrainingQuery = { __typename?: 'RootQuery', teams?: { __typename?: 'RootQueryToTeamConnection', nodes: Array<{ __typename?: 'Team', slug?: string | null, teamDetails?: { __typename?: 'TeamDetails', teamName?: string | null, minYear?: number | null, maxYear?: number | null, isBeginnerFriendly?: string | null, leagueName?: string | null, ranking?: number | null, trainer?: { __typename?: 'AcfContentNodeConnection', nodes: Array<{ __typename?: 'Gym', id: string } | { __typename?: 'MediaItem', id: string } | { __typename?: 'Page', id: string } | { __typename?: 'Position', id: string } | { __typename?: 'Post', id: string } | { __typename?: 'Team', id: string } | { __typename?: 'Trainer', id: string, trainerDetails?: { __typename?: 'TrainerDetails', email?: string | null, name: string } | null } | { __typename?: 'Volunteer', id: string } | { __typename?: 'Vorstand', id: string }> } | null, training?: { __typename?: 'TeamDetailsTraining', monday?: { __typename?: 'TeamDetailsTrainingMonday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer' } | { __typename?: 'Vorstand' } } | null } | null, tuesday?: { __typename?: 'TeamDetailsTrainingTuesday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer' } | { __typename?: 'Vorstand' } } | null } | null, wednesday?: { __typename?: 'TeamDetailsTrainingWednesday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer' } | { __typename?: 'Vorstand' } } | null } | null, thursday?: { __typename?: 'TeamDetailsTrainingThursday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer' } | { __typename?: 'Vorstand' } } | null } | null, friday?: { __typename?: 'TeamDetailsTrainingFriday', startTime?: string | null, endTime?: string | null, gym?: { __typename?: 'AcfContentNodeConnectionEdge', node: { __typename?: 'Gym', id: string, gymFields?: { __typename?: 'GymFields', address?: string | null, name?: string | null } | null } | { __typename?: 'MediaItem' } | { __typename?: 'Page' } | { __typename?: 'Position' } | { __typename?: 'Post' } | { __typename?: 'Team' } | { __typename?: 'Trainer' } | { __typename?: 'Volunteer' } | { __typename?: 'Vorstand' } } | null } | null } | null } | null }> } | null };
 
 
 export const GetBackgroundVideoDocument = gql`
@@ -11428,6 +12814,108 @@ export function useGetLogoLazyQuery(options: VueApolloComposable.UseQueryOptions
   return VueApolloComposable.useLazyQuery<GetLogoQuery, GetLogoQueryVariables>(GetLogoDocument, {}, options);
 }
 export type GetLogoQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetLogoQuery, GetLogoQueryVariables>;
+export const GetPositionsDocument = gql`
+    query GetPositions {
+  positions {
+    nodes {
+      positionDetails {
+        volunteer {
+          node {
+            ... on Volunteer {
+              id
+              volunteerDetails {
+                email
+                name
+                phoneNumer
+                profileImage {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+        sortPriority
+        name
+        tasks
+        email
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPositionsQuery__
+ *
+ * To run a query within a Vue component, call `useGetPositionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPositionsQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetPositionsQuery();
+ */
+export function useGetPositionsQuery(options: VueApolloComposable.UseQueryOptions<GetPositionsQuery, GetPositionsQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetPositionsQuery, GetPositionsQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetPositionsQuery, GetPositionsQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetPositionsQuery, GetPositionsQueryVariables>(GetPositionsDocument, {}, options);
+}
+export function useGetPositionsLazyQuery(options: VueApolloComposable.UseQueryOptions<GetPositionsQuery, GetPositionsQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetPositionsQuery, GetPositionsQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetPositionsQuery, GetPositionsQueryVariables>> = {}) {
+  return VueApolloComposable.useLazyQuery<GetPositionsQuery, GetPositionsQueryVariables>(GetPositionsDocument, {}, options);
+}
+export type GetPositionsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetPositionsQuery, GetPositionsQueryVariables>;
+export const GetVorstandDocument = gql`
+    query GetVorstand {
+  vorstands {
+    nodes {
+      positionDetails {
+        volunteer {
+          node {
+            ... on Volunteer {
+              id
+              volunteerDetails {
+                email
+                name
+                phoneNumer
+                profileImage {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+        sortPriority
+        name
+        tasks
+        email
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetVorstandQuery__
+ *
+ * To run a query within a Vue component, call `useGetVorstandQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetVorstandQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetVorstandQuery();
+ */
+export function useGetVorstandQuery(options: VueApolloComposable.UseQueryOptions<GetVorstandQuery, GetVorstandQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetVorstandQuery, GetVorstandQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetVorstandQuery, GetVorstandQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetVorstandQuery, GetVorstandQueryVariables>(GetVorstandDocument, {}, options);
+}
+export function useGetVorstandLazyQuery(options: VueApolloComposable.UseQueryOptions<GetVorstandQuery, GetVorstandQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetVorstandQuery, GetVorstandQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetVorstandQuery, GetVorstandQueryVariables>> = {}) {
+  return VueApolloComposable.useLazyQuery<GetVorstandQuery, GetVorstandQueryVariables>(GetVorstandDocument, {}, options);
+}
+export type GetVorstandQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetVorstandQuery, GetVorstandQueryVariables>;
 export const GetPostBySlugDocument = gql`
     query GetPostBySlug($slug: String!) {
   postBy(slug: $slug) {

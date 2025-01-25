@@ -73,7 +73,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   site: {
-    url: 'https://dragons.janeee.de',
+    url: 'https://dragons.neemann.tech',
     name: 'Hanover Basketball Dragons e.V.',
     description: 'Die offizielle Website der Hanover Basketball Dragons e.V.',
     defaultLocale: 'de',
@@ -88,7 +88,7 @@ export default defineNuxtConfig({
   apollo: {
     clients: {
       default: {
-        httpEndpoint: 'https://api.dragons.janeee.de/graphql',
+        httpEndpoint: 'https://api.dragons.neemann.tech/graphql',
       },
     },
   },
@@ -112,7 +112,7 @@ export default defineNuxtConfig({
 
   image: {
     format: ['webp'],
-    domains: ['dragons.janeee.de', 'api.dragons.janeee.de'],
+    domains: ['dragons.neemann.tech', 'api.dragons.neemann.tech'],
   },
 
   primevue: {

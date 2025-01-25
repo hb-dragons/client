@@ -99,9 +99,6 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@3.4.16)
-      '@types/sanitize-html':
-        specifier: ^2.13.0
-        version: 2.13.0
       graphql:
         specifier: ^16.10.0
         version: 16.10.0
@@ -1773,9 +1770,6 @@ packages:
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
 
-  '@types/sanitize-html@2.13.0':
-    resolution: {integrity: sha512-X31WxbvW9TjIhZZNyNBZ/p5ax4ti7qsNDBDEnH4zAgmEh35YnFD1UiS6z9Cd34kKm0LslFW0KPmTQzu/oGtsqQ==}
-
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
 
@@ -3360,9 +3354,6 @@ packages:
   html-tags@3.3.1:
     resolution: {integrity: sha512-ztqyC3kLto0e9WbNp0aeP+M3kTt+nbaIveGmUxAtZa+8iFgKLUOD4YKM5j+f3QD89bra7UeumolZHKuOXnTmeQ==}
     engines: {node: '>=8'}
-
-  htmlparser2@8.0.2:
-    resolution: {integrity: sha512-GYdjWKDkbRLkZ5geuHs5NY1puJ+PXwP7+fHPRz06Eirsb9ugf6d8kkXav6ADhcODhFFPMIXyxkxSuMf3D6NCFA==}
 
   htmlparser2@9.1.0:
     resolution: {integrity: sha512-5zfg6mHUoaer/97TxnGpxmbR7zJtPwIYFMZ/H5ucTlPZhKvtum05yiPK3Mgai3a0DyVxv7qYqoweaEd2nrYQzQ==}
@@ -8063,10 +8054,6 @@ snapshots:
 
   '@types/resolve@1.20.2': {}
 
-  '@types/sanitize-html@2.13.0':
-    dependencies:
-      htmlparser2: 8.0.2
-
   '@types/web-bluetooth@0.0.20': {}
 
   '@types/ws@8.5.13':
@@ -9988,13 +9975,6 @@ snapshots:
   hosted-git-info@2.8.9: {}
 
   html-tags@3.3.1: {}
-
-  htmlparser2@8.0.2:
-    dependencies:
-      domelementtype: 2.3.0
-      domhandler: 5.0.3
-      domutils: 3.1.0
-      entities: 4.5.0
 
   htmlparser2@9.1.0:
     dependencies:

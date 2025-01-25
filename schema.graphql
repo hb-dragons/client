@@ -407,6 +407,59 @@ type RootQuery {
     where: RootQueryToPluginConnectionWhereArgs
   ): RootQueryToPluginConnection
 
+  """An object of the position Type. """
+  position(
+    """The globally unique identifier of the object."""
+    id: ID!
+
+    """Type of unique identifier to fetch by. Default is Global ID"""
+    idType: PositionIdType
+
+    """
+    Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
+    """
+    asPreview: Boolean
+  ): Position
+
+  """A position object"""
+  positionBy(
+    """Get the position object by its global ID"""
+    id: ID
+
+    """Get the position by its database ID"""
+    positionId: Int
+
+    """Get the position by its uri"""
+    uri: String
+
+    """
+    Get the position by its slug (only available for non-hierarchical types)
+    """
+    slug: String
+  ): Position @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
+
+  """Connection between the RootQuery type and the position type"""
+  positions(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: RootQueryToPositionConnectionWhereArgs
+  ): RootQueryToPositionConnection
+
   """An object of the post Type. """
   post(
     """The globally unique identifier of the object."""
@@ -836,6 +889,112 @@ type RootQuery {
 
   """Returns the current user"""
   viewer: User
+
+  """An object of the volunteer Type. """
+  volunteer(
+    """The globally unique identifier of the object."""
+    id: ID!
+
+    """Type of unique identifier to fetch by. Default is Global ID"""
+    idType: VolunteerIdType
+
+    """
+    Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
+    """
+    asPreview: Boolean
+  ): Volunteer
+
+  """A volunteer object"""
+  volunteerBy(
+    """Get the volunteer object by its global ID"""
+    id: ID
+
+    """Get the volunteer by its database ID"""
+    volunteerId: Int
+
+    """Get the volunteer by its uri"""
+    uri: String
+
+    """
+    Get the volunteer by its slug (only available for non-hierarchical types)
+    """
+    slug: String
+  ): Volunteer @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
+
+  """Connection between the RootQuery type and the volunteer type"""
+  volunteers(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: RootQueryToVolunteerConnectionWhereArgs
+  ): RootQueryToVolunteerConnection
+
+  """An object of the vorstand Type. """
+  vorstand(
+    """The globally unique identifier of the object."""
+    id: ID!
+
+    """Type of unique identifier to fetch by. Default is Global ID"""
+    idType: VorstandIdType
+
+    """
+    Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the "asPreview" argument is not explicitly provided as an argument.
+    """
+    asPreview: Boolean
+  ): Vorstand
+
+  """A vorstand object"""
+  vorstandBy(
+    """Get the vorstand object by its global ID"""
+    id: ID
+
+    """Get the vorstand by its database ID"""
+    vorstandId: Int
+
+    """Get the vorstand by its uri"""
+    uri: String
+
+    """
+    Get the vorstand by its slug (only available for non-hierarchical types)
+    """
+    slug: String
+  ): Vorstand @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
+
+  """Connection between the RootQuery type and the vorstand type"""
+  vorstands(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: RootQueryToVorstandConnectionWhereArgs
+  ): RootQueryToVorstandConnection
 
   """Fields of the &#039;WritingSettings&#039; settings group"""
   writingSettings: WritingSettings
@@ -3340,6 +3499,9 @@ enum ContentTypeEnum {
   PAGE
 
   """The Type of Content object"""
+  POSITION
+
+  """The Type of Content object"""
   POST
 
   """The Type of Content object"""
@@ -3347,6 +3509,12 @@ enum ContentTypeEnum {
 
   """The Type of Content object"""
   TRAINER
+
+  """The Type of Content object"""
+  VOLUNTEER
+
+  """The Type of Content object"""
+  VORSTAND
 }
 
 """Connection between the ContentType type and the ContentNode type"""
@@ -7679,7 +7847,7 @@ interface PostFormatConnectionEdge implements Edge {
 }
 
 """The postFormat type"""
-type PostFormat implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier {
+type PostFormat implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier & MenuItemLinkable {
   """Connection between the PostFormat type and the ContentNode type"""
   contentNodes(
     """The number of items to return after the referenced "after" cursor"""
@@ -10651,7 +10819,371 @@ interface MenuItemLinkableConnectionEdge implements Edge {
 }
 
 """Deprecated in favor of MenuItemLinkeable Interface"""
-union MenuItemObjectUnion = Post | Page | Gym | Team | Trainer | Category | Tag
+union MenuItemObjectUnion = Post | Page | Gym | Position | Team | Trainer | Volunteer | Vorstand | Category | Tag | PostFormat
+
+"""The position type"""
+type Position implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & Previewable & NodeWithTitle & MenuItemLinkable & WithAcfPositionDetails {
+  """The ancestors of the content node."""
+  ancestors(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): PositionToPositionConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+
+  """Connection between the ContentNode type and the ContentType type"""
+  contentType: ContentNodeToContentTypeConnectionEdge
+
+  """The name of the Content Type the node belongs to"""
+  contentTypeName: String!
+
+  """The unique identifier stored in the database"""
+  databaseId: Int!
+
+  """Post publishing date."""
+  date: String
+
+  """The publishing date set in GMT."""
+  dateGmt: String
+
+  """The desired slug of the post"""
+  desiredSlug: String
+
+  """
+  If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds
+  """
+  editingLockedBy: ContentNodeToEditLockConnectionEdge
+
+  """The RSS enclosure for the object"""
+  enclosure: String
+
+  """Connection between the ContentNode type and the EnqueuedScript type"""
+  enqueuedScripts(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): ContentNodeToEnqueuedScriptConnection
+
+  """
+  Connection between the ContentNode type and the EnqueuedStylesheet type
+  """
+  enqueuedStylesheets(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): ContentNodeToEnqueuedStylesheetConnection
+
+  """
+  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  """
+  guid: String
+
+  """Whether the position object is password protected."""
+  hasPassword: Boolean
+
+  """The globally unique identifier of the position object."""
+  id: ID!
+
+  """Whether the node is a Comment"""
+  isComment: Boolean!
+
+  """Whether the node is a Content Node"""
+  isContentNode: Boolean!
+
+  """Whether the node represents the front page."""
+  isFrontPage: Boolean!
+
+  """Whether  the node represents the blog page."""
+  isPostsPage: Boolean!
+
+  """Whether the object is a node in the preview state"""
+  isPreview: Boolean
+
+  """Whether the object is restricted from the current viewer"""
+  isRestricted: Boolean
+
+  """Whether the node is a Term"""
+  isTermNode: Boolean!
+
+  """The user that most recently edited the node"""
+  lastEditedBy: ContentNodeToEditLastConnectionEdge
+
+  """The permalink of the post"""
+  link: String
+
+  """
+  The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time.
+  """
+  modified: String
+
+  """
+  The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
+  """
+  modifiedGmt: String
+
+  """The parent of the content node."""
+  parent: PositionToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+
+  """The password for the position object."""
+  password: String
+
+  """Fields of the PositionDetails ACF Field Group"""
+  positionDetails: PositionDetails
+
+  """The id field matches the WP_Post-&gt;ID field."""
+  positionId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+
+  """Connection between the Position type and the position type"""
+  preview: PositionToPreviewConnectionEdge
+
+  """The database id of the preview node"""
+  previewRevisionDatabaseId: Int
+
+  """Whether the object is a node in the preview state"""
+  previewRevisionId: ID
+
+  """
+  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  """
+  slug: String
+
+  """The current status of the object"""
+  status: String
+
+  """The template assigned to the node"""
+  template: ContentTemplate
+
+  """
+  The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
+  """
+  title(
+    """Format of the field output"""
+    format: PostObjectFieldFormatEnum
+  ): String
+
+  """The unique resource identifier path"""
+  uri: String
+}
+
+"""
+Provides access to fields of the &quot;PositionDetails&quot; ACF Field Group via the &quot;positionDetails&quot; field
+"""
+interface WithAcfPositionDetails {
+  """Fields of the PositionDetails ACF Field Group"""
+  positionDetails: PositionDetails
+}
+
+"""
+The &quot;PositionDetails&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type PositionDetails implements PositionDetails_Fields & AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group
+  """
+  email: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group
+  """
+  name: String
+
+  """
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group
+  """
+  sortPriority: Float
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group
+  """
+  tasks: String
+
+  """
+  Field of the &quot;post_object&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group
+  """
+  volunteer: AcfContentNodeConnectionEdge
+}
+
+"""
+Interface representing fields of the ACF &quot;PositionDetails&quot; Field Group
+"""
+interface PositionDetails_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group
+  """
+  email: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group
+  """
+  name: String
+
+  """
+  Field of the &quot;number&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group
+  """
+  sortPriority: Float
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group
+  """
+  tasks: String
+
+  """
+  Field of the &quot;post_object&quot; Field Type added to the schema as part of the &quot;PositionDetails&quot; Field Group
+  """
+  volunteer: AcfContentNodeConnectionEdge
+}
+
+"""
+Connection between the PositionDetails_Fields type and the ContentNode type
+"""
+type AcfContentNodeConnectionEdge implements OneToOneConnection & Edge & ContentNodeConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: ContentNode!
+}
+
+"""Connection between the Position type and the position type"""
+type PositionToPositionConnection implements PositionConnection & Connection {
+  """Edges for the PositionToPositionConnection connection"""
+  edges: [PositionToPositionConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [Position!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: PositionToPositionConnectionPageInfo!
+}
+
+"""Connection to position Nodes"""
+interface PositionConnection implements Connection {
+  """
+  A list of edges (relational context) between RootQuery and connected position Nodes
+  """
+  edges: [PositionConnectionEdge!]!
+
+  """A list of connected position Nodes"""
+  nodes: [Position!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: PositionConnectionPageInfo!
+}
+
+"""Edge between a Node and a connected position"""
+interface PositionConnectionEdge implements Edge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The connected position Node"""
+  node: Position!
+}
+
+"""Page Info on the connected PositionConnectionEdge"""
+interface PositionConnectionPageInfo implements WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""An edge in a connection"""
+type PositionToPositionConnectionEdge implements PositionConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+
+  """The item at the end of the edge"""
+  node: Position! @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+}
+
+"""Page Info on the &quot;PositionToPositionConnection&quot;"""
+type PositionToPositionConnectionPageInfo implements PositionConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""Connection between the Position type and the position type"""
+type PositionToParentConnectionEdge implements OneToOneConnection & Edge & PositionConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Position! @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+}
+
+"""Connection between the Position type and the position type"""
+type PositionToPreviewConnectionEdge implements OneToOneConnection & Edge & PositionConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Position!
+}
 
 """The team type"""
 type Team implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & Previewable & NodeWithTitle & MenuItemLinkable & WithAcfTeamDetails {
@@ -11011,15 +11543,6 @@ type AcfContentNodeConnection implements ContentNodeConnection & Connection {
 
   """Information about pagination in a connection."""
   pageInfo: AcfContentNodeConnectionPageInfo!
-}
-
-"""An edge in a connection"""
-type AcfContentNodeConnectionEdge implements ContentNodeConnectionEdge & Edge {
-  """A cursor for use in pagination"""
-  cursor: String
-
-  """The item at the end of the edge"""
-  node: ContentNode!
 }
 
 """Page Info on the &quot;AcfContentNodeConnection&quot;"""
@@ -11762,6 +12285,624 @@ type TrainerToPreviewConnectionEdge implements OneToOneConnection & Edge & Train
   node: Trainer!
 }
 
+"""The volunteer type"""
+type Volunteer implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & Previewable & NodeWithTitle & MenuItemLinkable & WithAcfVolunteerDetails {
+  """The ancestors of the content node."""
+  ancestors(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): VolunteerToVolunteerConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+
+  """Connection between the ContentNode type and the ContentType type"""
+  contentType: ContentNodeToContentTypeConnectionEdge
+
+  """The name of the Content Type the node belongs to"""
+  contentTypeName: String!
+
+  """The unique identifier stored in the database"""
+  databaseId: Int!
+
+  """Post publishing date."""
+  date: String
+
+  """The publishing date set in GMT."""
+  dateGmt: String
+
+  """The desired slug of the post"""
+  desiredSlug: String
+
+  """
+  If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds
+  """
+  editingLockedBy: ContentNodeToEditLockConnectionEdge
+
+  """The RSS enclosure for the object"""
+  enclosure: String
+
+  """Connection between the ContentNode type and the EnqueuedScript type"""
+  enqueuedScripts(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): ContentNodeToEnqueuedScriptConnection
+
+  """
+  Connection between the ContentNode type and the EnqueuedStylesheet type
+  """
+  enqueuedStylesheets(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): ContentNodeToEnqueuedStylesheetConnection
+
+  """
+  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  """
+  guid: String
+
+  """Whether the volunteer object is password protected."""
+  hasPassword: Boolean
+
+  """The globally unique identifier of the volunteer object."""
+  id: ID!
+
+  """Whether the node is a Comment"""
+  isComment: Boolean!
+
+  """Whether the node is a Content Node"""
+  isContentNode: Boolean!
+
+  """Whether the node represents the front page."""
+  isFrontPage: Boolean!
+
+  """Whether  the node represents the blog page."""
+  isPostsPage: Boolean!
+
+  """Whether the object is a node in the preview state"""
+  isPreview: Boolean
+
+  """Whether the object is restricted from the current viewer"""
+  isRestricted: Boolean
+
+  """Whether the node is a Term"""
+  isTermNode: Boolean!
+
+  """The user that most recently edited the node"""
+  lastEditedBy: ContentNodeToEditLastConnectionEdge
+
+  """The permalink of the post"""
+  link: String
+
+  """
+  The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time.
+  """
+  modified: String
+
+  """
+  The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
+  """
+  modifiedGmt: String
+
+  """The parent of the content node."""
+  parent: VolunteerToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+
+  """The password for the volunteer object."""
+  password: String
+
+  """Connection between the Volunteer type and the volunteer type"""
+  preview: VolunteerToPreviewConnectionEdge
+
+  """The database id of the preview node"""
+  previewRevisionDatabaseId: Int
+
+  """Whether the object is a node in the preview state"""
+  previewRevisionId: ID
+
+  """
+  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  """
+  slug: String
+
+  """The current status of the object"""
+  status: String
+
+  """The template assigned to the node"""
+  template: ContentTemplate
+
+  """
+  The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
+  """
+  title(
+    """Format of the field output"""
+    format: PostObjectFieldFormatEnum
+  ): String
+
+  """The unique resource identifier path"""
+  uri: String
+
+  """Fields of the VolunteerDetails ACF Field Group"""
+  volunteerDetails: VolunteerDetails
+
+  """The id field matches the WP_Post-&gt;ID field."""
+  volunteerId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+}
+
+"""
+Provides access to fields of the &quot;VolunteerDetails&quot; ACF Field Group via the &quot;volunteerDetails&quot; field
+"""
+interface WithAcfVolunteerDetails {
+  """Fields of the VolunteerDetails ACF Field Group"""
+  volunteerDetails: VolunteerDetails
+}
+
+"""
+The &quot;VolunteerDetails&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
+"""
+type VolunteerDetails implements VolunteerDetails_Fields & AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group
+  """
+  email: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group
+  """
+  name: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group
+  """
+  phoneNumer: String
+
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group
+  """
+  profileImage: AcfMediaItemConnectionEdge
+}
+
+"""
+Interface representing fields of the ACF &quot;VolunteerDetails&quot; Field Group
+"""
+interface VolunteerDetails_Fields implements AcfFieldGroup & AcfFieldGroupFields {
+  """
+  Field of the &quot;email&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group
+  """
+  email: String
+
+  """The name of the field group"""
+  fieldGroupName: String @deprecated(reason: "Use __typename instead")
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group
+  """
+  name: String
+
+  """
+  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group
+  """
+  phoneNumer: String
+
+  """
+  Field of the &quot;image&quot; Field Type added to the schema as part of the &quot;VolunteerDetails&quot; Field Group
+  """
+  profileImage: AcfMediaItemConnectionEdge
+}
+
+"""Connection between the Volunteer type and the volunteer type"""
+type VolunteerToVolunteerConnection implements VolunteerConnection & Connection {
+  """Edges for the VolunteerToVolunteerConnection connection"""
+  edges: [VolunteerToVolunteerConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [Volunteer!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: VolunteerToVolunteerConnectionPageInfo!
+}
+
+"""Connection to volunteer Nodes"""
+interface VolunteerConnection implements Connection {
+  """
+  A list of edges (relational context) between RootQuery and connected volunteer Nodes
+  """
+  edges: [VolunteerConnectionEdge!]!
+
+  """A list of connected volunteer Nodes"""
+  nodes: [Volunteer!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: VolunteerConnectionPageInfo!
+}
+
+"""Edge between a Node and a connected volunteer"""
+interface VolunteerConnectionEdge implements Edge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The connected volunteer Node"""
+  node: Volunteer!
+}
+
+"""Page Info on the connected VolunteerConnectionEdge"""
+interface VolunteerConnectionPageInfo implements WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""An edge in a connection"""
+type VolunteerToVolunteerConnectionEdge implements VolunteerConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+
+  """The item at the end of the edge"""
+  node: Volunteer! @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+}
+
+"""Page Info on the &quot;VolunteerToVolunteerConnection&quot;"""
+type VolunteerToVolunteerConnectionPageInfo implements VolunteerConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""Connection between the Volunteer type and the volunteer type"""
+type VolunteerToParentConnectionEdge implements OneToOneConnection & Edge & VolunteerConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Volunteer! @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+}
+
+"""Connection between the Volunteer type and the volunteer type"""
+type VolunteerToPreviewConnectionEdge implements OneToOneConnection & Edge & VolunteerConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Volunteer!
+}
+
+"""The vorstand type"""
+type Vorstand implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & Previewable & NodeWithTitle & MenuItemLinkable & WithAcfPositionDetails {
+  """The ancestors of the content node."""
+  ancestors(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): VorstandToVorstandConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+
+  """Connection between the ContentNode type and the ContentType type"""
+  contentType: ContentNodeToContentTypeConnectionEdge
+
+  """The name of the Content Type the node belongs to"""
+  contentTypeName: String!
+
+  """The unique identifier stored in the database"""
+  databaseId: Int!
+
+  """Post publishing date."""
+  date: String
+
+  """The publishing date set in GMT."""
+  dateGmt: String
+
+  """The desired slug of the post"""
+  desiredSlug: String
+
+  """
+  If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds
+  """
+  editingLockedBy: ContentNodeToEditLockConnectionEdge
+
+  """The RSS enclosure for the object"""
+  enclosure: String
+
+  """Connection between the ContentNode type and the EnqueuedScript type"""
+  enqueuedScripts(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): ContentNodeToEnqueuedScriptConnection
+
+  """
+  Connection between the ContentNode type and the EnqueuedStylesheet type
+  """
+  enqueuedStylesheets(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): ContentNodeToEnqueuedStylesheetConnection
+
+  """
+  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  """
+  guid: String
+
+  """Whether the vorstand object is password protected."""
+  hasPassword: Boolean
+
+  """The globally unique identifier of the vorstand object."""
+  id: ID!
+
+  """Whether the node is a Comment"""
+  isComment: Boolean!
+
+  """Whether the node is a Content Node"""
+  isContentNode: Boolean!
+
+  """Whether the node represents the front page."""
+  isFrontPage: Boolean!
+
+  """Whether  the node represents the blog page."""
+  isPostsPage: Boolean!
+
+  """Whether the object is a node in the preview state"""
+  isPreview: Boolean
+
+  """Whether the object is restricted from the current viewer"""
+  isRestricted: Boolean
+
+  """Whether the node is a Term"""
+  isTermNode: Boolean!
+
+  """The user that most recently edited the node"""
+  lastEditedBy: ContentNodeToEditLastConnectionEdge
+
+  """The permalink of the post"""
+  link: String
+
+  """
+  The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time.
+  """
+  modified: String
+
+  """
+  The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
+  """
+  modifiedGmt: String
+
+  """The parent of the content node."""
+  parent: VorstandToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+
+  """The password for the vorstand object."""
+  password: String
+
+  """Fields of the PositionDetails ACF Field Group"""
+  positionDetails: PositionDetails
+
+  """Connection between the Vorstand type and the vorstand type"""
+  preview: VorstandToPreviewConnectionEdge
+
+  """The database id of the preview node"""
+  previewRevisionDatabaseId: Int
+
+  """Whether the object is a node in the preview state"""
+  previewRevisionId: ID
+
+  """
+  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  """
+  slug: String
+
+  """The current status of the object"""
+  status: String
+
+  """The template assigned to the node"""
+  template: ContentTemplate
+
+  """
+  The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
+  """
+  title(
+    """Format of the field output"""
+    format: PostObjectFieldFormatEnum
+  ): String
+
+  """The unique resource identifier path"""
+  uri: String
+
+  """The id field matches the WP_Post-&gt;ID field."""
+  vorstandId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+}
+
+"""Connection between the Vorstand type and the vorstand type"""
+type VorstandToVorstandConnection implements VorstandConnection & Connection {
+  """Edges for the VorstandToVorstandConnection connection"""
+  edges: [VorstandToVorstandConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [Vorstand!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: VorstandToVorstandConnectionPageInfo!
+}
+
+"""Connection to vorstand Nodes"""
+interface VorstandConnection implements Connection {
+  """
+  A list of edges (relational context) between RootQuery and connected vorstand Nodes
+  """
+  edges: [VorstandConnectionEdge!]!
+
+  """A list of connected vorstand Nodes"""
+  nodes: [Vorstand!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: VorstandConnectionPageInfo!
+}
+
+"""Edge between a Node and a connected vorstand"""
+interface VorstandConnectionEdge implements Edge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The connected vorstand Node"""
+  node: Vorstand!
+}
+
+"""Page Info on the connected VorstandConnectionEdge"""
+interface VorstandConnectionPageInfo implements WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""An edge in a connection"""
+type VorstandToVorstandConnectionEdge implements VorstandConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+
+  """The item at the end of the edge"""
+  node: Vorstand! @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+}
+
+"""Page Info on the &quot;VorstandToVorstandConnection&quot;"""
+type VorstandToVorstandConnectionPageInfo implements VorstandConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""Connection between the Vorstand type and the vorstand type"""
+type VorstandToParentConnectionEdge implements OneToOneConnection & Edge & VorstandConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Vorstand! @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+}
+
+"""Connection between the Vorstand type and the vorstand type"""
+type VorstandToPreviewConnectionEdge implements OneToOneConnection & Edge & VorstandConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Vorstand!
+}
+
 """Connection between the MenuItem type and the Menu type"""
 type MenuItemToMenuConnectionEdge implements OneToOneConnection & Edge & MenuConnectionEdge {
   """
@@ -12200,6 +13341,117 @@ type RootQueryToPluginConnectionEdge implements PluginConnectionEdge & Edge {
 
 """Page Info on the &quot;RootQueryToPluginConnection&quot;"""
 type RootQueryToPluginConnectionPageInfo implements PluginConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""The Type of Identifier used to fetch a single resource. Default is ID."""
+enum PositionIdType {
+  """Identify a resource by the Database ID."""
+  DATABASE_ID
+
+  """Identify a resource by the (hashed) Global ID."""
+  ID
+
+  """
+  Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier.
+  """
+  SLUG
+
+  """Identify a resource by the URI."""
+  URI
+}
+
+"""Arguments for filtering the RootQueryToPositionConnection connection"""
+input RootQueryToPositionConnectionWhereArgs {
+  """Filter the connection based on dates"""
+  dateQuery: DateQueryInput
+
+  """
+  True for objects with passwords; False for objects without passwords; null for all objects with or without passwords
+  """
+  hasPassword: Boolean
+
+  """Specific database ID of the object"""
+  id: Int
+
+  """Array of IDs for the objects to retrieve"""
+  in: [ID]
+
+  """Get objects with a specific mimeType property"""
+  mimeType: MimeTypeEnum
+
+  """Slug / post_name of the object"""
+  name: String
+
+  """Specify objects to retrieve. Use slugs"""
+  nameIn: [String]
+
+  """
+  Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored
+  """
+  notIn: [ID]
+
+  """What parameter to use to order the objects by."""
+  orderby: [PostObjectsConnectionOrderbyInput]
+
+  """Use ID to return only children. Use 0 to return only top-level items"""
+  parent: ID
+
+  """Specify objects whose parent is in an array"""
+  parentIn: [ID]
+
+  """Specify posts whose parent is not in an array"""
+  parentNotIn: [ID]
+
+  """Show posts with a specific password."""
+  password: String
+
+  """Show Posts based on a keyword search"""
+  search: String
+
+  """Retrieve posts where post status is in an array."""
+  stati: [PostStatusEnum]
+
+  """Show posts with a specific status."""
+  status: PostStatusEnum
+
+  """Title of the object"""
+  title: String
+}
+
+"""Connection between the RootQuery type and the position type"""
+type RootQueryToPositionConnection implements PositionConnection & Connection {
+  """Edges for the RootQueryToPositionConnection connection"""
+  edges: [RootQueryToPositionConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [Position!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: RootQueryToPositionConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type RootQueryToPositionConnectionEdge implements PositionConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: Position!
+}
+
+"""Page Info on the &quot;RootQueryToPositionConnection&quot;"""
+type RootQueryToPositionConnectionPageInfo implements PositionConnectionPageInfo & WPPageInfo & PageInfo {
   """When paginating forwards, the cursor to continue."""
   endCursor: String
 
@@ -13652,6 +14904,228 @@ type RootQueryToUserConnectionPageInfo implements UserConnectionPageInfo & WPPag
   startCursor: String
 }
 
+"""The Type of Identifier used to fetch a single resource. Default is ID."""
+enum VolunteerIdType {
+  """Identify a resource by the Database ID."""
+  DATABASE_ID
+
+  """Identify a resource by the (hashed) Global ID."""
+  ID
+
+  """
+  Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier.
+  """
+  SLUG
+
+  """Identify a resource by the URI."""
+  URI
+}
+
+"""Arguments for filtering the RootQueryToVolunteerConnection connection"""
+input RootQueryToVolunteerConnectionWhereArgs {
+  """Filter the connection based on dates"""
+  dateQuery: DateQueryInput
+
+  """
+  True for objects with passwords; False for objects without passwords; null for all objects with or without passwords
+  """
+  hasPassword: Boolean
+
+  """Specific database ID of the object"""
+  id: Int
+
+  """Array of IDs for the objects to retrieve"""
+  in: [ID]
+
+  """Get objects with a specific mimeType property"""
+  mimeType: MimeTypeEnum
+
+  """Slug / post_name of the object"""
+  name: String
+
+  """Specify objects to retrieve. Use slugs"""
+  nameIn: [String]
+
+  """
+  Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored
+  """
+  notIn: [ID]
+
+  """What parameter to use to order the objects by."""
+  orderby: [PostObjectsConnectionOrderbyInput]
+
+  """Use ID to return only children. Use 0 to return only top-level items"""
+  parent: ID
+
+  """Specify objects whose parent is in an array"""
+  parentIn: [ID]
+
+  """Specify posts whose parent is not in an array"""
+  parentNotIn: [ID]
+
+  """Show posts with a specific password."""
+  password: String
+
+  """Show Posts based on a keyword search"""
+  search: String
+
+  """Retrieve posts where post status is in an array."""
+  stati: [PostStatusEnum]
+
+  """Show posts with a specific status."""
+  status: PostStatusEnum
+
+  """Title of the object"""
+  title: String
+}
+
+"""Connection between the RootQuery type and the volunteer type"""
+type RootQueryToVolunteerConnection implements VolunteerConnection & Connection {
+  """Edges for the RootQueryToVolunteerConnection connection"""
+  edges: [RootQueryToVolunteerConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [Volunteer!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: RootQueryToVolunteerConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type RootQueryToVolunteerConnectionEdge implements VolunteerConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: Volunteer!
+}
+
+"""Page Info on the &quot;RootQueryToVolunteerConnection&quot;"""
+type RootQueryToVolunteerConnectionPageInfo implements VolunteerConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""The Type of Identifier used to fetch a single resource. Default is ID."""
+enum VorstandIdType {
+  """Identify a resource by the Database ID."""
+  DATABASE_ID
+
+  """Identify a resource by the (hashed) Global ID."""
+  ID
+
+  """
+  Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier.
+  """
+  SLUG
+
+  """Identify a resource by the URI."""
+  URI
+}
+
+"""Arguments for filtering the RootQueryToVorstandConnection connection"""
+input RootQueryToVorstandConnectionWhereArgs {
+  """Filter the connection based on dates"""
+  dateQuery: DateQueryInput
+
+  """
+  True for objects with passwords; False for objects without passwords; null for all objects with or without passwords
+  """
+  hasPassword: Boolean
+
+  """Specific database ID of the object"""
+  id: Int
+
+  """Array of IDs for the objects to retrieve"""
+  in: [ID]
+
+  """Get objects with a specific mimeType property"""
+  mimeType: MimeTypeEnum
+
+  """Slug / post_name of the object"""
+  name: String
+
+  """Specify objects to retrieve. Use slugs"""
+  nameIn: [String]
+
+  """
+  Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored
+  """
+  notIn: [ID]
+
+  """What parameter to use to order the objects by."""
+  orderby: [PostObjectsConnectionOrderbyInput]
+
+  """Use ID to return only children. Use 0 to return only top-level items"""
+  parent: ID
+
+  """Specify objects whose parent is in an array"""
+  parentIn: [ID]
+
+  """Specify posts whose parent is not in an array"""
+  parentNotIn: [ID]
+
+  """Show posts with a specific password."""
+  password: String
+
+  """Show Posts based on a keyword search"""
+  search: String
+
+  """Retrieve posts where post status is in an array."""
+  stati: [PostStatusEnum]
+
+  """Show posts with a specific status."""
+  status: PostStatusEnum
+
+  """Title of the object"""
+  title: String
+}
+
+"""Connection between the RootQuery type and the vorstand type"""
+type RootQueryToVorstandConnection implements VorstandConnection & Connection {
+  """Edges for the RootQueryToVorstandConnection connection"""
+  edges: [RootQueryToVorstandConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [Vorstand!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: RootQueryToVorstandConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type RootQueryToVorstandConnectionEdge implements VorstandConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: Vorstand!
+}
+
+"""Page Info on the &quot;RootQueryToVorstandConnection&quot;"""
+type RootQueryToVorstandConnectionPageInfo implements VorstandConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
 """The writing setting type"""
 type WritingSettings {
   """Default post category."""
@@ -13696,6 +15170,12 @@ type RootMutation {
     input: CreatePageInput!
   ): CreatePagePayload
 
+  """The createPosition mutation"""
+  createPosition(
+    """Input for the createPosition mutation"""
+    input: CreatePositionInput!
+  ): CreatePositionPayload
+
   """The createPost mutation"""
   createPost(
     """Input for the createPost mutation"""
@@ -13732,6 +15212,18 @@ type RootMutation {
     input: CreateUserInput!
   ): CreateUserPayload
 
+  """The createVolunteer mutation"""
+  createVolunteer(
+    """Input for the createVolunteer mutation"""
+    input: CreateVolunteerInput!
+  ): CreateVolunteerPayload
+
+  """The createVorstand mutation"""
+  createVorstand(
+    """Input for the createVorstand mutation"""
+    input: CreateVorstandInput!
+  ): CreateVorstandPayload
+
   """The deleteCategory mutation"""
   deleteCategory(
     """Input for the deleteCategory mutation"""
@@ -13761,6 +15253,12 @@ type RootMutation {
     """Input for the deletePage mutation"""
     input: DeletePageInput!
   ): DeletePagePayload
+
+  """The deletePosition mutation"""
+  deletePosition(
+    """Input for the deletePosition mutation"""
+    input: DeletePositionInput!
+  ): DeletePositionPayload
 
   """The deletePost mutation"""
   deletePost(
@@ -13797,6 +15295,18 @@ type RootMutation {
     """Input for the deleteUser mutation"""
     input: DeleteUserInput!
   ): DeleteUserPayload
+
+  """The deleteVolunteer mutation"""
+  deleteVolunteer(
+    """Input for the deleteVolunteer mutation"""
+    input: DeleteVolunteerInput!
+  ): DeleteVolunteerPayload
+
+  """The deleteVorstand mutation"""
+  deleteVorstand(
+    """Input for the deleteVorstand mutation"""
+    input: DeleteVorstandInput!
+  ): DeleteVorstandPayload
 
   """Increase the count."""
   increaseCount(
@@ -13858,6 +15368,12 @@ type RootMutation {
     input: UpdatePageInput!
   ): UpdatePagePayload
 
+  """The updatePosition mutation"""
+  updatePosition(
+    """Input for the updatePosition mutation"""
+    input: UpdatePositionInput!
+  ): UpdatePositionPayload
+
   """The updatePost mutation"""
   updatePost(
     """Input for the updatePost mutation"""
@@ -13899,6 +15415,18 @@ type RootMutation {
     """Input for the updateUser mutation"""
     input: UpdateUserInput!
   ): UpdateUserPayload
+
+  """The updateVolunteer mutation"""
+  updateVolunteer(
+    """Input for the updateVolunteer mutation"""
+    input: UpdateVolunteerInput!
+  ): UpdateVolunteerPayload
+
+  """The updateVorstand mutation"""
+  updateVorstand(
+    """Input for the updateVorstand mutation"""
+    input: UpdateVorstandInput!
+  ): UpdateVorstandPayload
 }
 
 """Input for the createCategory mutation."""
@@ -14161,6 +15689,47 @@ type CreatePagePayload {
 
   """The Post object mutation type."""
   page: Page
+}
+
+"""Input for the createPosition mutation."""
+input CreatePositionInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17 
+  """
+  date: String
+
+  """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+
+  """The password used to protect the content of the object"""
+  password: String
+
+  """The slug of the object"""
+  slug: String
+
+  """The status of the object"""
+  status: PostStatusEnum
+
+  """The title of the object"""
+  title: String
+}
+
+"""The payload for the createPosition mutation."""
+type CreatePositionPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The Post object mutation type."""
+  position: Position
 }
 
 """Input for the createPost mutation."""
@@ -14566,6 +16135,88 @@ type CreateUserPayload {
   user: User
 }
 
+"""Input for the createVolunteer mutation."""
+input CreateVolunteerInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17 
+  """
+  date: String
+
+  """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+
+  """The password used to protect the content of the object"""
+  password: String
+
+  """The slug of the object"""
+  slug: String
+
+  """The status of the object"""
+  status: PostStatusEnum
+
+  """The title of the object"""
+  title: String
+}
+
+"""The payload for the createVolunteer mutation."""
+type CreateVolunteerPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The Post object mutation type."""
+  volunteer: Volunteer
+}
+
+"""Input for the createVorstand mutation."""
+input CreateVorstandInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17 
+  """
+  date: String
+
+  """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+
+  """The password used to protect the content of the object"""
+  password: String
+
+  """The slug of the object"""
+  slug: String
+
+  """The status of the object"""
+  status: PostStatusEnum
+
+  """The title of the object"""
+  title: String
+}
+
+"""The payload for the createVorstand mutation."""
+type CreateVorstandPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The Post object mutation type."""
+  vorstand: Vorstand
+}
+
 """Input for the deleteCategory mutation."""
 input DeleteCategoryInput {
   """
@@ -14715,6 +16366,39 @@ type DeletePagePayload {
 
   """The object before it was deleted"""
   page: Page
+}
+
+"""Input for the deletePosition mutation."""
+input DeletePositionInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  Whether the object should be force deleted instead of being moved to the trash
+  """
+  forceDelete: Boolean
+
+  """The ID of the position to delete"""
+  id: ID!
+
+  """Override the edit lock when another user is editing the post"""
+  ignoreEditLock: Boolean
+}
+
+"""The payload for the deletePosition mutation."""
+type DeletePositionPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The ID of the deleted object"""
+  deletedId: ID
+
+  """The object before it was deleted"""
+  position: Position
 }
 
 """Input for the deletePost mutation."""
@@ -14892,6 +16576,72 @@ type DeleteUserPayload {
 
   """The deleted user object"""
   user: User
+}
+
+"""Input for the deleteVolunteer mutation."""
+input DeleteVolunteerInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  Whether the object should be force deleted instead of being moved to the trash
+  """
+  forceDelete: Boolean
+
+  """The ID of the volunteer to delete"""
+  id: ID!
+
+  """Override the edit lock when another user is editing the post"""
+  ignoreEditLock: Boolean
+}
+
+"""The payload for the deleteVolunteer mutation."""
+type DeleteVolunteerPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The ID of the deleted object"""
+  deletedId: ID
+
+  """The object before it was deleted"""
+  volunteer: Volunteer
+}
+
+"""Input for the deleteVorstand mutation."""
+input DeleteVorstandInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  Whether the object should be force deleted instead of being moved to the trash
+  """
+  forceDelete: Boolean
+
+  """The ID of the vorstand to delete"""
+  id: ID!
+
+  """Override the edit lock when another user is editing the post"""
+  ignoreEditLock: Boolean
+}
+
+"""The payload for the deleteVorstand mutation."""
+type DeleteVorstandPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The ID of the deleted object"""
+  deletedId: ID
+
+  """The object before it was deleted"""
+  vorstand: Vorstand
 }
 
 """Input for the registerUser mutation."""
@@ -15315,6 +17065,53 @@ type UpdatePagePayload {
   page: Page
 }
 
+"""Input for the updatePosition mutation."""
+input UpdatePositionInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17 
+  """
+  date: String
+
+  """The ID of the position object"""
+  id: ID!
+
+  """Override the edit lock when another user is editing the post"""
+  ignoreEditLock: Boolean
+
+  """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+
+  """The password used to protect the content of the object"""
+  password: String
+
+  """The slug of the object"""
+  slug: String
+
+  """The status of the object"""
+  status: PostStatusEnum
+
+  """The title of the object"""
+  title: String
+}
+
+"""The payload for the updatePosition mutation."""
+type UpdatePositionPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The Post object mutation type."""
+  position: Position
+}
+
 """Input for the updatePost mutation."""
 input UpdatePostInput {
   """The userId to assign as the author of the object"""
@@ -15721,6 +17518,100 @@ type UpdateUserPayload {
   user: User
 }
 
+"""Input for the updateVolunteer mutation."""
+input UpdateVolunteerInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17 
+  """
+  date: String
+
+  """The ID of the volunteer object"""
+  id: ID!
+
+  """Override the edit lock when another user is editing the post"""
+  ignoreEditLock: Boolean
+
+  """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+
+  """The password used to protect the content of the object"""
+  password: String
+
+  """The slug of the object"""
+  slug: String
+
+  """The status of the object"""
+  status: PostStatusEnum
+
+  """The title of the object"""
+  title: String
+}
+
+"""The payload for the updateVolunteer mutation."""
+type UpdateVolunteerPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The Post object mutation type."""
+  volunteer: Volunteer
+}
+
+"""Input for the updateVorstand mutation."""
+input UpdateVorstandInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """
+  The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17 
+  """
+  date: String
+
+  """The ID of the vorstand object"""
+  id: ID!
+
+  """Override the edit lock when another user is editing the post"""
+  ignoreEditLock: Boolean
+
+  """
+  A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
+  """
+  menuOrder: Int
+
+  """The password used to protect the content of the object"""
+  password: String
+
+  """The slug of the object"""
+  slug: String
+
+  """The status of the object"""
+  status: PostStatusEnum
+
+  """The title of the object"""
+  title: String
+}
+
+"""The payload for the updateVorstand mutation."""
+type UpdateVorstandPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The Post object mutation type."""
+  vorstand: Vorstand
+}
+
 """A Comment Author object"""
 type CommentAuthor implements Node & Commenter & DatabaseIdentifier {
   """
@@ -15767,25 +17658,7 @@ type DefaultTemplate implements ContentTemplate {
 }
 
 """The template assigned to the node"""
-type Template_SingleWithSidebar implements ContentTemplate {
-  """The name of the template"""
-  templateName: String
-}
-
-"""The template assigned to the node"""
-type Template_PageWithSidebar implements ContentTemplate {
-  """The name of the template"""
-  templateName: String
-}
-
-"""The template assigned to the node"""
 type Template_PageNoTitle implements ContentTemplate {
-  """The name of the template"""
-  templateName: String
-}
-
-"""The template assigned to the node"""
-type Template_PageWithWideImage implements ContentTemplate {
   """The name of the template"""
   templateName: String
 }
