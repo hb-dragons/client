@@ -19,6 +19,7 @@ const volunteer = computed(() => position.positionDetails?.volunteer?.node as Vo
         :img-classes="`md:group-hover:scale-[1.02] md:transition ${volunteer.volunteerDetails?.profileImage?.node.mediaItemUrl ? '!object-cover' : '!object-contain'}`"
       />
     </div>
+
     <div class="flex flex-col justify-between items-start h-full">
       <div class="w-full mt-4 flex justify-center items-center">
         <div class="flex flex-col w-fit px-8 md:px-8 lg:px-12 py-1 md:py-3 lg:py-4 text-center bg-surface-800 rounded-lg">
