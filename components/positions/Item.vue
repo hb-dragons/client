@@ -6,7 +6,7 @@ const { position } = defineProps<{
   loading: boolean;
 }>();
 
-const volunteer = computed(() => position.positionDetails?.volunteer?.node as Volunteer);
+const volunteer = computed(() => position?.positionDetails?.volunteer?.node as Volunteer | undefined);
 </script>
 
 <template>
@@ -19,10 +19,10 @@ const volunteer = computed(() => position.positionDetails?.volunteer?.node as Vo
     <template v-else>
       <div class="absolute top-0 w-full h-full -z-10">
         <ImageWithDefault
-          :img-src="volunteer.volunteerDetails?.profileImage?.node.mediaItemUrl || undefined"
+          :img-src="volunteer?.volunteerDetails?.profileImage?.node.mediaItemUrl || undefined"
           default-image="/img/logo.svg"
           :is-loading="loading"
-          :img-classes="`md:group-hover:scale-[1.02] md:transition ${volunteer.volunteerDetails?.profileImage?.node.mediaItemUrl ? '!object-cover' : '!object-contain'}`"
+          :img-classes="`md:group-hover:scale-[1.02] md:transition ${volunteer?.volunteerDetails?.profileImage?.node.mediaItemUrl ? '!object-cover' : '!object-contain'}`"
         />
       </div>
 
@@ -30,17 +30,17 @@ const volunteer = computed(() => position.positionDetails?.volunteer?.node as Vo
         <div class="w-full mt-4 flex justify-center items-center">
           <div class="flex flex-col w-fit px-8 md:px-8 lg:px-12 py-1 md:py-3 lg:py-4 text-center bg-surface-800 rounded-lg">
             <div class="text-lg md:text-xl lg:text-2xl w-full mb-1 md:mb-2">
-              {{ position.positionDetails?.name }}
+              {{ position?.positionDetails?.name }}
             </div>
             <div class="text-lg md:text-xl lg:text-2xl w-full font-bold">
-              {{ volunteer.volunteerDetails?.name }}
+              {{ volunteer?.volunteerDetails?.name }}
             </div>
           </div>
         </div>
 
         <div class="bg-surface-800 w-fit text-right p-2 rounded-r-md">
           <div class="text-base md:text-lg lg:text-xl">
-            {{ sanitizeEmail((position.positionDetails?.email || volunteer.volunteerDetails?.email)!) }}
+            {{ sanitizeEmail((position?.positionDetails?.email || volunteer?.volunteerDetails?.email)!) }}
           </div>
         </div>
       </div>
