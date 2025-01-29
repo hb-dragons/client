@@ -14,16 +14,30 @@ defineProps<{
       {{ headerText }}
     </GrayHeadline>
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  gap-8 md:gap-16 lg:gap-24 ">
-      <div
-        v-for="position in positions"
-        :key="position.databaseId"
-        class="h-[400px] md:h-[500px] lg:h-[600px]"
-      >
-        <PositionsItem
-          :position="position"
-          :loading="loading"
-        />
-      </div>
+      <template v-if="loading">
+        <div
+          v-for="i in 3"
+          :key="i"
+          class="h-[400px] md:h-[500px] lg:h-[600px]"
+        >
+          <Skeleton
+            width="100%"
+            height="100%"
+          />
+        </div>
+      </template>
+      <template v-else>
+        <div
+          v-for="position in positions"
+          :key="position.databaseId"
+          class="h-[400px] md:h-[500px] lg:h-[600px]"
+        >
+          <PositionsItem
+            :position="position"
+            :loading="loading"
+          />
+        </div>
+      </template>
     </div>
   </div>
 </template>
