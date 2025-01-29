@@ -35,7 +35,8 @@ const { result: image } = useGetImageBySlugQuery({ slug: 'orga' });
     title="Kontakt"
     :background-image="image?.mediaItemBy?.mediaItemUrl || '/img/banner.wepb'"
   >
-    <PositionsList
+    <div>There is somehow a problem</div>
+    <!-- <PositionsList
       :positions="vorstand"
       header-text="Unser Vorstand"
       :loading="vorstandLoading"
@@ -46,6 +47,6 @@ const { result: image } = useGetImageBySlugQuery({ slug: 'orga' });
       :positions="result"
       header-text="Ehrenamtliche"
       :loading="loading"
-    />
+    /> -->
   </ParallaxPage>
 </template>
