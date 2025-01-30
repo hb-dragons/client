@@ -1,21 +1,29 @@
-FROM node:18-alpine AS build
+ARG NODE_VERSION=23.6.1
 
-WORKDIR /app
+FROM node:${NODE_VERSION}-slim AS base
 
-COPY package.json /app
+ARG PORT=3000
 
+WORKDIR /src
+
+# Build
+FROM base AS build
+
+COPY --link package.json ./
 RUN npm install
 
-COPY . /app
+COPY --link . .
 
 RUN npm run build
 
-# FROM gcr.io/distroless/nodejs:18 as prod
+# Run
+FROM base
 
-# WORKDIR /app
+ENV PORT=$PORT
+ENV NODE_ENV=production
 
-# COPY --from=build /app/.output /app/.output
+COPY --from=build /src/.output /src/.output
+# Optional, only needed if you rely on unbundled dependencies
+# COPY --from=build /src/node_modules /src/node_modules
 
-EXPOSE 3000/tcp
-
-CMD ["/app/.output/server/index.mjs"]
+CMD [ "node", ".output/server/index.mjs" ]

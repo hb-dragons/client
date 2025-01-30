@@ -35,9 +35,7 @@ const positions = computed(() => {
     title="Kontakt"
     :background-image="image?.mediaItemBy?.mediaItemUrl || undefined"
   >
-    {{ positions }}
-    {{ vorstandPositions }}
-    <!-- <PositionsList
+    <PositionsList
       :positions="vorstandPositions"
       header-text="Unser Vorstand"
       :loading="vorstandLoading"
@@ -45,9 +43,9 @@ const positions = computed(() => {
     />
 
     <PositionsList
-      :positions="poistions"
+      :positions="positions"
       header-text="Ehrenamtliche"
       :loading="loading"
-    /> -->
+    />
   </ParallaxPage>
 </template>
