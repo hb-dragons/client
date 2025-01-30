@@ -83,7 +83,7 @@ export default defineNuxtConfig({
     preference: 'dark',
     fallback: 'dark',
   },
-  compatibilityDate: '2024-04-03',
+  compatibilityDate: '2025-01-30',
 
   apollo: {
     clients: {
