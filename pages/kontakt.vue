@@ -17,7 +17,7 @@ const vorstandPositions = computed(() => {
   }) as Position[];
 });
 
-const poistions = computed(() => {
+const positions = computed(() => {
   if (!result.value?.positions?.nodes) {
     return [];
   }
@@ -35,7 +35,9 @@ const poistions = computed(() => {
     title="Kontakt"
     :background-image="image?.mediaItemBy?.mediaItemUrl!"
   >
-    <PositionsList
+    {{ positions }}
+    {{ vorstandPositions }}
+    <!-- <PositionsList
       :positions="vorstandPositions"
       header-text="Unser Vorstand"
       :loading="vorstandLoading"
@@ -46,6 +48,6 @@ const poistions = computed(() => {
       :positions="poistions"
       header-text="Ehrenamtliche"
       :loading="loading"
-    />
+    /> -->
   </ParallaxPage>
 </template>
