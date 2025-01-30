@@ -33,7 +33,7 @@ const positions = computed(() => {
 <template>
   <ParallaxPage
     title="Kontakt"
-    :background-image="image?.mediaItemBy?.mediaItemUrl!"
+    :background-image="image?.mediaItemBy?.mediaItemUrl || undefined"
   >
     {{ positions }}
     {{ vorstandPositions }}
