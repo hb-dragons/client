@@ -7,6 +7,8 @@ const { position } = defineProps<{
 }>();
 
 const volunteer = computed(() => position?.positionDetails?.volunteer?.node as Volunteer | undefined);
+
+const email = computed(() => position?.positionDetails?.email || volunteer.value?.volunteerDetails?.email || '');
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const volunteer = computed(() => position?.positionDetails?.volunteer?.node as V
     <template v-else>
       <div class="absolute top-0 w-full h-full -z-10">
         <ImageWithDefault
-          :img-src="volunteer?.volunteerDetails?.profileImage?.node.mediaItemUrl || undefined"
+          :img-src="volunteer?.volunteerDetails?.profileImage?.node?.mediaItemUrl || undefined"
           default-image="/img/logo.svg"
           :is-loading="loading"
           :img-classes="`md:group-hover:scale-[1.02] md:transition ${volunteer?.volunteerDetails?.profileImage?.node.mediaItemUrl ? '!object-cover' : '!object-contain'}`"
@@ -40,7 +42,7 @@ const volunteer = computed(() => position?.positionDetails?.volunteer?.node as V
 
         <div class="bg-surface-800 w-fit text-right p-2 rounded-r-md">
           <div class="text-base md:text-lg lg:text-xl">
-            {{ sanitizeEmail((position?.positionDetails?.email || volunteer?.volunteerDetails?.email)!) }}
+            {{ sanitizeEmail(email) }}
           </div>
         </div>
       </div>
