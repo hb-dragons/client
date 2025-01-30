@@ -9,7 +9,7 @@ defineProps<ImageWithDefaultProps & { title: string; subtitle?: string }>();
     :as="'header'"
     :img-src="imgSrc"
     :use-default-image="useDefaultImage"
-    class="h-[200px] md:h-[400px] lg:h-[600px] xl:h-[700px]"
+    class="h-[200px] md:h-[400px] lg:h-[600px]"
   >
     <!-- Header Content -->
     <div class="relative z-1 h-full flex items-center justify-center m-auto text-white px-4">
