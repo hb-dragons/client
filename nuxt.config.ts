@@ -1,68 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { definePreset } from '@primevue/themes';
-import Aura from '@primevue/themes/aura';
-
-const MyPreset = definePreset(Aura, {
-  semantic: {
-    primary: {
-      50: '{orange.50}',
-      100: '{orange.100}',
-      200: '{orange.200}',
-      300: '{orange.300}',
-      400: '{orange.400}',
-      500: '{orange.500}',
-      600: '{orange.600}',
-      700: '{orange.700}',
-      800: '{orange.800}',
-      900: '{orange.900}',
-      950: '{orange.950}',
-    },
-    colorScheme: {
-      light: {
-        surface: {
-          50: '{gray.50}',
-          100: '{gray.100}',
-          200: '{gray.200}',
-          300: '{gray.300}',
-          400: '{gray.400}',
-          500: '{gray.500}',
-          600: '{gray.600}',
-          700: '{gray.700}',
-          800: '{gray.800}',
-          900: '{gray.900}',
-          950: '{gray.950}',
-        },
-      },
-      dark: {
-        surface: {
-          50: '{gray.50}',
-          100: '{gray.100}',
-          200: '{gray.200}',
-          300: '{gray.300}',
-          400: '{gray.400}',
-          500: '{gray.500}',
-          600: '{gray.600}',
-          700: '{gray.700}',
-          800: '{gray.800}',
-          900: '{gray.900}',
-          950: '{gray.950}',
-        },
-      },
-    },
-  },
-});
-
 export default defineNuxtConfig({
   modules: [
-    '@primevue/nuxt-module',
-    '@nuxtjs/tailwindcss',
     '@nuxtjs/apollo',
     '@nuxtjs/seo',
     '@nuxt/image',
     '@nuxt/eslint',
-    '@nuxtjs/color-mode',
     'dayjs-nuxt',
     '@nuxt/icon',
+    '@nuxtjs/tailwindcss',
   ],
   devtools: { enabled: true },
 
@@ -79,10 +24,6 @@ export default defineNuxtConfig({
     defaultLocale: 'de',
   },
 
-  colorMode: {
-    preference: 'dark',
-    fallback: 'dark',
-  },
   compatibilityDate: '2025-01-30',
 
   apollo: {
@@ -113,17 +54,6 @@ export default defineNuxtConfig({
   image: {
     format: ['webp'],
     domains: ['dragons.neemann.tech', 'api.dragons.neemann.tech'],
-  },
-
-  primevue: {
-    options: {
-      theme: {
-        preset: MyPreset,
-        options: {
-          darkModeSelector: '.dark-mode',
-        },
-      },
-    },
   },
 
   seo: {

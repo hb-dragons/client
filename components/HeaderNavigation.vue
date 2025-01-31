@@ -52,15 +52,15 @@ const navigationItems = [
   </nav>
 
   <div class="fixed z-50 bottom-5 right-5 md:hidden">
-    <Button
+    <UiButton
       class="rounded-full"
       @click="drawerOpen = true"
     >
       <Icon name="ph:list" />
-    </Button>
+    </UiButton>
   </div>
 
-  <Drawer
+  <!-- <Drawer
     v-model:visible="drawerOpen"
     position="bottom"
     header="Hanover Basketball Dragons e.V."
@@ -77,7 +77,7 @@ const navigationItems = [
         {{ item.name }}
       </NuxtLink>
     </div>
-  </Drawer>
+  </Drawer> -->
 </template>
 
 <style>

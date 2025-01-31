@@ -52,9 +52,6 @@ function handleError() {
     :class="videoClasses"
     class="w-full h-full"
   >
-    <Skeleton
-      width="100%"
-      height="100%"
-    />
+    <UiSkeleton class="w-full h-full" />
   </div>
 </template>

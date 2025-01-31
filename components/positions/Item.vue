@@ -13,10 +13,9 @@ const email = computed(() => position?.positionDetails?.email || volunteer.value
 
 <template>
   <div class="rounded-lg overflow-hidden relative group h-full z-10">
-    <Skeleton
+    <UiSkeleton
       v-if="loading"
-      width="100%"
-      height="100%"
+      class="w-full h-full"
     />
     <template v-else>
       <div class="absolute top-0 w-full h-full -z-10">

@@ -54,14 +54,12 @@ function handleClick(gym: Gym) {
         <p class="text-sm md:text-base lg:text-lg mb-2">
           {{ trainingInfo.gym?.node.gymFields.address }}
         </p>
-        <Button
-          size="small"
-          severity="secondary"
+        <UiButton
           class="w-full"
           @click="handleClick(trainingInfo.gym?.node as Gym)"
         >
           Öffne in Google Maps
-        </Button>
+        </UiButton>
       </div>
     </div>
     <div v-else>

@@ -20,9 +20,8 @@ defineProps<{
           :key="i"
           class="h-[400px] md:h-[500px] lg:h-[600px]"
         >
-          <Skeleton
-            width="100%"
-            height="100%"
+          <UiSkeleton
+            class="w-full h-full"
           />
         </div>
       </template>

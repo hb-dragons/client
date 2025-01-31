@@ -46,9 +46,8 @@ function loadImage() {
       :style="imgStyles"
     >
   </Transition>
-  <Skeleton
+  <UiSkeleton
     v-if="imageLoading || isLoading"
-    width="100%"
-    height="100%"
+    class="w-full h-full"
   />
 </template>

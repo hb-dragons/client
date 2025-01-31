@@ -33,24 +33,17 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
         <p class="z-10 text-xl md:text-3xl font-bold mb-4 md:mb-8">
           {{ team?.teamDetails?.leagueName }}
         </p>
-        <div class="hidden md:block">
-          <Button
-            :as="NuxtLink"
-            :to="`/teams/${team?.slug}`"
-            size="large"
-            severity="secondary"
-            raised
-          >
-            Mehr Infos
-          </Button>
-        </div>
-
-        <div class="block md:hidden">
+        <div class="hidden md:block z-20">
           <LinkButton
             :to="`/teams/${team?.slug}`"
-            size="small"
-            severity="secondary"
-            raised
+          >
+            Mehr Infos
+          </LinkButton>
+        </div>
+
+        <div class="block md:hidden z-20">
+          <LinkButton
+            :to="`/teams/${team?.slug}`"
           >
             Mehr Infos
           </LinkButton>

@@ -13,11 +13,10 @@ const { result, loading } = useGetPostsQuery();
     <PageContentWrapper>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <template v-if="loading">
-          <Skeleton
+          <UiSkeleton
             v-for="i in 4"
             :key="i"
-            width="100%"
-            height="200px"
+            class="w-[300px] h-[200px]"
           />
         </template>
         <template v-else>

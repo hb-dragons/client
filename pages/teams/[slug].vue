@@ -48,10 +48,9 @@ const multipleTrainers = computed(() => trainers.value?.length > 1);
             <SectionContent
               headline="LIGA"
             >
-              <Skeleton
+              <UiSkeleton
                 v-if="loading"
-                width="100%"
-                height="2rem"
+                class="w-full h-[2rem]"
               />
               <p
                 v-else
@@ -59,9 +58,8 @@ const multipleTrainers = computed(() => trainers.value?.length > 1);
               >
                 {{ result?.teamBy?.teamDetails?.leagueName || 'Aktuell kein Ligabetrieb' }}
               </p>
-              <Button
+              <UiButton
                 v-if="result?.teamBy?.teamDetails?.leagueId"
-                severity="secondary"
                 as="a"
                 label="External"
                 target="_blank"
@@ -69,7 +67,7 @@ const multipleTrainers = computed(() => trainers.value?.length > 1);
                 :href="`https://www.basketball-bund.net/static/#/liga/${result?.teamBy?.teamDetails?.leagueId}/aktuell`"
               >
                 Öffne Liga auf Basketballbund
-              </Button>
+              </UiButton>
             </SectionContent>
             <div
               v-if="trainers || loading"
@@ -79,9 +77,8 @@ const multipleTrainers = computed(() => trainers.value?.length > 1);
                 v-if="loading"
                 headline="TRAINER"
               >
-                <Skeleton
-                  width="100%"
-                  height="2rem"
+                <UiSkeleton
+                  class="w-full h-[2rem]"
                 />
               </SectionContent>
               <template v-else>

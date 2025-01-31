@@ -32,9 +32,8 @@ const sortedTeams = computed(() => {
       v-if="loading"
       class="p-4"
     >
-      <Skeleton
-        width="100%"
-        height="200px"
+      <UiSkeleton
+        class="w-full h-[200px]"
       />
     </div>
     <div

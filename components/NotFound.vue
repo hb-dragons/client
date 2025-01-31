@@ -29,7 +29,7 @@ const handleError = () => {
             Diese Seite gibt es nicht :(
           </p>
         </div>
-        <Button
+        <UiButton
           size="large"
           @click="handleError"
         >
@@ -40,7 +40,7 @@ const handleError = () => {
             />
             <span class="text-xl">Zurück zur Startseite</span>
           </div>
-        </Button>
+        </UiButton>
       </div>
     </ParallaxImage>
   </section>

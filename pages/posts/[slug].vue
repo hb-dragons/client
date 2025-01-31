@@ -17,10 +17,9 @@ const { result, loading } = useGetPostBySlugQuery(
       :is-loading="loading"
     />
     <PageContentWrapper>
-      <Skeleton
+      <UiSkeleton
         v-if="loading"
-        width="100%"
-        height="2rem"
+        class="w-full h-[2rem]"
       />
       <div
         v-else

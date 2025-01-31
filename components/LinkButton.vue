@@ -5,7 +5,7 @@ const NuxtLink = resolveComponent('nuxt-link');
 </script>
 
 <template>
-  <Button
+  <UiButton
     :as="NuxtLink"
     :to="to"
     :size="size"
@@ -13,5 +13,5 @@ const NuxtLink = resolveComponent('nuxt-link');
     :target="newTab ? '_blank' : undefined"
   >
     <slot />
-  </Button>
+  </UiButton>
 </template>

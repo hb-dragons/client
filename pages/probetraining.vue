@@ -1,4 +1,7 @@
-<script setup lang='ts'>
+<template>
+  <div />
+</template>
+<!-- <script setup lang='ts'>
 import { zodResolver } from '@primevue/forms/resolvers/zod';
 import { z } from 'zod';
 import { useGetTeamsForProbetrainingQuery } from '~/types/graphql';
@@ -295,4 +298,4 @@ const fittingTeams = computed(() => {
       </PageContentWrapper>
     </section>
   </div>
-</template>
+</template> -->

@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+onMounted(() => {
+  document.documentElement.classList.add('dark'); // Forces dark mode by default
+});
+</script>
+
 <template>
   <NuxtLayout>
     <NuxtLoadingIndicator

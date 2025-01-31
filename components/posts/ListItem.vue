@@ -12,7 +12,7 @@ defineProps<{ post: Post }>();
     class="relative shadow-lg h-[200px] xl:h-[300px] rounded-lg overflow-hidden md:hover:scale-[1.02] md:transition cursor-pointer"
   >
     <BackgroundImage
-      :img-src="post.featuredImage?.node.mediaItemUrl as (string | undefined)"
+      :img-src="post.featuredImage?.node.mediaItemUrl"
     />
     <div class="h-full relative z-20 flex justify-start items-end">
       <div class="bg-surface-900/95  w-full py-1.5 px-3">
@@ -28,7 +28,7 @@ defineProps<{ post: Post }>();
             v-for="category in getCategories(post)"
             :key="category.name!"
           >
-            <Tag
+            <UiTag
               :value="category.name"
               severity="primary"
               class="text-sm"
