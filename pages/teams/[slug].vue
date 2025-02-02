@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '#components';
 import { useGetTeamBySlugNameQuery, type TeamDetailsTraining, type Trainer } from '~/types/graphql';
 
 const route = useRoute();
@@ -58,16 +59,39 @@ const multipleTrainers = computed(() => trainers.value?.length > 1);
               >
                 {{ result?.teamBy?.teamDetails?.leagueName || 'Aktuell kein Ligabetrieb' }}
               </p>
-              <UiButton
+              <LinkButton
                 v-if="result?.teamBy?.teamDetails?.leagueId"
-                as="a"
-                label="External"
-                target="_blank"
+                :new-tab="true"
                 rel="noopener"
-                :href="`https://www.basketball-bund.net/static/#/liga/${result?.teamBy?.teamDetails?.leagueId}/aktuell`"
+                variant="surface"
+                :to="`https://www.basketball-bund.net/static/#/liga/${result?.teamBy?.teamDetails?.leagueId}/aktuell`"
+                class="block md:hidden"
+                size="small"
               >
-                Öffne Liga auf Basketballbund
-              </UiButton>
+                <div class="flex items-center">
+                  <Icon
+                    class="w-5 h-5 mr-2"
+                    name="ph:arrow-square-out"
+                  />
+                  <span>Öffne Liga auf Basketballbund</span>
+                </div>
+              </LinkButton>
+              <LinkButton
+                v-if="result?.teamBy?.teamDetails?.leagueId"
+                :new-tab="true"
+                rel="noopener"
+                variant="surface"
+                :to="`https://www.basketball-bund.net/static/#/liga/${result?.teamBy?.teamDetails?.leagueId}/aktuell`"
+                class="hidden md:block"
+              >
+                <div class="flex items-center">
+                  <Icon
+                    class="w-6 h-6 mr-2"
+                    name="ph:arrow-square-out"
+                  />
+                  <span>Öffne Liga auf Basketballbund</span>
+                </div>
+              </LinkButton>
             </SectionContent>
             <div
               v-if="trainers || loading"

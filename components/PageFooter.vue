@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <footer class="bg-black px-6 py-12 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-between">
+  <footer class="bg-black px-6 py-12 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-between text-gray-100">
     <div class="flex gap-6 col-span-2 md:col-span-1">
       <img
         src="/img/logo.svg"
@@ -33,13 +33,25 @@
           KONTAKTIERE UNS
         </GrayHeadline>
         <p class="w-full">
-          <NuxtLink to="/datenschutz">Datenschutzerklärung</NuxtLink>
+          <NuxtLink
+            to="/datenschutz"
+            active-class=""
+            exact-active-class=""
+          >Datenschutzerklärung</NuxtLink>
         </p>
         <p class="w-full">
-          <NuxtLink to="/kontakt">Kontakt</NuxtLink>
+          <NuxtLink
+            to="/kontakt"
+            active-class=""
+            exact-active-class=""
+          >Kontakt</NuxtLink>
         </p>
         <p class="w-full">
-          <NuxtLink to="/impressum">Impressum</NuxtLink>
+          <NuxtLink
+            to="/impressum"
+            active-class=""
+            exact-active-class=""
+          >Impressum</NuxtLink>
         </p>
       </div>
     </div>

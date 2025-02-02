@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
   ],
   devtools: { enabled: true },
-
   app: {
     layoutTransition: { name: 'layout', mode: 'out-in' },
     pageTransition: { name: 'layout', mode: 'out-in' },
@@ -62,6 +61,10 @@ export default defineNuxtConfig({
       colorScheme: 'dark light',
       applicationName: 'Hanover Basketball Dragons e.V.',
     },
+  },
+  tailwindcss: {
+    cssPath: '~/assets/css/main.css',
+    viewer: true,
   },
 
   // sitemap: {

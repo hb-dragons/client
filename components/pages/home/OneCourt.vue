@@ -36,13 +36,31 @@ const { result, loading } = useGetImageBySlugQuery({
       <LinkButton
         to="/teams"
         size="large"
-        raised
-        class="flex items-center w-fit"
+        variant="primary"
+        class="hidden md:flex items-center w-fit !text-2xl"
       >
-        <span>Zu unseren Teams</span>
-        <Icon
-          name="ph:arrow-right-bold"
-        />
+        <div class="flex items-center gap-2">
+          <span>Zu unseren Teams</span>
+          <Icon
+            class="w-6 h-6"
+            name="ph:arrow-right-bold"
+          />
+        </div>
+      </LinkButton>
+
+      <LinkButton
+        to="/teams"
+        size="small"
+        variant="primary"
+        class="flex md:hidden items-center w-fit !text-lg"
+      >
+        <div class="flex items-center gap-2">
+          <span>Zu unseren Teams</span>
+          <Icon
+            class="w-6 h-6"
+            name="ph:arrow-right-bold"
+          />
+        </div>
       </LinkButton>
     </div>
   </ParallaxImage>

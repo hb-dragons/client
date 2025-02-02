@@ -30,7 +30,6 @@ defineProps<{ post: Post }>();
           >
             <UiTag
               :value="category.name"
-              severity="primary"
               class="text-sm"
             />
           </div>

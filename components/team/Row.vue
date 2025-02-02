@@ -27,7 +27,7 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
         class="w-full h-full z-20 flex flex-col justify-center px-6 py-8 md:p-20 items-center"
         :class="{ 'md:items-end': props.imagePosition === 'left', 'md:items-start': props.imagePosition === 'right' }"
       >
-        <p class="z-10 text-4xl md:text-7xl text-primary-500 font-bold mb-2">
+        <p class="z-10 text-4xl md:text-7xl text-secondary-500 font-bold mb-2">
           {{ team?.teamDetails?.teamName }}
         </p>
         <p class="z-10 text-xl md:text-3xl font-bold mb-4 md:mb-8">
@@ -36,6 +36,8 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
         <div class="hidden md:block z-20">
           <LinkButton
             :to="`/teams/${team?.slug}`"
+            variant="surface"
+            size="large"
           >
             Mehr Infos
           </LinkButton>
@@ -44,6 +46,8 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
         <div class="block md:hidden z-20">
           <LinkButton
             :to="`/teams/${team?.slug}`"
+            size="small"
+            class="!text-base"
           >
             Mehr Infos
           </LinkButton>

@@ -44,7 +44,8 @@ const navigationItems = [
         v-for="item in navigationItems"
         :key="item.to"
         :to="item.to"
-        class="text-xl px-3 py-0.5"
+        active-class="header-router-link-active"
+        class="text-xl px-4 py-1"
       >
         {{ item.name }}
       </NuxtLink>
@@ -53,35 +54,37 @@ const navigationItems = [
 
   <div class="fixed z-50 bottom-5 right-5 md:hidden">
     <UiButton
-      class="rounded-full"
+      class="!rounded-full w-12 h-12 !px-0 !py-0"
+      size="small"
       @click="drawerOpen = true"
     >
-      <Icon name="ph:list" />
+      <Icon
+        class="w-6 h-6"
+        name="ph:list"
+      />
     </UiButton>
   </div>
 
-  <!-- <Drawer
-    v-model:visible="drawerOpen"
-    position="bottom"
-    header="Hanover Basketball Dragons e.V."
-    style="height: auto"
+  <UiDrawer
+    v-model="drawerOpen"
   >
-    <div class="w-full flex flex-col">
+    <div class="w-full flex flex-col gap-2 py-4">
       <NuxtLink
         v-for="item in navigationItems"
         :key="item.to"
         :to="item.to"
-        class="text-xl w-full px-3 py-0.5"
+        class="text-lg w-full px-4 py-0.5"
+        active-class="header-router-link-active"
         @click="drawerOpen = false"
       >
         {{ item.name }}
       </NuxtLink>
     </div>
-  </Drawer> -->
+  </UiDrawer>
 </template>
 
 <style>
-.router-link-active {
+.header-router-link-active {
   @apply bg-primary-600;
   @apply rounded-md;
   @apply font-semibold;

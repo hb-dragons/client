@@ -1,9 +1,7 @@
-import type { Config } from 'tailwindcss';
 import colors from 'tailwindcss/colors';
-import tailwindcssMotion from 'tailwindcss-motion';
-import typography from '@tailwindcss/typography';
 
-export default <Partial<Config>> {
+/** @type {import('tailwindcss').Config} */
+export default {
   darkMode: 'class',
   theme: {
     extend: {
@@ -17,9 +15,10 @@ export default <Partial<Config>> {
         },
       },
       colors: {
-        primary: colors.orange,
-        gray: colors.slate,
-        surface: colors.slate,
+        primary: colors.green,
+        secondary: colors.orange,
+        gray: colors.gray,
+        surface: colors.gray,
       },
       fontFamily: {
         sans: [
@@ -46,7 +45,7 @@ export default <Partial<Config>> {
           'monospace',
         ],
       },
-      plugins: [tailwindcssMotion, typography],
     },
   },
+  plugins: [require('tailwindcss-motion'), require('@tailwindcss/typography')],
 };

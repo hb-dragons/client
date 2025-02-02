@@ -1,5 +1,7 @@
 <script setup lang='ts'>
-defineProps<{ to: string; size?: 'small' | 'large' | undefined; raised?: boolean; newTab?: boolean }>();
+import type { ButtonProps } from './ui/Button.vue';
+
+defineProps<{ to: string; newTab?: boolean } & Omit<ButtonProps, 'as'>>();
 
 const NuxtLink = resolveComponent('nuxt-link');
 </script>
@@ -9,7 +11,7 @@ const NuxtLink = resolveComponent('nuxt-link');
     :as="NuxtLink"
     :to="to"
     :size="size"
-    :raised="raised"
+    :variant="variant"
     :target="newTab ? '_blank' : undefined"
   >
     <slot />

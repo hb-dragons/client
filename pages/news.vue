@@ -16,7 +16,7 @@ const { result, loading } = useGetPostsQuery();
           <UiSkeleton
             v-for="i in 4"
             :key="i"
-            class="w-[300px] h-[200px]"
+            class="w-full h-[300px]"
           />
         </template>
         <template v-else>

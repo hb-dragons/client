@@ -27,8 +27,8 @@ const trainingMap = computed(() => {
   return trainingResult;
 });
 
-function handleClick(gym: Gym) {
-  window.open(`https://www.google.com/maps/?f=d&daddr=${gym.gymFields?.address}`, '_blank');
+function constructLink(gym: Gym) {
+  return `https://www.google.com/maps/?f=d&daddr=${gym.gymFields?.address}`;
 }
 </script>
 
@@ -54,12 +54,35 @@ function handleClick(gym: Gym) {
         <p class="text-sm md:text-base lg:text-lg mb-2">
           {{ trainingInfo.gym?.node.gymFields.address }}
         </p>
-        <UiButton
-          class="w-full"
-          @click="handleClick(trainingInfo.gym?.node as Gym)"
+        <LinkButton
+          class="w-full hidden md:block"
+          :to="constructLink(trainingInfo.gym?.node as Gym)"
+          :new-tab="true"
+          variant="surface"
         >
-          Öffne in Google Maps
-        </UiButton>
+          <div class="flex items-center">
+            <Icon
+              class="w-6 h-6 mr-2"
+              name="ph:arrow-square-out"
+            />
+            <span>Halle auf Google Maps</span>
+          </div>
+        </LinkButton>
+        <LinkButton
+          class="w-full block md:hidden"
+          :to="constructLink(trainingInfo.gym?.node as Gym)"
+          :new-tab="true"
+          variant="surface"
+          size="small"
+        >
+          <div class="flex items-center">
+            <Icon
+              class="w-5 h-5 mr-2"
+              name="ph:arrow-square-out"
+            />
+            <span>Halle auf Google Maps</span>
+          </div>
+        </LinkButton>
       </div>
     </div>
     <div v-else>
