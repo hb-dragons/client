@@ -45,7 +45,7 @@ const navigationItems = [
         :key="item.to"
         :to="item.to"
         active-class="header-router-link-active"
-        class="text-xl px-4 py-1"
+        class="text-xl px-4 py-1 bg-transparent border-2 border-transparent rounded-md"
       >
         {{ item.name }}
       </NuxtLink>
@@ -73,7 +73,7 @@ const navigationItems = [
         v-for="item in navigationItems"
         :key="item.to"
         :to="item.to"
-        class="text-lg w-full px-4 py-0.5"
+        class="text-lg w-full px-4 py-0.5 border-2 border-transparent"
         active-class="header-router-link-active"
         @click="drawerOpen = false"
       >
@@ -86,8 +86,8 @@ const navigationItems = [
 <style>
 .header-router-link-active {
   @apply bg-primary-700;
+  @apply border-primary-800;
   @apply rounded-md;
-  @apply font-semibold;
   @apply text-white;
   @apply transition-all;
 }
