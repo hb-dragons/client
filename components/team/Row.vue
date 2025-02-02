@@ -38,6 +38,7 @@ const backgroundImage = computed(() => result.value?.mediaItemBy?.mediaItemUrl |
             :to="`/teams/${team?.slug}`"
             variant="surface"
             size="large"
+            class="!text-xl"
           >
             Mehr Infos
           </LinkButton>
