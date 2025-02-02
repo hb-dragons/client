@@ -85,7 +85,7 @@ const navigationItems = [
 
 <style>
 .header-router-link-active {
-  @apply bg-primary-600;
+  @apply bg-primary-700;
   @apply rounded-md;
   @apply font-semibold;
   @apply text-white;

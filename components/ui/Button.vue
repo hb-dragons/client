@@ -18,7 +18,7 @@ const sizeStyles = {
 };
 
 const variantStyles = {
-  primary: 'bg-primary-600 hover:bg-primary-700 border-primary-700',
+  primary: 'bg-primary-700 hover:bg-primary-800 border-primary-800',
   surface: 'bg-surface-700 hover:bg-surface-600 border-surface-600 ',
   secondary: 'bg-secondary-700 hover:bg-secondary-600 border-secondary-600 ',
 };
