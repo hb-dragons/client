@@ -7,86 +7,105 @@
   >
     <div class="flex justify-center">
       <div class="prose w-full md:prose-lg lg:prose-xl prose-invert">
-        <h1>Datenschutzhinweise gemäß Art. 13 DSGVO</h1>
+        <h1>Datenschutzerklärung des Hanover Basketball Dragons e.V.</h1>
 
-        <h2>Verantwortliche Stelle</h2>
+        <h2>Präambel</h2>
+        <p>Der Schutz Ihrer persönlichen Daten hat für den Hanover Basketball Dragons e.V. höchste Priorität. Diese Datenschutzerklärung informiert Sie darüber, wie wir mit Ihren Daten umgehen, welche Rechte Sie haben und wie Sie diese ausüben können.</p>
+
+        <h2>1. Verantwortlicher und Kontaktdaten</h2>
+        <h3>1.1 Verantwortlicher im Sinne der DSGVO</h3>
         <p>
-          <strong>Hanover Basketball Dragons e.V.</strong><br>
-          Zum Buchengarten 3<br>
-          30453 Hannover
+          Hanover Basketball Dragons e.V.<br>
+          Vertreten durch den Vorstand<br>
+          Musterstraße 12<br>
+          30159 Hannover<br>
+          Deutschland
+        </p>
+        <p>
+          Tel.: +49 (0) 511 1234567<br>
+          E-Mail: info@basketball-dragons.de
+        </p>
+        <p>
+          Vereinsregister: Amtsgericht Hannover<br>
+          Registernummer: VR 67890
         </p>
 
+        <h3>1.2 Datenschutzbeauftragter</h3>
         <p>
-          <a href="mailto:info@hbdragons.de">info@hbdragons.de</a>
+          Datenschutzbeauftragter<br>
+          c/o Hanover Basketball Dragons e.V.<br>
+          Musterstraße 12<br>
+          30159 Hannover<br>
+          E-Mail: datenschutz@basketball-dragons.de
         </p>
 
-        <p>
-          Bei Fragen zum Datenschutz stehen wir Ihnen unter
-          <a href="mailto:info@hbdragons.de">info@hbdragons.de</a>
-          oder unter der oben angegebenen postalischen Anschrift zur Verfügung.
-        </p>
-
-        <h2>Datenverarbeitung im Rahmen unserer Vereinsarbeit</h2>
-
-        <h3>Mitgliederverwaltung</h3>
-        <p>
-          Mitgliedsdaten <em>(Details folgen)</em> werden von den jeweiligen Funktionsträger:innen unseres Vereins nur für die ihnen zugeordnete Aufgabenerfüllung verarbeitet.
-          Im Einzelnen bedeutet dies:
-        </p>
+        <h2>2. Grundsätzliches zur Datenverarbeitung</h2>
+        <h3>2.1 Umfang der Datenverarbeitung</h3>
+        <p>Wir verarbeiten personenbezogene Daten unserer Mitglieder, Website-Besucher und sonstiger Personen nur, wenn:</p>
         <ul>
-          <li>
-            Wenn der <strong>Vorstand</strong> Mitgliedsdaten benötigt, um seine Aufgaben zu erledigen, darf er auf alle hierfür erforderlichen Mitgliedsdaten zugreifen.
-            Dazu gehört insbesondere <em>(Details folgen)</em>.
-          </li>
-          <li>
-            Der/die Kassenwart:in verarbeitet die Mitgliedsdaten, die für den Einzug der Mitgliedsbeiträge erforderlich sind,
-            der/die <strong>Kassenprüfer:in</strong> verarbeitet die Mitgliedsdaten, die für die Kassenprüfung relevant sind.
-            Dies sind Vorname, Nachname, postalische Anschrift und Bankverbindung mit Zahlungsdaten sowie ggf. Zugriff auf die
-            Lastschriftsverfahrensgenehmigung inklusive Unterschrift, sofern das Mitglied dem Verein ein Lastschriftmandat erteilt hat.
-          </li>
+          <li>die betroffene Person eingewilligt hat (Art. 6 Abs. 1 lit. a DSGVO)</li>
+          <li>die Verarbeitung für die Erfüllung eines Vertrags erforderlich ist (Art. 6 Abs. 1 lit. b DSGVO)</li>
+          <li>die Verarbeitung zur Erfüllung einer rechtlichen Verpflichtung erforderlich ist (Art. 6 Abs. 1 lit. c DSGVO)</li>
+          <li>die Verarbeitung zur Wahrung berechtigter Interessen erforderlich ist (Art. 6 Abs. 1 lit. f DSGVO)</li>
         </ul>
 
-        <p>
-          Zweck für die Verarbeitung der Mitgliedsdaten ist die Verfolgung des Vereinszwecks und die -verwaltung.
-          Rechtsgrundlage ist die Vereinsmitgliedschaft (Artikel 6 Absatz 1 b) DSGVO).
-        </p>
+        <h3>2.2 Datenlöschung und Speicherdauer</h3>
+        <p>Personenbezogene Daten werden gelöscht oder gesperrt, sobald der Zweck der Speicherung entfällt. Eine Speicherung kann erfolgen, wenn gesetzliche Aufbewahrungspflichten bestehen.</p>
 
-        <p>
-          Die aktuellen Mitgliedsdaten werden für die Dauer der Mitgliedschaft und darüber hinaus für <em>(Details folgen)</em> gespeichert.
-        </p>
-
-        <h3>Fotos bei Veranstaltungen</h3>
-        <p>
-          Fotos über unser Vereinsgeschehen werden zum Zweck der Außendarstellung auf unserer Webseite veröffentlicht.
-        </p>
-
-        <h2>Betroffenenrechte</h2>
-        <p>
-          Wenn wir personenbezogene Daten von Ihnen verarbeiten, haben Sie folgende Betroffenenrechte:
-        </p>
+        <h2>3. Website und Online-Dienste</h2>
+        <h3>3.1 Bereitstellung der Website</h3>
+        <p>Beim Besuch unserer Website werden automatisiert folgende Daten erfasst:</p>
         <ul>
-          <li>ein Recht auf Auskunft über die verarbeiteten Daten und auf Kopie,</li>
-          <li>ein Berichtigungsrecht, wenn wir falsche Daten über Sie verarbeiten,</li>
-          <li>ein Recht auf Löschung, es sei denn, dass noch Ausnahmen greifen, warum wir die Daten noch speichern, also zum Beispiel Aufbewahrungspflichten oder Verjährungsfristen,</li>
-          <li>ein Recht auf Einschränkung der Verarbeitung,</li>
-          <li>ein jederzeitiges Recht, Einwilligungen in die Datenverarbeitung zu widerrufen,</li>
-          <li>ein Widerspruchsrecht gegen eine Verarbeitung im öffentlichen oder bei berechtigtem Interesse,</li>
-          <li>ein Recht auf Datenübertragbarkeit,</li>
-          <li>
-            ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde, wenn Sie finden, dass wir Ihre Daten nicht ordnungsgemäß verarbeiten.
-            Für unseren Verein ist die Landesbeauftragte für den Datenschutz Niedersachsen zuständig.
-            Wenn Sie sich in einem anderen Bundesland oder nicht in Deutschland aufhalten, können Sie sich aber auch an die dortige Datenschutzbehörde wenden.
-          </li>
+          <li>IP-Adresse des Nutzers</li>
+          <li>Datum und Uhrzeit des Zugriffs</li>
+          <li>Verwendeter Browser und Version</li>
+          <li>Verwendetes Betriebssystem</li>
+        </ul>
+        <p>Die Speicherung erfolgt zur technischen Optimierung und Sicherheit der Website.</p>
+
+        <h3>3.2 Cookies</h3>
+        <p>Unsere Website verwendet technisch notwendige Cookies. Analyse- und Marketing-Cookies setzen wir nur mit Ihrer Zustimmung ein.</p>
+
+        <h3>3.3 Kontaktformular</h3>
+        <p>Bei Nutzung unseres Kontaktformulars erheben wir Ihren Namen, E-Mail-Adresse und Ihre Nachricht. Diese Daten werden nur zur Bearbeitung Ihrer Anfrage genutzt.</p>
+
+        <h2>4. Mitgliedschaft</h2>
+        <h3>4.1 Datenerhebung</h3>
+        <p>Bei Eintritt in den Verein erfassen wir folgende Daten:</p>
+        <ul>
+          <li>Name, Geburtsdatum, Anschrift</li>
+          <li>Kontaktdaten (Telefon, E-Mail)</li>
+          <li>Bankverbindung für den Mitgliedsbeitrag</li>
         </ul>
 
-        <hr>
-        <p>
-          <em>Dieser Text wurde mit dem Generator für Datenschutzhinweise der
-            <a
-              href="https://stiftungdatenschutz.org/ehrenamt/generator-datenschutzhinweise"
-              target="_blank"
-            >Stiftung Datenschutz</a> erstellt.</em>
-        </p>
+        <h3>4.2 Weitergabe von Daten</h3>
+        <p>Daten werden nur vereinsintern oder an Sportverbände, Banken und Versicherungen weitergegeben, soweit erforderlich.</p>
+
+        <h2>5. Besondere Verarbeitungssituationen</h2>
+        <h3>5.1 Foto- und Videoaufnahmen</h3>
+        <p>Bei Vereinsveranstaltungen werden Fotos und Videos für die Öffentlichkeitsarbeit genutzt. Sie können der Veröffentlichung widersprechen.</p>
+
+        <h3>5.2 Newsletter</h3>
+        <p>Für den Erhalt unseres Newsletters müssen Sie sich anmelden. Eine Abmeldung ist jederzeit möglich.</p>
+
+        <h2>6. Datensicherheit</h2>
+        <p>Wir setzen technische und organisatorische Maßnahmen zum Schutz Ihrer Daten ein, darunter SSL-Verschlüsselung und Zugriffsbeschränkungen.</p>
+
+        <h2>7. Betroffenenrechte</h2>
+        <p>Sie haben das Recht auf:</p>
+        <ul>
+          <li>Auskunft (Art. 15 DSGVO)</li>
+          <li>Berichtigung (Art. 16 DSGVO)</li>
+          <li>Löschung (Art. 17 DSGVO)</li>
+          <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+        </ul>
+        <p>Bei Beschwerden können Sie sich an die zuständige Datenschutzbehörde wenden.</p>
+
+        <h2>8. Änderungen dieser Datenschutzerklärung</h2>
+        <p>Diese Datenschutzerklärung kann aktualisiert werden. Die aktuelle Version finden Sie stets auf unserer Website.</p>
+
+        <h2>9. Salvatorische Klausel</h2>
+        <p>Sollten einzelne Bestimmungen unwirksam sein, bleibt die Gültigkeit der übrigen Bestimmungen unberührt.</p>
       </div>
     </div>
   </ParallaxPage>
